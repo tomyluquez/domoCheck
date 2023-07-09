@@ -1,0 +1,9 @@
+{
+    "routes": [
+      { "src": "/clientes/([^/]+)", "dest": "/index.html" },
+      { "src": "/clientes", "dest": "/index.html" },
+      { "src": "/actividades", "dest": "/index.html" },
+      { "src": "/configuracion", "dest": "/index.html" }
+    ]
+  }
+  
