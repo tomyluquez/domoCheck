@@ -9,8 +9,10 @@ import {
 } from "../../Styles/Pages/ClientsIndStyles";
 import useSetUsersApi from "../../Hooks/useSetUsersApi";
 import Loading from "./../Loading";
+import { useSelector } from "react-redux";
 
 const UsersClient = ({ cliente }) => {
+  const role = useSelector((state) => state.user.role);
   const [data, setData] = useState({
     usuarioApi: cliente.usuarios?.usuarioApi || "",
     claveApi: cliente.usuarios?.claveApi || "",
@@ -61,14 +63,17 @@ const UsersClient = ({ cliente }) => {
             label={dataUser.label}
             variant="outlined"
             required={true}
+            disabled={role !== "masDelivery"}
             onChange={(e) =>
               setData({ ...data, [dataUser.value]: e.target.value })
             }
           />
         ))}
-        <ButtonCustom onClick={handlerSetUsersApi}>
-          {isLoading ? <Loading /> : "Guardar"}
-        </ButtonCustom>
+        {role === "masDelivery" && (
+          <ButtonCustom onClick={handlerSetUsersApi}>
+            {isLoading ? <Loading /> : "Guardar"}
+          </ButtonCustom>
+        )}
       </DivUserAPi>
       <DivUsersGrid>
         <h4 style={{ margin: 0 }}>Usuarios para el panel de control</h4>
@@ -81,14 +86,17 @@ const UsersClient = ({ cliente }) => {
             label={dataUser.label}
             variant="outlined"
             required={true}
+            disabled={role !== "masDelivery"}
             onChange={(e) =>
               setData({ ...data, [dataUser.value]: e.target.value })
             }
           />
         ))}
-        <ButtonCustom onClick={handlerSetUsersDatos}>
-          {isLoading ? <Loading /> : "Guardar"}
-        </ButtonCustom>
+        {role === "masDelivery" && (
+          <ButtonCustom onClick={handlerSetUsersDatos}>
+            {isLoading ? <Loading /> : "Guardar"}
+          </ButtonCustom>
+        )}
       </DivUsersGrid>
     </DivUsers>
   );

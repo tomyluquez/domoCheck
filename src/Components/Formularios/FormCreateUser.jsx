@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { openAlert } from "../../redux/slices/Alert";
 import useCreateUser from "../../Hooks/useCreateUser";
 import Loading from "../Loading";
+import { vendedores } from "./../../data/vendedores";
+import { FormCreate } from "../../Styles/Pages/ConfiguracionStyles";
 
 const FormCreateUser = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ const FormCreateUser = () => {
     password: "",
     email: "",
     role: "",
+    vendedor: "",
   });
   const handleCreateUser = (e) => {
     console.log("hola");
@@ -25,7 +28,8 @@ const FormCreateUser = () => {
       data.name === "" ||
       data.password === "" ||
       data.email === "" ||
-      data.role === ""
+      data.role === "" ||
+      (data.role === "vendedor" && data.vendedor === "")
     ) {
       dispatch(
         openAlert({
@@ -38,9 +42,9 @@ const FormCreateUser = () => {
     createUserMutation.mutate(data);
   };
   return (
-    <form onSubmit={handleCreateUser}>
+    <FormCreate onSubmit={handleCreateUser}>
       <TextField
-        sx={{ minWidth: 180, width: "15%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "20%", backgroundColor: "#fafafa" }}
         value={data.name}
         id="outlined-basic"
         label="Nombre Usuario"
@@ -48,7 +52,7 @@ const FormCreateUser = () => {
         onChange={(e) => setData({ ...data, name: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "15%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "20%", backgroundColor: "#fafafa" }}
         value={data.password}
         id="outlined-basic"
         label="Contraseña"
@@ -57,7 +61,7 @@ const FormCreateUser = () => {
         onChange={(e) => setData({ ...data, password: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "15%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "20%", backgroundColor: "#fafafa" }}
         value={data.email}
         id="outlined-basic"
         label="Email"
@@ -66,17 +70,27 @@ const FormCreateUser = () => {
         onChange={(e) => setData({ ...data, email: e.target.value })}
       />
       <SelectCustom
-        w="15%"
+        w="20%"
         label="Rol"
         value={data.role}
         required={true}
         setValue={(newValue) => setData({ ...data, role: newValue })}
         opciones={roles}
       />
+      {data.role === "vendedor" && (
+        <SelectCustom
+          w="20%"
+          label="Vincular a un vendedor"
+          value={data.vendedor}
+          required={true}
+          setValue={(newValue) => setData({ ...data, vendedor: newValue })}
+          opciones={vendedores}
+        />
+      )}
       <ButtonCustom type="submit">
         {isLoading ? <Loading /> : "Agregar usuario"}
       </ButtonCustom>
-    </form>
+    </FormCreate>
   );
 };
 

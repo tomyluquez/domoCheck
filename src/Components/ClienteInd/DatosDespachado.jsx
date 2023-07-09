@@ -9,8 +9,11 @@ import {
 } from "../../Styles/Pages/ClientsIndStyles";
 import useUpdateDatosDesp from "../../Hooks/useUpdateDatosDesp";
 import Loading from "./../Loading";
+import { useSelector } from "react-redux";
 
 const DatosDespachado = ({ cliente }) => {
+  const role = useSelector((state) => state.user.role);
+
   const [data, setData] = useState({
     "JPG a soporte": {
       estado: cliente["JPG a soporte"].estado || "",
@@ -49,37 +52,44 @@ const DatosDespachado = ({ cliente }) => {
             {dato.value}: {data[dato.value].estado}
           </span>
           <span>Comentario: {data[dato.value].comentario}</span>
-          <SelectCustom
-            w="15%"
-            label="Estado"
-            value={data[dato.value].estado} // Obtener el estado actual de "JPG a soporte"
-            required={true}
-            setValue={(newValue) =>
-              setData((prevState) => ({
-                ...prevState,
-                [dato.value]: {
-                  ...prevState[dato.value],
-                  estado: newValue, // Actualizar el valor del estado
-                },
-              }))
-            }
-            opciones={EstadosDatos}
-          />
-          <TexTarea
-            width={"150px"}
-            setObs={(newValue) =>
-              setData((prevState) => ({
-                ...prevState,
-                [dato.value]: {
-                  ...prevState[dato.value],
-                  comentario: newValue,
-                },
-              }))
-            }
-          />
-          <ButtonCustom width="180px" onClick={() => handlerUpdate(dato.value)}>
-            {isLoading ? <Loading /> : "Actualizar"}
-          </ButtonCustom>
+          {role === "masDelivery" && (
+            <>
+              <SelectCustom
+                w="15%"
+                label="Estado"
+                value={data[dato.value].estado} // Obtener el estado actual de "JPG a soporte"
+                required={true}
+                setValue={(newValue) =>
+                  setData((prevState) => ({
+                    ...prevState,
+                    [dato.value]: {
+                      ...prevState[dato.value],
+                      estado: newValue, // Actualizar el valor del estado
+                    },
+                  }))
+                }
+                opciones={EstadosDatos}
+              />
+              <TexTarea
+                width={"150px"}
+                setObs={(newValue) =>
+                  setData((prevState) => ({
+                    ...prevState,
+                    [dato.value]: {
+                      ...prevState[dato.value],
+                      comentario: newValue,
+                    },
+                  }))
+                }
+              />
+              <ButtonCustom
+                width="180px"
+                onClick={() => handlerUpdate(dato.value)}
+              >
+                {isLoading ? <Loading /> : "Actualizar"}
+              </ButtonCustom>
+            </>
+          )}
         </DivContainerDatosDespachados>
       ))}
     </DivFlex>

@@ -1,15 +1,23 @@
-import { Box, SwipeableDrawer } from "@mui/material";
+import { Avatar, Box, SwipeableDrawer } from "@mui/material";
 import { colorLogo } from "../Styles/GeneralStyles";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import FolderSharedOutlinedIcon from "@mui/icons-material/FolderSharedOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import { openModal } from "../redux/slices/modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LinkMobile, ListMobile } from "../Styles/Pages/SidebarStyles";
+import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import { logoutUser } from "../redux/slices/users";
 
 const SidebarMobile = ({ setSidebarOpen }) => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
 
   return (
     <SwipeableDrawer
@@ -25,23 +33,54 @@ const SidebarMobile = ({ setSidebarOpen }) => {
         onKeyDown={() => setSidebarOpen(false)}
       >
         <ListMobile>
+          <LinkMobile style={{ position: "absolute", top: "10px" }}>
+            <Avatar>{user.name.split("")[0].toUpperCase()}</Avatar>
+            <span>Hola ! {user.name}</span>
+          </LinkMobile>
+
           <LinkMobile to="/dashboard">
             <DashboardOutlinedIcon />
             <span>Dashboard</span>
           </LinkMobile>
-          <LinkMobile to="/clientes">
-            <FolderSharedOutlinedIcon />
-            <span>Clientes</span>
-          </LinkMobile>
-          <LinkMobile to="/actividades">
-            <CalendarMonthOutlinedIcon />
-            <span>Actividades</span>
-          </LinkMobile>
+
+          {(user.role === "admin" ||
+            user.role === "integrador" ||
+            user.role === "masDelivery") && (
+            <LinkMobile to="/clientes">
+              <FolderSharedOutlinedIcon />
+              <span>Clientes</span>
+            </LinkMobile>
+          )}
+
+          {(user.role === "admin" || user.role === "integrador") && (
+            <LinkMobile to="/actividades">
+              <CalendarMonthOutlinedIcon />
+              <span>Actividades</span>
+            </LinkMobile>
+          )}
+
+          {user.role !== "masDelivery" && (
+            <LinkMobile
+              onClick={() => dispatch(openModal({ type: "Agregar cliente" }))}
+            >
+              <PersonAddAltOutlinedIcon />
+              <span>Agregar cliente</span>
+            </LinkMobile>
+          )}
+
+          {user.role === "admin" && (
+            <LinkMobile to="/configuracion">
+              <BuildOutlinedIcon />
+              <span>Configuracion</span>
+            </LinkMobile>
+          )}
+
           <LinkMobile
-            onClick={() => dispatch(openModal({ type: "Agregar cliente" }))}
+            style={{ position: "absolute", bottom: "10px" }}
+            onClick={handleLogout}
           >
-            <PersonAddAltOutlinedIcon />
-            <span>Agregar cliente</span>
+            <ExitToAppOutlinedIcon />
+            <span>Cerrar sesion</span>
           </LinkMobile>
         </ListMobile>
       </Box>

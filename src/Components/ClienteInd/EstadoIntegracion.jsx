@@ -8,7 +8,7 @@ import { hoverColors, stateColors } from "../../data/colors";
 import { colorLetra } from "../../Styles/GeneralStyles";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../redux/slices/modal";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const EstadoIntegracion = ({ cliente }) => {
   const datosEntregados =
@@ -23,6 +23,7 @@ const EstadoIntegracion = ({ cliente }) => {
   const mutationAct = useMutationNewAct();
   const { isLoading } = mutationclient;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handlerChange = (setObs, setResultado, setEstado) => {
     const props = {
@@ -38,7 +39,7 @@ const EstadoIntegracion = ({ cliente }) => {
       estado: setEstado,
     };
     handlerChangeState(props);
-    <Navigate to="/clientes" />;
+    navigate("/clientes");
   };
 
   const handlerCancel = () => {
