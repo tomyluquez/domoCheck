@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { SpanTabla, TableStyles } from "../../Styles/TableStyles";
-import { IconButton, TableCell, Tooltip } from "@mui/material";
+import { Avatar, TableCell, Tooltip } from "@mui/material";
 import actVencidas from "../../services/actVencidas";
 import { stateColors } from "../../data/colors";
 import formatDate from "../../services/formatDate";
 import findOthersAct from "../../services/findOtherAct";
-import ReportProblemOutlinedIcon from "@mui/icons-material/ReportProblemOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 const FilaActInd = ({
   act,
@@ -15,12 +13,14 @@ const FilaActInd = ({
   handleIconClick,
 }) => {
   const [vencimiento, setVencimiento] = useState();
+  const [diasVencida, setDiasVencidas] = useState();
   useEffect(() => {
-    const newFondo = actVencidas(
+    const { estadoActividad, diasTranscurridos } = actVencidas(
       act.actividad.proximoContacto,
       act.actividad.estadoAct
     );
-    setVencimiento(newFondo);
+    setDiasVencidas(diasTranscurridos);
+    setVencimiento(estadoActividad);
   }, [act.actividad.proximoContacto, act.actividad.estadoAct]);
   const isVencida = vencimiento === "Vencida" || vencimiento === "Peligro";
   return (
@@ -52,21 +52,25 @@ const FilaActInd = ({
       <TableCell className="icon">{act.actividad.dato}</TableCell>
       <TableCell className="icon">{act.actividad.actividad}</TableCell>
       <TableCell style={{ display: "flex" }} className="icon">
-        {findOthersAct(act.cliente) && (
+        {findOthersAct(act.cliente) > 1 && (
           <Tooltip
-            title="El cliente tiene mas de una actividad pendiente"
+            title={`El cliente tiene ${findOthersAct(
+              act.cliente
+            )} actividades pendientes`}
             onClick={(event) => handleIconClick(event, act.cliente)}
           >
-            <IconButton>
-              <PersonOutlineOutlinedIcon style={{ color: "gray" }} />
-            </IconButton>
+            <Avatar sx={{ width: 25, height: 25, bgcolor: "primary" }}>
+              {findOthersAct(act.cliente)}
+            </Avatar>
           </Tooltip>
         )}
         {isVencida && (
-          <Tooltip title={`La actividad está ${vencimiento}`}>
-            <IconButton>
-              <ReportProblemOutlinedIcon style={{ color: "red" }} />
-            </IconButton>
+          <Tooltip
+            title={`La actividad lleva ${vencimiento}  ${diasVencida} dias`}
+          >
+            <Avatar sx={{ width: 25, height: 25, bgcolor: "red" }}>
+              {diasVencida}
+            </Avatar>
           </Tooltip>
         )}
       </TableCell>

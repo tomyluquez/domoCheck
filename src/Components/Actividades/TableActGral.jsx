@@ -8,6 +8,7 @@ import { changeValue } from "../../redux/slices/value";
 import FilaActInd from "./FilaActInd";
 
 const TableActGral = ({ actividadesPendientes }) => {
+  console.log(actividadesPendientes);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

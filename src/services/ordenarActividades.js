@@ -11,8 +11,8 @@ const ordenarActividades = (actividades, orden) => {
     }
     if (orden === 2) {
       return (
-        actividadDate.getFullYear() < today.getFullYear() &&
-        actividadDate.getMonth() < today.getMonth() &&
+        actividadDate.getFullYear() <= today.getFullYear() &&
+        actividadDate.getMonth() <= today.getMonth() &&
         actividadDate.getDate() < today.getDate()
       );
     }
@@ -32,7 +32,6 @@ const ordenarActividades = (actividades, orden) => {
     }
     return true; // orden === 5: Todas las actividades
   });
-
   return actividadesOrdenadas;
 };
 

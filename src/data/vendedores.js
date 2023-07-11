@@ -7,4 +7,5 @@ export const vendedores = [
   { descripcion: "Rocio", value: "Rocio" },
   { descripcion: "Juani", value: "Juani" },
   { descripcion: "NN", value: "NN" },
+  { descripcion: "Daniela", value: "Daniela" },
 ];

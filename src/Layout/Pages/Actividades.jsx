@@ -19,7 +19,7 @@ const Actividades = () => {
         Mis Actividades
       </Typography>
       <OrdenActividades orden={orden} setOrden={setOrden} ordenAct={ordenAct} />
-      <TableActGral actividadesPendientes={actividadesOrdenadas} />
+      <TableActGral key={orden} actividadesPendientes={actividadesOrdenadas} />
     </div>
   );
 };

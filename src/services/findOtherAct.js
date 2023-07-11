@@ -3,7 +3,7 @@ const findOthersAct = (cliente) => {
     (actividad) => actividad.estadoAct === "Pendiente"
   );
 
-  return actividadesPendientes.length > 1;
+  return actividadesPendientes.length;
 };
 
 export default findOthersAct;
