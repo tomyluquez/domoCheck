@@ -3,13 +3,16 @@ export const datosDespachados = [
     value: "JPG a soporte",
   },
   {
+    value: "JPG",
+  },
+];
+
+export const datosMarketing = [
+  {
     value: "MP Conectado",
   },
   {
     value: "Marketing",
-  },
-  {
-    value: "JPG",
   },
 ];
 

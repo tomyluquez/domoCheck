@@ -3,4 +3,5 @@ export const roles = [
   { descripcion: "vendedor", value: "vendedor" },
   { descripcion: "masDelivery", value: "masDelivery" },
   { descripcion: "integrador", value: "integrador" },
+  { descripcion: "marketing", value: "marketing" },
 ];

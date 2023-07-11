@@ -50,7 +50,7 @@ const handlerUpdateSolicitud = async (
     _id: uuidv4(),
     actividad: `Realizar seguimiento para confirmar que entrego ${info}`,
     fecha: new Date(),
-    proximoContacto: new Date(Date.now() + +proxContacto * 24 * 60 * 60 * 1000),
+    proximoContacto: new Date(Date.now() + proxContacto * 24 * 60 * 60 * 1000),
     dato: `Seguimiento ${info}`,
     estadoAct: "Pendiente",
   };

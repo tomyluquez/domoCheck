@@ -64,6 +64,13 @@ export const menuSidebar = (user) => {
     ) {
       return false;
     }
+    if (
+      (user.role === "marketing" && item.text === "Configuracion") ||
+      (user.role === "marketing" && item.text === "Actividades") ||
+      (user.role === "marketing" && item.text === "Agregar cliente")
+    ) {
+      return false;
+    }
     return true;
   });
 };

@@ -9,6 +9,10 @@ const filterClientByRole = (clientes, role) => {
         cliente.estado === "Despachado" || cliente.estado === "Integrado"
     );
   }
+
+  if (role === "marketing") {
+    return [...clientes].filter((cliente) => cliente.estado === "Integrado");
+  }
   return clientes;
 };
 export default filterClientByRole;

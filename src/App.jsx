@@ -71,7 +71,8 @@ function App() {
                       isAllowed={
                         role === "admin" ||
                         role === "integrador" ||
-                        role === "masDelivery"
+                        role === "masDelivery" ||
+                        role === "marketing"
                       }
                     >
                       <ClienteIdn />
@@ -97,7 +98,8 @@ function App() {
                       isAllowed={
                         role === "admin" ||
                         role === "integrador" ||
-                        role === "masDelivery"
+                        role === "masDelivery" ||
+                        role === "marketing"
                       }
                     >
                       <Clientes />

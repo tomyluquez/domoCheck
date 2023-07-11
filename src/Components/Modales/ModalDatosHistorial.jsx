@@ -5,7 +5,6 @@ import TinmeLineClient from "../TimeLine";
 const ModalDatosHistorial = ({ clientes, idClient, reference }) => {
   const cliente = filterById(clientes, idClient);
   const hitosIndividual = hitosInd(cliente, reference);
-  console.log(hitosIndividual);
   return (
     <div>
       <TinmeLineClient hitos={hitosIndividual} />

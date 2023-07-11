@@ -11,7 +11,6 @@ import actByClient from "../services/actByClient";
 export default function TableACtividades({ cliente, orden }) {
   const { actividadesCliente, actividadesPendientes, actividadesCumplidas } =
     actByClient(cliente);
-  console.log(orden);
   let rows;
 
   if (orden === 1) {

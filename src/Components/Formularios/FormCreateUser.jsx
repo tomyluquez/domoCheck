@@ -22,7 +22,6 @@ const FormCreateUser = () => {
     vendedor: "",
   });
   const handleCreateUser = (e) => {
-    console.log("hola");
     e.preventDefault();
     if (
       data.name === "" ||

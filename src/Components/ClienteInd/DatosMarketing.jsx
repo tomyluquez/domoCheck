@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SelectCustom from "../SelectCustom";
-import { EstadosDatos, datosDespachados } from "../../data/datosDespachados";
+import { EstadosDatos, datosMarketing } from "../../data/datosDespachados";
 import TexTarea from "../TexTarea";
 import { ButtonCustom } from "../../Styles/ButtonStyles";
 import {
@@ -11,19 +11,20 @@ import useUpdateDatosDesp from "../../Hooks/useUpdateDatosDesp";
 import Loading from "./../Loading";
 import { useSelector } from "react-redux";
 
-const DatosDespachado = ({ cliente }) => {
+const DatosMarketing = ({ cliente }) => {
   const role = useSelector((state) => state.user.role);
 
   const [data, setData] = useState({
-    "JPG a soporte": {
-      estado: cliente["JPG a soporte"].estado || "",
-      comentario: cliente["JPG a soporte"].comentario || " - ",
+    "MP Conectado": {
+      estado: cliente["MP Conectado"].estado || "",
+      comentario: cliente["MP Conectado"].comentario || "-",
     },
-    JPG: {
-      estado: cliente["JPG"].estado || "",
-      comentario: cliente["JPG"].comentario || "-",
+    Marketing: {
+      estado: cliente["Marketing"].estado || "",
+      comentario: cliente["Marketing"].comentario || "-",
     },
   });
+
   const mutationDatos = useUpdateDatosDesp();
   const { isLoading } = mutationDatos;
   const handlerUpdate = (value) => {
@@ -38,13 +39,13 @@ const DatosDespachado = ({ cliente }) => {
 
   return (
     <DivFlex>
-      {datosDespachados.map((dato, index) => (
+      {datosMarketing.map((dato, index) => (
         <DivContainerDatosDespachados key={index}>
           <span>
             {dato.value}: {data[dato.value].estado}
           </span>
           <span>Comentario: {data[dato.value].comentario}</span>
-          {role === "masDelivery" && (
+          {role === "marketing" && (
             <>
               <SelectCustom
                 w="15%"
@@ -88,4 +89,4 @@ const DatosDespachado = ({ cliente }) => {
   );
 };
 
-export default DatosDespachado;
+export default DatosMarketing;

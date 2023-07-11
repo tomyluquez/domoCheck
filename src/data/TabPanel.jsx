@@ -1,4 +1,5 @@
 import DatosDespachado from "../Components/ClienteInd/DatosDespachado";
+import DatosMarketing from "../Components/ClienteInd/DatosMarketing";
 import EstadoIntegracion from "../Components/ClienteInd/EstadoIntegracion";
 import Historial from "../Components/ClienteInd/Historial";
 import Observaciones from "../Components/ClienteInd/Observaciones";
@@ -47,6 +48,11 @@ const tabPanels = (cliente, hitos) => {
       value: "7",
       componente: <DatosDespachado cliente={cliente} />,
       label: "Datos",
+    },
+    cliente.estado === "Integrado" && {
+      value: "8",
+      componente: <DatosMarketing cliente={cliente} />,
+      label: "Marketing",
     },
   ];
 };

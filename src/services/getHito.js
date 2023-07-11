@@ -1,5 +1,4 @@
 const getHiyto = (actividad, resultado) => {
-  console.log(actividad);
   let hito = "";
   if (actividad.dato === "Contactar") {
     if (resultado === "Entregado") hito = "Cliente contactado";

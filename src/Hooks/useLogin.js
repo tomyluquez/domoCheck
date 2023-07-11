@@ -36,7 +36,6 @@ const useLogin = () => {
         );
       },
       onError: (error) => {
-        console.log(error);
         dispatch(
           openAlert({
             motivo: "El usuario o la contraseña son incorrectos",
