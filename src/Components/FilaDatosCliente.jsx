@@ -44,26 +44,6 @@ const FilaDatosCliente = ({ dato, cliente }) => {
       <TableCell className="icon">
         {dato.estado === "Pendiente de solicitar" ? (
           <DivSolicitud>
-            <span
-              onClick={() =>
-                handlerUpdateSolicitud(
-                  mutationclient,
-                  mutationNewAct,
-                  cliente,
-                  dato.tipo,
-                  proxContacto,
-                  "Solicitado"
-                )
-              }
-            >
-              {isLoading ? (
-                <Loading />
-              ) : (
-                <>
-                  <LibraryAddCheckOutlinedIcon />
-                </>
-              )}
-            </span>
             <input
               type="text"
               style={{ width: 15 }}
@@ -85,6 +65,26 @@ const FilaDatosCliente = ({ dato, cliente }) => {
                 }
               }}
             />
+            <span
+              onClick={() =>
+                handlerUpdateSolicitud(
+                  mutationclient,
+                  mutationNewAct,
+                  cliente,
+                  dato.tipo,
+                  proxContacto,
+                  "Solicitado"
+                )
+              }
+            >
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <>
+                  <LibraryAddCheckOutlinedIcon />
+                </>
+              )}
+            </span>
           </DivSolicitud>
         ) : (
           <span>-</span>

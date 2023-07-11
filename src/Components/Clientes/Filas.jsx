@@ -79,25 +79,25 @@ function Row(props) {
       <TableRow>
         <TableCell style={{ paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            {cliente.estado === "Pendiente" ||
+            {(cliente.estado === "Pendiente" ||
               cliente.estado === "No lo quiere" ||
-              (cliente.estado === "No contesta" && (
-                <Box
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {cliente.estado}
-                </Box>
-              ))}
-            {cliente.estado === "Faltan datos" ||
+              cliente.estado === "No contesta") && (
+              <Box
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {cliente.estado}
+              </Box>
+            )}
+            {(cliente.estado === "Faltan datos" ||
               cliente.estado === "Testeo" ||
-              (cliente.estado === "Configuracion" && (
-                <EstadoIntegracion cliente={cliente} />
-              ))}
+              cliente.estado === "Configuracion") && (
+              <EstadoIntegracion cliente={cliente} />
+            )}
             {cliente.estado === "Despachado" && (
               <UsersClient cliente={cliente} />
             )}

@@ -42,10 +42,10 @@ const EstadoIntegracion = ({ cliente }) => {
     navigate("/clientes");
   };
 
-  const handlerCancel = () => {
+  const handleModal = (motivo) => {
     dispatch(
       openModal({
-        type: "Cancelar integracion",
+        type: motivo,
         id: cliente._id,
       })
     );
@@ -128,15 +128,39 @@ const EstadoIntegracion = ({ cliente }) => {
             color={colorLetra}
             hfondo={hoverColors["No lo quiere"]}
             borde={colorLetra}
-            onClick={handlerCancel}
+            onClick={() => handleModal("Cancelar integracion")}
           >
             Cancelar Integracion
           </ButtonCustom>
         )}
+        {(cliente.estado === "Pendiente" ||
+          cliente.estado === "Faltan datos") && (
+          <ButtonCustom
+            width="80px"
+            fondo={stateColors["No contesta"]}
+            color={colorLetra}
+            hfondo={hoverColors["No contesta"]}
+            borde={colorLetra}
+            onClick={() => handleModal("Detener integracion")}
+          >
+            No contesta
+          </ButtonCustom>
+        )}
+        {(cliente.estado === "No contesta" ||
+          cliente.estado === "No lo quiere") && (
+          <ButtonCustom
+            width="80px"
+            fondo={hoverColors["Despachado"]}
+            color={colorLetra}
+            hfondo={stateColors["Despachado"]}
+            borde={colorLetra}
+            onClick={() => handleModal("Retomar integracion")}
+          >
+            Retomar Integracion
+          </ButtonCustom>
+        )}
       </div>
-      {cliente.estado !== "No contesta" &&
-        cliente.estado !== "No lo quiere" &&
-        cliente.estado !== "Pendiente" && <EstadoDatos cliente={cliente} />}
+      {cliente.estado !== "Pendiente" && <EstadoDatos cliente={cliente} />}
     </div>
   );
 };

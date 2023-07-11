@@ -14,6 +14,8 @@ import FormAddClient from "../Formularios/FormAddClient";
 import ModalActividad from "./ModalActividad";
 import ModalAddContacto from "./ModalAddContacto";
 import CancelIntergacion from "../CancelIntergacion";
+import ModalStopIntegracion from "./ModalStopIntegracion";
+import ModalReturnIntegracion from "./ModalReturnIntegracion";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -114,6 +116,12 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
           )}
           {isOpen === "Cancelar integracion" && (
             <CancelIntergacion clientes={clientes} idClient={idClient} />
+          )}
+          {isOpen === "Detener integracion" && (
+            <ModalStopIntegracion clientes={clientes} idClient={idClient} />
+          )}
+          {isOpen === "Retomar integracion" && (
+            <ModalReturnIntegracion clientes={clientes} idClient={idClient} />
           )}
         </DialogContent>
         <DialogActions>
