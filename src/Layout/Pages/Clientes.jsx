@@ -13,7 +13,7 @@ const Clientes = () => {
 
   return (
     <div>
-      <Filters clientes={clientes} />
+      <Filters clientes={clientes} clientesActivos={clientesActivos} />
       <TablaPrincipal clientes={clientesActivos} />
     </div>
   );

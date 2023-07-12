@@ -31,14 +31,14 @@ export const menuSidebar = (user) => {
       icon: <ExitToAppOutlinedIcon />,
       text: "Cerrar sesion",
       position: "absolute",
-      bottom: "10px",
+      bottom: "30px",
       to: "/",
     },
     {
       icon: <Avatar>{user.name.split("")[0].toUpperCase()}</Avatar>,
       text: `Hola ! ${user.name}`,
       position: "absolute",
-      top: "10px",
+      top: "30px",
       to: "/",
     },
     {

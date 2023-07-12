@@ -26,7 +26,8 @@ const IntegradoresDash = ({ clientes }) => {
         <DivSpanNumber>
           <SpanCard>Porcentaje Integracion:</SpanCard>
           <NumberCard>
-            {(cantidadIntegradosTotales(clientes) / clientes.length) * 100 || 0}
+            {Math.round(cantidadIntegradosTotales(clientes) / clientes.length) *
+              100 || 0}
             %
           </NumberCard>
         </DivSpanNumber>

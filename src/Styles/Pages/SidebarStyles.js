@@ -8,6 +8,8 @@ import {
 } from "../GeneralStyles";
 import { Link } from "react-router-dom";
 import { List } from "@mui/material";
+import KeyboardDoubleArrowRightOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowRightOutlined";
+import KeyboardDoubleArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftOutlined";
 
 export const ASidebar = styled(Link)`
   display: flex;
@@ -20,7 +22,7 @@ export const ASidebar = styled(Link)`
   transition: background-color 0.3s ease-in-out;
   span {
     width: 120px;
-    display: none;
+    display: ${(props) => (props.menuOpen ? "block" : "none")};
     transition: display 0.3s ease-in-out;
   }
   &:hover {
@@ -40,31 +42,16 @@ export const UlSidebar = styled.ul`
 export const SidebarStyle = styled.section`
   display: flex;
   align-items: center;
-  width: 5%;
+  width: ${(props) => (props.menuOpen ? "15%" : "5%")};
   transition: all 0.3s ease-in-out;
   height: 100vh;
   cursor: pointer;
   position: fixed;
   z-index: 3;
-  background-color: ${colorLogo};
+  background-color: ${(props) => (props.menuOpen ? colorLogoOpa : colorLogo)};
   @media screen and (max-width: 700px) {
     position: absolute;
     left: -100%;
-  }
-
-  &:hover {
-    ${ASidebar} {
-      span {
-        display: block;
-      }
-    }
-    width: 15%;
-    transition: width 0.3s ease-in-out;
-    background-color: ${colorLogoOpa};
-  }
-
-  &:not(:hover) {
-    transition: width 0.3s ease-in-out;
   }
 `;
 
@@ -73,7 +60,7 @@ export const ContainerPpal = styled.div`
   padding: 10px;
   margin-left: 80px;
   background-color: #eff3f8;
-  height: 97vh;
+
   ${SidebarStyle} :hover & {
     margin-left: 195px !important;
   }
@@ -103,4 +90,30 @@ export const LinkMobile = styled(Link)`
   justify-content: center;
   align-items: center;
   gap: 5px;
+`;
+
+export const MenuRight = styled(KeyboardDoubleArrowRightOutlinedIcon)`
+  position: absolute;
+  top: 0;
+  right: -10px;
+  z-index: 100;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const MenuLeft = styled(KeyboardDoubleArrowLeftOutlinedIcon)`
+  position: absolute;
+  top: 0;
+  right: -10px;
+  z-index: 100;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
 `;

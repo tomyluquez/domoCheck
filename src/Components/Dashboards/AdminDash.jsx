@@ -35,9 +35,11 @@ const AdminDash = ({ clientes }) => {
             <DivSpanNumber>
               <SpanCard>Porcentaje Integracion:</SpanCard>
               <NumberCard>
-                {(cantidadIntegrados(clientes, vendedor.value) /
-                  cantidadSolicitados(clientes, vendedor.value)) *
-                  100 || 0}
+                {Math.round(
+                  (cantidadIntegrados(clientes, vendedor.value) /
+                    cantidadSolicitados(clientes, vendedor.value)) *
+                    100 || 0
+                )}
                 %
               </NumberCard>
             </DivSpanNumber>

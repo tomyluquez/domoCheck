@@ -3,6 +3,8 @@ import { colorFondo } from "../Styles/GeneralStyles";
 import {
   ASidebar,
   LiSidebar,
+  MenuLeft,
+  MenuRight,
   SidebarStyle,
   UlSidebar,
 } from "../Styles/Pages/SidebarStyles";
@@ -15,6 +17,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState("Dashboard");
   const user = useSelector((state) => state.user);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handlerActive = (text) => {
     setActive(text);
@@ -25,34 +28,46 @@ const Sidebar = () => {
       dispatch(logoutUser());
     }
   };
+  console.log(menuOpen);
   return (
-    <SidebarStyle>
-      <UlSidebar>
-        {menuSidebar(user).map((menu) => (
-          <LiSidebar
-            key={menu.text}
-            style={{
-              backgroundColor: active === menu.text ? colorFondo : "",
-              borderRadius: "10px",
-              position: `${menu.position}` || "relative",
-              bottom: `${menu.bottom}` || "0",
-              top: `${menu.top}` || "0",
-              left: `${menu.left}` || "0",
-              right: `${menu.right}` || "0",
-            }}
-          >
-            <ASidebar
-              to={menu.to}
-              onClick={() => handlerActive(menu.text)}
-              style={{ color: active === menu.text ? "white" : "" }}
+    <>
+      <SidebarStyle menuOpen={menuOpen}>
+        {menuOpen ? (
+          <MenuLeft
+            menuOpen={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
+        ) : (
+          <MenuRight onClick={() => setMenuOpen(!menuOpen)} />
+        )}
+        <UlSidebar>
+          {menuSidebar(user).map((menu) => (
+            <LiSidebar
+              key={menu.text}
+              style={{
+                backgroundColor: active === menu.text ? colorFondo : "",
+                borderRadius: "10px",
+                position: `${menu.position}` || "relative",
+                bottom: `${menu.bottom}` || "0",
+                top: `${menu.top}` || "0",
+                left: `${menu.left}` || "0",
+                right: `${menu.right}` || "0",
+              }}
             >
-              {menu.icon}
-              <span>{menu.text}</span>
-            </ASidebar>
-          </LiSidebar>
-        ))}
-      </UlSidebar>
-    </SidebarStyle>
+              <ASidebar
+                menuOpen={menuOpen}
+                to={menu.to}
+                onClick={() => handlerActive(menu.text)}
+                style={{ color: active === menu.text ? "white" : "" }}
+              >
+                {menu.icon}
+                <span>{menu.text}</span>
+              </ASidebar>
+            </LiSidebar>
+          ))}
+        </UlSidebar>
+      </SidebarStyle>
+    </>
   );
 };
 

@@ -18,7 +18,7 @@ import Loading from "../Loading";
 const ModalActividad = ({ clientes, idClient, idAct }) => {
   const [data, setData] = useState({
     resultado: "",
-    proximoContacto: new Date(),
+    proximoContacto: "",
     obs: "",
   });
   const dispatch = useDispatch();
@@ -40,6 +40,9 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
     (data.resultado === "" && data.proximoContacto === "" && data.obs === "");
 
   const handlerUpdate = () => {
+    if (data.obs === "" && data.proximoContacto === "" && data.resultado === "")
+      return;
+
     setIsLoading(true);
     const props = {
       actividad,

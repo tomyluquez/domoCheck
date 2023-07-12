@@ -82,7 +82,6 @@ const FormFilters = ({ clientes }) => {
         setValue={(newValue) => setData({ ...data, estado: newValue })}
         opciones={estados}
       />
-
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DateRangePicker"]}>
           <DateRangePicker

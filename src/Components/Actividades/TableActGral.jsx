@@ -1,6 +1,6 @@
 import { Box, Divider, TableBody, TableCell, TableHead } from "@mui/material";
 import { TableCellStyle, TableStyles } from "../../Styles/TableStyles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../redux/slices/modal";
 
 import { useNavigate } from "react-router-dom";
@@ -10,9 +10,12 @@ import FilaActInd from "./FilaActInd";
 const TableActGral = ({ actividadesPendientes }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const role = useSelector((state) => state.user.role);
 
   const handleCellClick = (act) => {
     if (act.actividad.estadoAct !== "Cumplida") {
+      if (role !== "integrador") return;
+
       let tipo = act.actividad.dato;
       if (act.actividad.dato.includes("Seguimiento")) {
         tipo = act.actividad.dato.split("Seguimiento ")[1];
