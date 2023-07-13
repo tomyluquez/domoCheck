@@ -8,11 +8,12 @@ import useMutationNewAct from "../../Hooks/useMutationNewAct";
 import Loading from "../Loading";
 import handlerUpdateSolicitud from "../../services/handlerUpdate";
 import filterById from "../../services/filterById";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ModalActividades } from "../../Styles/ActividadesStyle";
 
 const ModalSolicitud = ({ clientes, idClient, referencia }) => {
   const cliente = filterById(clientes, idClient);
+  const userName = useSelector((state) => state.user.name);
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
   const { isLoading } = mutationclient;
@@ -22,7 +23,6 @@ const ModalSolicitud = ({ clientes, idClient, referencia }) => {
     obs: "",
   });
   const disabled = data.proxContacto === "" && data.obs === "";
-  console.log(data.proxContacto);
 
   const handlerUpdate = (e) => {
     e.preventDefault();
@@ -34,7 +34,8 @@ const ModalSolicitud = ({ clientes, idClient, referencia }) => {
       data.proxContacto,
       "Solicitado",
       data.obs,
-      dispatch
+      dispatch,
+      userName
     );
   };
 

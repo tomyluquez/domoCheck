@@ -39,27 +39,6 @@ const FilaDatosCliente = ({ dato, cliente }) => {
       <TableCell className="icon">
         {dato.estado === "Pendiente de solicitar" ? (
           <DivSolicitud>
-            {/* <input
-              type="text"
-              style={{ width: 15 }}
-              value={proxContacto}
-              onChange={(e) => {
-                const value = e.target.value;
-                const filteredValue = value.replace(/[^0-9]/g, ""); // Filtra los caracteres que no sean números
-                setProxContacto(filteredValue);
-              }}
-              onKeyDown={(e) => {
-                const allowedKeys = [
-                  "Backspace",
-                  "Delete",
-                  "ArrowLeft",
-                  "ArrowRight",
-                ];
-                if (!/^[0-9]$/.test(e.key) && !allowedKeys.includes(e.key)) {
-                  e.preventDefault(); // Evita la entrada de caracteres que no sean números
-                }
-              }}
-            /> */}
             <span
               onClick={() =>
                 dispatch(

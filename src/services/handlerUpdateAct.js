@@ -15,6 +15,7 @@ const handlerUpdateAct = async (props) => {
     navigate,
     setIsLoading,
     dispatch,
+    userName,
   } = props;
 
   try {
@@ -30,6 +31,7 @@ const handlerUpdateAct = async (props) => {
       estado: "Cumplida",
       resultado: hito,
       fechaCumplimiento: new Date(),
+      userName,
     });
 
     if (actividad.dato === "Contactar") {
@@ -66,6 +68,7 @@ const handlerUpdateAct = async (props) => {
             ? `Cliente entrego ${actividad.dato}`
             : "",
         fechaCumplimiento: new Date(),
+        cumplidor: userName,
       };
 
       await mutationNewAct.mutateAsync({

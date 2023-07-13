@@ -29,7 +29,6 @@ const Actividades = () => {
     data,
     "Cumplidas"
   );
-  console.log(actividadesCumplidasPend);
 
   return (
     <div>

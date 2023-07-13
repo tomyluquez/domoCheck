@@ -23,7 +23,10 @@ const Historial = ({ cliente }) => {
         setOrden={setOrden}
         ordenAct={ordenHistorial}
       />
-      <TableActGral actividadesPendientes={actPend} />
+      <TableActGral
+        tipoActividad={orden === 1 ? "Pendientes" : "Cumplidas"}
+        actividades={actPend}
+      />
     </div>
   );
 };

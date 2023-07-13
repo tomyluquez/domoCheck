@@ -12,7 +12,7 @@ import filterById from "../../services/filterById";
 import { getOpcionesActividad } from "../../data/getOpciones";
 import handlerUpdateAct from "../../services/handlerUpdateAct";
 import { ModalActividades } from "../../Styles/ActividadesStyle";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 
 const ModalActividad = ({ clientes, idClient, idAct }) => {
@@ -22,6 +22,7 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
     obs: "",
   });
   const dispatch = useDispatch();
+  const userName = useSelector((state) => state.user.name);
   const mutationAct = useMutatioAct();
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
@@ -56,9 +57,11 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
       navigate,
       setIsLoading,
       dispatch,
+      userName,
     };
     handlerUpdateAct(props);
   };
+  console.log(actividad);
 
   return (
     <ModalActividades>

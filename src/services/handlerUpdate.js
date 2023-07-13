@@ -9,7 +9,8 @@ const handlerUpdateSolicitud = async (
   proxContacto,
   infoEstado,
   obs,
-  dispatch
+  dispatch,
+  userName
 ) => {
   await new Promise((resolve, reject) => {
     mutationclient.mutate(
@@ -34,6 +35,7 @@ const handlerUpdateSolicitud = async (
     estadoAct: "Cumplida",
     resultado: `${info} Solicitado`,
     fechaCumplimiento: new Date(),
+    cumplidor: userName,
   };
 
   await new Promise((resolve, reject) => {
@@ -56,6 +58,7 @@ const handlerUpdateSolicitud = async (
     proximoContacto: new Date(proxContacto) || new Date(),
     dato: `Seguimiento ${info}`,
     estadoAct: "Pendiente",
+    userName,
   };
 
   await new Promise((resolve, reject) => {
