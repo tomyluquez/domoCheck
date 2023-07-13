@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { changeValue } from "../../redux/slices/value";
 import FilaActInd from "./FilaActInd";
 
-const TableActGral = ({ actividadesPendientes }) => {
+const TableActGral = ({ tipoActividad, actividades }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const role = useSelector((state) => state.user.role);
@@ -53,17 +53,23 @@ const TableActGral = ({ actividadesPendientes }) => {
               <TableCell>Nombre Local</TableCell>
               <TableCell>Nombre Cliente</TableCell>
               <TableCell>Telefono Contacto</TableCell>
-              <TableCell>Fecha Vencimiento</TableCell>
+              <TableCell>
+                Fecha{" "}
+                {tipoActividad === "Pendientes"
+                  ? "Vencimiento"
+                  : "Cumplimiento"}
+              </TableCell>
               <TableCell>Actividad</TableCell>
               <TableCell>Comentario</TableCell>
               <TableCell></TableCell>
             </TableStyles>
           </TableHead>
           <TableBody>
-            {actividadesPendientes.map((act) => (
+            {actividades.map((act) => (
               <FilaActInd
                 key={act.actividad._id}
                 act={act}
+                tipoActividad={tipoActividad}
                 handleCellClick={handleCellClick}
                 handleNameCLick={handleNameCLick}
                 handleIconClick={handleIconClick}

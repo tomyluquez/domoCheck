@@ -8,6 +8,7 @@ import findOthersAct from "../../services/findOtherAct";
 
 const FilaActInd = ({
   act,
+  tipoActividad,
   handleCellClick,
   handleNameCLick,
   handleIconClick,
@@ -47,7 +48,9 @@ const FilaActInd = ({
       <TableCell className="icon">{act.cliente.nombreCrm}</TableCell>
       <TableCell className="icon">{act.cliente.telContacto}</TableCell>
       <TableCell className="icon">
-        {formatDate(act.actividad.proximoContacto)}
+        {tipoActividad === "Pendientes"
+          ? formatDate(act.actividad.proximoContacto)
+          : formatDate(act.actividad.fechaCumplimiento)}
       </TableCell>
       <TableCell className="icon">{act.actividad.dato}</TableCell>
       <TableCell className="icon">{act.actividad.actividad}</TableCell>
