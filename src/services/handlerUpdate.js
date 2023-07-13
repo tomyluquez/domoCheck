@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { closeModal } from "../redux/slices/modal";
 
 const handlerUpdateSolicitud = async (
   mutationclient,
@@ -6,7 +7,9 @@ const handlerUpdateSolicitud = async (
   cliente,
   info,
   proxContacto,
-  infoEstado
+  infoEstado,
+  obs,
+  dispatch
 ) => {
   await new Promise((resolve, reject) => {
     mutationclient.mutate(
@@ -48,9 +51,9 @@ const handlerUpdateSolicitud = async (
 
   const newActPen = {
     _id: uuidv4(),
-    actividad: `Realizar seguimiento para confirmar que entrego ${info}`,
+    actividad: obs || `Realizar seguimiento para confirmar que entrego ${info}`,
     fecha: new Date(),
-    proximoContacto: new Date(Date.now() + proxContacto * 24 * 60 * 60 * 1000),
+    proximoContacto: new Date(proxContacto) || new Date(),
     dato: `Seguimiento ${info}`,
     estadoAct: "Pendiente",
   };
@@ -67,6 +70,8 @@ const handlerUpdateSolicitud = async (
       }
     );
   });
+
+  dispatch(closeModal());
 };
 
 export default handlerUpdateSolicitud;

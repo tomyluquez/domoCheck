@@ -28,7 +28,6 @@ const Sidebar = () => {
       dispatch(logoutUser());
     }
   };
-  console.log(menuOpen);
   return (
     <>
       <SidebarStyle menuOpen={menuOpen}>

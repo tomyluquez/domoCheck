@@ -1,23 +1,18 @@
 import { DivContainerState, TableStyles } from "../Styles/TableStyles";
 import { TableCell } from "@mui/material";
 import formatDate from "../services/formatDate";
-import handlerUpdateSolicitud from "../services/handlerUpdate";
 import useMutations from "../Hooks/useMutations";
-import useMutationNewAct from "../Hooks/useMutationNewAct";
 import { useDispatch } from "react-redux";
 import LibraryAddCheckOutlinedIcon from "@mui/icons-material/LibraryAddCheckOutlined";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { openModal } from "../redux/slices/modal";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import { stateColors } from "../data/colors";
-import { useState } from "react";
 import { DivSolicitud } from "../Styles/Pages/ClientsIndStyles";
 import Loading from "./Loading";
 
 const FilaDatosCliente = ({ dato, cliente }) => {
   const mutationclient = useMutations();
-  const mutationNewAct = useMutationNewAct();
-  const [proxContacto, setProxContacto] = useState(1);
   const dispatch = useDispatch();
   const { isLoading } = mutationclient;
   return (
@@ -44,7 +39,7 @@ const FilaDatosCliente = ({ dato, cliente }) => {
       <TableCell className="icon">
         {dato.estado === "Pendiente de solicitar" ? (
           <DivSolicitud>
-            <input
+            {/* <input
               type="text"
               style={{ width: 15 }}
               value={proxContacto}
@@ -64,16 +59,15 @@ const FilaDatosCliente = ({ dato, cliente }) => {
                   e.preventDefault(); // Evita la entrada de caracteres que no sean números
                 }
               }}
-            />
+            /> */}
             <span
               onClick={() =>
-                handlerUpdateSolicitud(
-                  mutationclient,
-                  mutationNewAct,
-                  cliente,
-                  dato.tipo,
-                  proxContacto,
-                  "Solicitado"
+                dispatch(
+                  openModal({
+                    type: `Solicitud ${dato.tipo}`,
+                    referencia: dato.tipo,
+                    id: cliente._id,
+                  })
                 )
               }
             >

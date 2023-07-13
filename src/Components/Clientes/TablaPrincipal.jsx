@@ -17,6 +17,10 @@ const TablaPrincipal = ({ clientes }) => {
     }),
   ];
 
+  if (rowsTable.length === 0) {
+    return <span>No hay resultados</span>;
+  }
+
   return (
     <TableContainer className="table" component={Paper}>
       <Table aria-label="collapsible table">

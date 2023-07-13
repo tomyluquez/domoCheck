@@ -16,6 +16,7 @@ import ModalAddContacto from "./ModalAddContacto";
 import CancelIntergacion from "../CancelIntergacion";
 import ModalStopIntegracion from "./ModalStopIntegracion";
 import ModalReturnIntegracion from "./ModalReturnIntegracion";
+import ModalSolicitud from "./ModalSolicitud";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -71,6 +72,12 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
     isOpen === "mapa" ||
     isOpen === "imgProd" ||
     isOpen === "imgStore";
+  const datosSolicitud =
+    isOpen === "Solicitud menu" ||
+    isOpen === "Solicitud datos" ||
+    isOpen === "Solicitud mapa" ||
+    isOpen === "Solicitud imgProd" ||
+    isOpen === "Solicitud imgStore";
   const handleClose = () => {
     dispatch(closeModal());
   };
@@ -122,6 +129,13 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
           )}
           {isOpen === "Retomar integracion" && (
             <ModalReturnIntegracion clientes={clientes} idClient={idClient} />
+          )}
+          {datosSolicitud && (
+            <ModalSolicitud
+              clientes={clientes}
+              idClient={idClient}
+              referencia={reference}
+            />
           )}
         </DialogContent>
         <DialogActions>

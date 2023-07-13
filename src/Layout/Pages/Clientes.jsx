@@ -11,6 +11,15 @@ const Clientes = () => {
     role
   );
 
+  if (filteredClientes.length === 0) {
+    return (
+      <>
+        <Filters clientes={clientes} clientesActivos={filteredClientes} />{" "}
+        <TablaPrincipal clientes={filteredClientes} />
+      </>
+    );
+  }
+
   return (
     <div>
       <Filters clientes={clientes} clientesActivos={clientesActivos} />
