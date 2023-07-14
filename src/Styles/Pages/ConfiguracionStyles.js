@@ -5,4 +5,5 @@ export const FormCreate = styled.form`
   align-items: start;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 `;

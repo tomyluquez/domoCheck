@@ -1,20 +1,17 @@
 import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { openAlert } from "../redux/slices/Alert";
+import { closeModal } from "../redux/slices/modal";
 
-const useCreateUser = () => {
+const useDeleteUser = () => {
   const dispatch = useDispatch();
-  const createUserMutation = useMutation(
-    (data) =>
-      fetch(`https://crnventas.onrender.com/api/users`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
+  const deleteUserMutation = useMutation(
+    (id) =>
+      fetch(`https://crnventas.onrender.com/api/users/${id}`, {
+        method: "DELETE",
       }).then((response) => {
         if (!response.ok) {
-          throw new Error(response.error);
+          throw new Error(response.status);
         }
         return response.json();
       }),
@@ -22,15 +19,16 @@ const useCreateUser = () => {
       onSuccess: () => {
         dispatch(
           openAlert({
-            motivo: "Usuario creado con exito",
+            motivo: "Usuario eliminado con exito",
             estado: "success",
           })
         );
+        dispatch(closeModal());
       },
       onError: (error) => {
         dispatch(
           openAlert({
-            motivo: error.error,
+            motivo: error.message,
             estado: "error",
           })
         );
@@ -38,7 +36,7 @@ const useCreateUser = () => {
     }
   );
 
-  return createUserMutation;
+  return deleteUserMutation;
 };
 
-export default useCreateUser;
+export default useDeleteUser;

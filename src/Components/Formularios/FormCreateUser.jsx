@@ -9,18 +9,27 @@ import useCreateUser from "../../Hooks/useCreateUser";
 import Loading from "../Loading";
 import { vendedores } from "./../../data/vendedores";
 import { FormCreate } from "../../Styles/Pages/ConfiguracionStyles";
+import useEditUser from "../../Hooks/useEditUser";
+import useDeleteUser from "../../Hooks/useDeleteUser";
 
-const FormCreateUser = () => {
+const FormCreateUser = ({ user }) => {
   const dispatch = useDispatch();
   const createUserMutation = useCreateUser();
+  const editUserMutation = useEditUser();
+  const deleteUserMutation = useDeleteUser();
   const { isLoading } = createUserMutation;
   const [data, setData] = useState({
-    name: "",
-    password: "",
-    email: "",
-    role: "",
-    vendedor: "",
+    name: user?.name || "",
+    password: user?.password || "",
+    email: user?.email || "",
+    role: user?.role || "",
+    vendedor: user?.vendedor || "",
+    id: user?._id || "",
   });
+
+  const handlerDeleteUser = () => {
+    deleteUserMutation.mutate(user._id);
+  };
   const handleCreateUser = (e) => {
     e.preventDefault();
     if (
@@ -38,12 +47,14 @@ const FormCreateUser = () => {
       );
       return;
     }
-    createUserMutation.mutate(data);
+    if (user?.name) {
+      editUserMutation.mutate(data);
+    } else createUserMutation.mutate(data);
   };
   return (
     <FormCreate onSubmit={handleCreateUser}>
       <TextField
-        sx={{ minWidth: 180, width: "20%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
         value={data.name}
         id="outlined-basic"
         label="Nombre Usuario"
@@ -51,7 +62,7 @@ const FormCreateUser = () => {
         onChange={(e) => setData({ ...data, name: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "20%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
         value={data.password}
         id="outlined-basic"
         label="Contraseña"
@@ -60,7 +71,7 @@ const FormCreateUser = () => {
         onChange={(e) => setData({ ...data, password: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "20%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
         value={data.email}
         id="outlined-basic"
         label="Email"
@@ -69,7 +80,7 @@ const FormCreateUser = () => {
         onChange={(e) => setData({ ...data, email: e.target.value })}
       />
       <SelectCustom
-        w="20%"
+        w="100%"
         label="Rol"
         value={data.role}
         required={true}
@@ -78,7 +89,7 @@ const FormCreateUser = () => {
       />
       {data.role === "vendedor" && (
         <SelectCustom
-          w="20%"
+          w="100%"
           label="Vincular a un vendedor"
           value={data.vendedor}
           required={true}
@@ -87,8 +98,19 @@ const FormCreateUser = () => {
         />
       )}
       <ButtonCustom type="submit">
-        {isLoading ? <Loading /> : "Agregar usuario"}
+        {isLoading ? (
+          <Loading />
+        ) : user?.name ? (
+          "Editar usuario"
+        ) : (
+          "Crear usuario"
+        )}
       </ButtonCustom>
+      {user?.name && (
+        <ButtonCustom onClick={handlerDeleteUser}>
+          Eliminar Usuario
+        </ButtonCustom>
+      )}
     </FormCreate>
   );
 };

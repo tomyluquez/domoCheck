@@ -17,6 +17,7 @@ import CancelIntergacion from "../CancelIntergacion";
 import ModalStopIntegracion from "./ModalStopIntegracion";
 import ModalReturnIntegracion from "./ModalReturnIntegracion";
 import ModalSolicitud from "./ModalSolicitud";
+import ModalCreateUser from "./ModalUser";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -118,6 +119,9 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
             />
           )}
           {isOpen === "Agregar cliente" && <FormAddClient />}
+          {(isOpen === "Agregar usuario" || isOpen === "Editar usuario") && (
+            <ModalCreateUser user={reference} />
+          )}
           {isOpen === "Agregar contacto" && (
             <ModalAddContacto idClient={idClient} />
           )}
