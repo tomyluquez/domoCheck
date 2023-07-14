@@ -71,9 +71,12 @@ function Row(props) {
         <TableCell>{cliente.nombreCrm}</TableCell>
         <TableCell>{cliente.telContacto}</TableCell>
         <TableCell>{formatDate(cliente.fechaSolicitud)}</TableCell>
-        <TableCell>
-          {formatDate(cliente.fechaContacto) || "Pendiente de Contactar"}
+        <TableCell align="center">
+          {formatDate(cliente.modificacion?.fechaModificacion) ||
+            formatDate(cliente.fechaContacto) ||
+            "Pendiente de Contactar"}
         </TableCell>
+        <TableCell>{cliente.modificacion?.user}</TableCell>
         <TableCell>{cliente.vendedor}</TableCell>
       </TableStyles>
       <TableRow>

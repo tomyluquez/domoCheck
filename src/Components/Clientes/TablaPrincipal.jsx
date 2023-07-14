@@ -32,7 +32,8 @@ const TablaPrincipal = ({ clientes }) => {
             <TableCell>Nombre Cliente</TableCell>
             <TableCell>Telefono Contacto</TableCell>
             <TableCell>Fecha Solicitud</TableCell>
-            <TableCell>Fecha Contacto</TableCell>
+            <TableCell>Fecha Ultimo Contacto</TableCell>
+            <TableCell>Usuario</TableCell>
             <TableCell>Venedor</TableCell>
           </TableStyles>
         </TableHead>

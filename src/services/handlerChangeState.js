@@ -25,6 +25,7 @@ const handlerChangeState = (props) => {
       estadoAct,
       resultado: resultado ? resultado : "",
       fechaCumplimiento: new Date(),
+      cumplidor: userName,
     };
     mutationNewAct.mutate({
       id: cliente._id,
