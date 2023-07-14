@@ -61,7 +61,6 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
     };
     handlerUpdateAct(props);
   };
-  console.log(actividad);
 
   return (
     <ModalActividades>

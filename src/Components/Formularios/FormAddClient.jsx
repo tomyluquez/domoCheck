@@ -11,9 +11,11 @@ import { FormAddCliente } from "../../Styles/FormStyles";
 import SelectCustom from "../SelectCustom";
 import { antiguedad } from "../../data/antiguedad";
 import Loading from "../Loading";
+import { useSelector } from "react-redux";
 
 const FormAddClient = () => {
   const { mutation, isLoading, setIsLoading } = useNewMutation();
+  const userName = useSelector((state) => state.user.name);
   const [data, setData] = useState({
     fechaSolicitud: "",
     nombreCrm: "",
@@ -44,6 +46,7 @@ const FormAddClient = () => {
       vendedor: data.vendedor,
       antiguedad: data.antiguedad,
       observaciones: data.obs ? [data.obs] : [],
+      userName,
     };
     setIsLoading(true);
     mutation.mutate(newUser);

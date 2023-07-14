@@ -6,7 +6,7 @@ import handlerChangeState from "../../services/handlerChangeState";
 import Loading from "../Loading";
 import { hoverColors, stateColors } from "../../data/colors";
 import { colorLetra } from "../../Styles/GeneralStyles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../redux/slices/modal";
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +24,7 @@ const EstadoIntegracion = ({ cliente }) => {
   const { isLoading } = mutationclient;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userName = useSelector((state) => state.user.name);
 
   const handlerChange = (setObs, setResultado, setEstado) => {
     const props = {
@@ -37,6 +38,7 @@ const EstadoIntegracion = ({ cliente }) => {
       mutationclient,
       cliente,
       estado: setEstado,
+      userName,
     };
     handlerChangeState(props);
     navigate("/clientes");

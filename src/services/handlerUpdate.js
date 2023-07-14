@@ -18,6 +18,7 @@ const handlerUpdateSolicitud = async (
         id: cliente._id,
         datoClient: info,
         estadoClient: infoEstado,
+        userName,
       },
       {
         onSuccess: resolve,
@@ -43,6 +44,7 @@ const handlerUpdateSolicitud = async (
       {
         id: cliente._id,
         newActOk,
+        userName,
       },
       {
         onSuccess: resolve,
@@ -66,6 +68,7 @@ const handlerUpdateSolicitud = async (
       {
         id: cliente._id,
         newActPen,
+        userName,
       },
       {
         onSuccess: resolve,

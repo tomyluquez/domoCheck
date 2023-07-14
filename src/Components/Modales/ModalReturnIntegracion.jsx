@@ -2,7 +2,7 @@ import { useState } from "react";
 import filterById from "../../services/filterById";
 import useMutations from "../../Hooks/useMutations";
 import useMutationNewAct from "../../Hooks/useMutationNewAct";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { closeModal } from "../../redux/slices/modal";
 import TexTarea from "../TexTarea";
@@ -18,6 +18,8 @@ const ModalReturnIntegracion = ({ clientes, idClient }) => {
   const mutationNewAct = useMutationNewAct();
   const dispatch = useDispatch();
   const { isLoading } = mutationclient;
+  const userName = useSelector((state) => state.user.name);
+
   const handlerStop = async () => {
     const newActOk = {
       _id: uuidv4(),
@@ -33,10 +35,12 @@ const ModalReturnIntegracion = ({ clientes, idClient }) => {
     await mutationNewAct.mutateAsync({
       id: cliente._id,
       newActOk,
+      userName,
     });
     await mutationclient.mutateAsync({
       id: cliente._id,
       estado: "Faltan datos",
+      userName,
     });
     dispatch(closeModal());
   };

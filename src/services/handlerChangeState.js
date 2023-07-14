@@ -13,6 +13,7 @@ const handlerChangeState = (props) => {
     idAct,
     mutationclient,
     estado,
+    userName,
   } = props;
   if (proximoContacto) {
     const newActOk = {
@@ -28,6 +29,7 @@ const handlerChangeState = (props) => {
     mutationNewAct.mutate({
       id: cliente._id,
       newActOk,
+      userName,
     });
   }
 
@@ -39,7 +41,7 @@ const handlerChangeState = (props) => {
     fechaCumplimiento: new Date(),
   });
 
-  mutationclient.mutate({ id: cliente._id, estado: estado });
+  mutationclient.mutate({ id: cliente._id, estado: estado, userName });
 };
 
 export default handlerChangeState;

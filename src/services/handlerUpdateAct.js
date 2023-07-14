@@ -39,6 +39,7 @@ const handlerUpdateAct = async (props) => {
         id: cliente._id,
         estado:
           data.resultado === "Entregado" ? "Faltan datos" : data.resultado,
+        userName,
       });
     } else {
       await mutationclient.mutateAsync({
@@ -46,6 +47,7 @@ const handlerUpdateAct = async (props) => {
         datoClient: tipo,
         estadoClient:
           data.resultado === "Entregado" ? "Entregado" : "Solicitado",
+        userName,
       });
     }
 
@@ -74,6 +76,7 @@ const handlerUpdateAct = async (props) => {
       await mutationNewAct.mutateAsync({
         id: cliente._id,
         newActOk,
+        userName,
       });
     }
     setIsLoading(false);
