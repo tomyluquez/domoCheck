@@ -10,13 +10,11 @@ import Loading from "../Loading";
 import { vendedores } from "./../../data/vendedores";
 import { FormCreate } from "../../Styles/Pages/ConfiguracionStyles";
 import useEditUser from "../../Hooks/useEditUser";
-import useDeleteUser from "../../Hooks/useDeleteUser";
 
 const FormCreateUser = ({ user }) => {
   const dispatch = useDispatch();
   const createUserMutation = useCreateUser();
   const editUserMutation = useEditUser();
-  const deleteUserMutation = useDeleteUser();
   const { isLoading } = createUserMutation;
   const [data, setData] = useState({
     name: user?.name || "",
@@ -27,9 +25,6 @@ const FormCreateUser = ({ user }) => {
     id: user?._id || "",
   });
 
-  const handlerDeleteUser = () => {
-    deleteUserMutation.mutate(user._id);
-  };
   const handleCreateUser = (e) => {
     e.preventDefault();
     if (
@@ -106,11 +101,6 @@ const FormCreateUser = ({ user }) => {
           "Crear usuario"
         )}
       </ButtonCustom>
-      {user?.name && (
-        <ButtonCustom onClick={handlerDeleteUser}>
-          Eliminar Usuario
-        </ButtonCustom>
-      )}
     </FormCreate>
   );
 };

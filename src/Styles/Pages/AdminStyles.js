@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 import { Cards } from "./DashboardStyles";
-import { colorFondo, colorLetra } from "../GeneralStyles";
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import { stateColors, hoverColors } from "./../../data/colors";
 
 export const DivContainerUsers = styled.div`
   display: flex;
@@ -14,11 +16,46 @@ export const DivContainerUsers = styled.div`
 
 export const CardsAdmin = styled(Cards)`
   cursor: pointer;
+`;
+
+export const DivIcons = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+export const DivAvatar = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const DivIconsUser = styled.div`
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const EditIcon = styled(ModeEditOutlineOutlinedIcon)`
+  cursor: pointer;
+  font-size: 20px !important;
+  color: ${stateColors["Despachado"]};
   transition: all 0.3s ease-in-out;
-  color: ${colorFondo};
   &:hover {
-    transform: scale(1.1);
-    background-color: ${colorFondo};
-    color: ${colorLetra};
+    color: ${hoverColors["Despachado"]};
+  }
+`;
+
+export const DeleteIcon = styled(DeleteForeverOutlinedIcon)`
+  cursor: pointer;
+  font-size: 20px !important;
+  color: ${stateColors["No lo quiere"]};
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: ${hoverColors["No lo quiere"]};
   }
 `;
