@@ -1,6 +1,7 @@
 import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { openAlert } from "../redux/slices/Alert";
+import { closeModal } from "../redux/slices/modal";
 
 const useCreateUser = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const useCreateUser = () => {
             estado: "success",
           })
         );
+        dispatch(closeModal());
       },
       onError: (error) => {
         dispatch(

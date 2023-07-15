@@ -11,6 +11,7 @@ const TableActGral = ({ tipoActividad, actividades }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const role = useSelector((state) => state.user.role);
+  console.log(tipoActividad);
 
   const handleCellClick = (act) => {
     if (act.actividad.estadoAct !== "Cumplida") {
@@ -64,7 +65,7 @@ const TableActGral = ({ tipoActividad, actividades }) => {
                 {tipoActividad === "Pendientes" ? "Comentario" : "Resultado"}
               </TableCell>
               <TableCell>Usuario</TableCell>
-              {tipoActividad === "Pendiente" && <TableCell></TableCell>}
+              {tipoActividad === "Pendientes" && <TableCell>asdas</TableCell>}
             </TableStyles>
           </TableHead>
           <TableBody>

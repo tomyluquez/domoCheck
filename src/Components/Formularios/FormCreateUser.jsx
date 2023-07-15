@@ -15,7 +15,8 @@ const FormCreateUser = ({ user }) => {
   const dispatch = useDispatch();
   const createUserMutation = useCreateUser();
   const editUserMutation = useEditUser();
-  const { isLoading } = createUserMutation;
+  const loadingCreate = createUserMutation.isLoading;
+  const loadingEdit = editUserMutation.isLoading;
   const [data, setData] = useState({
     name: user?.name || "",
     password: user?.password || "",
@@ -93,7 +94,7 @@ const FormCreateUser = ({ user }) => {
         />
       )}
       <ButtonCustom type="submit">
-        {isLoading ? (
+        {loadingCreate || loadingEdit ? (
           <Loading />
         ) : user?.name ? (
           "Editar usuario"

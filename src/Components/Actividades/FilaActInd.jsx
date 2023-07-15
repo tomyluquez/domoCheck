@@ -5,6 +5,7 @@ import actVencidas from "../../services/actVencidas";
 import { stateColors } from "../../data/colors";
 import formatDate from "../../services/formatDate";
 import findOthersAct from "../../services/findOtherAct";
+import formatDateHours from "../../services/formatDateHours";
 
 const FilaActInd = ({
   act,
@@ -50,7 +51,7 @@ const FilaActInd = ({
       <TableCell className="icon">
         {tipoActividad === "Pendientes"
           ? formatDate(act.actividad.proximoContacto)
-          : formatDate(act.actividad.fechaCumplimiento)}
+          : formatDateHours(act.actividad.fechaCumplimiento)}
       </TableCell>
       <TableCell className="icon">{act.actividad.dato}</TableCell>
       <TableCell className="icon">
@@ -61,31 +62,29 @@ const FilaActInd = ({
       <TableCell className="icon">
         {act.actividad.cumplidor || act.actividad.userName}
       </TableCell>
-      {act.actividad.estado === "Pendiente" && (
-        <TableCell style={{ display: "flex" }} className="icon">
-          {findOthersAct(act.cliente) > 1 && (
-            <Tooltip
-              title={`El cliente tiene ${findOthersAct(
-                act.cliente
-              )} actividades pendientes`}
-              onClick={(event) => handleIconClick(event, act.cliente)}
-            >
-              <Avatar sx={{ width: 25, height: 25, bgcolor: "primary" }}>
-                {findOthersAct(act.cliente)}
-              </Avatar>
-            </Tooltip>
-          )}
-          {isVencida && (
-            <Tooltip
-              title={`La actividad lleva ${vencimiento}  ${diasVencida} dias`}
-            >
-              <Avatar sx={{ width: 25, height: 25, bgcolor: "red" }}>
-                {diasVencida}
-              </Avatar>
-            </Tooltip>
-          )}
-        </TableCell>
-      )}
+      <TableCell className="icon">
+        {findOthersAct(act.cliente) > 1 && (
+          <Tooltip
+            title={`El cliente tiene ${findOthersAct(
+              act.cliente
+            )} actividades pendientes`}
+            onClick={(event) => handleIconClick(event, act.cliente)}
+          >
+            <Avatar sx={{ width: 25, height: 25, bgcolor: "primary" }}>
+              {findOthersAct(act.cliente)}
+            </Avatar>
+          </Tooltip>
+        )}
+        {isVencida && (
+          <Tooltip
+            title={`La actividad lleva ${vencimiento}  ${diasVencida} dias`}
+          >
+            <Avatar sx={{ width: 25, height: 25, bgcolor: "red" }}>
+              {diasVencida}
+            </Avatar>
+          </Tooltip>
+        )}
+      </TableCell>
     </TableStyles>
   );
 };

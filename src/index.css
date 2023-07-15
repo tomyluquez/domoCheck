@@ -23,6 +23,7 @@
   }
 }
 
+
 body{
   background-color: #eff3f8 !important;
 }
@@ -34,6 +35,9 @@ body{
   background-color: #bbd819 !important;
 }
 
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+  min-width: 400px !important;
+}
 
 li{
   list-style: none;

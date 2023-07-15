@@ -5,12 +5,12 @@ import { useState } from "react";
 import { DivContainerState, TableStyles } from "../../Styles/TableStyles";
 import formatDate from "../../services/formatDate";
 import { useNavigate } from "react-router-dom";
-import { stateColors } from "../../data/colors";
 import EstadoIntegracion from "../ClienteInd/EstadoIntegracion";
 import { useDispatch } from "react-redux";
 import { changeValue } from "../../redux/slices/value";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import UsersClient from "../ClienteInd/UsersClient";
+import { stateColors } from "../../data/colors";
 
 function Row(props) {
   const { cliente } = props;
@@ -71,12 +71,14 @@ function Row(props) {
         <TableCell>{cliente.nombreCrm}</TableCell>
         <TableCell>{cliente.telContacto}</TableCell>
         <TableCell>{formatDate(cliente.fechaSolicitud)}</TableCell>
-        <TableCell align="center">
+        <TableCell align="center" style={{ color: "green" }}>
           {formatDate(cliente.modificacion?.fechaModificacion) ||
             formatDate(cliente.fechaContacto) ||
             "Pendiente de Contactar"}
         </TableCell>
-        <TableCell>{cliente.modificacion?.user}</TableCell>
+        <TableCell style={{ color: "green" }}>
+          {cliente.modificacion?.user}
+        </TableCell>
         <TableCell>{cliente.vendedor}</TableCell>
       </TableStyles>
       <TableRow>

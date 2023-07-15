@@ -8,9 +8,12 @@ import { DeleteIcon } from "../../Styles/Pages/AdminStyles";
 import useDeleteUser from "./../../Hooks/useDeleteUser";
 import { ButtonCustom } from "../../Styles/ButtonStyles";
 import { hoverColors, stateColors } from "../../data/colors";
+import { Tooltip } from "@mui/material";
+import Loading from "../../Components/Loading";
 const DeleteUser = ({ user }) => {
   const [open, setOpen] = React.useState(false);
   const deleteUserMutation = useDeleteUser();
+  const { isLoading } = deleteUserMutation;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,7 +29,9 @@ const DeleteUser = ({ user }) => {
 
   return (
     <>
-      <DeleteIcon onClick={handleClickOpen} />
+      <Tooltip title="Eliminar">
+        <DeleteIcon onClick={handleClickOpen} />
+      </Tooltip>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -52,7 +57,7 @@ const DeleteUser = ({ user }) => {
             onClick={handlerDeleteUser}
             autoFocus
           >
-            Eliminiar
+            {isLoading ? <Loading /> : "Eliminar"}
           </ButtonCustom>
         </DialogActions>
       </Dialog>

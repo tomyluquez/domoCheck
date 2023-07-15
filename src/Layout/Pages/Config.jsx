@@ -56,9 +56,7 @@ const Config = () => {
                   <Tooltip title="Editar">
                     <EditIcon onClick={() => handlerEditUser(user)} />
                   </Tooltip>
-                  <Tooltip title="Eliminar">
-                    <DeleteUser user={user} />
-                  </Tooltip>
+                  <DeleteUser user={user} />
                 </DivIconsUser>
               </DivIcons>
               <span>{user.email}</span>
