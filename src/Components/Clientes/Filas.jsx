@@ -70,7 +70,11 @@ function Row(props) {
         </TableCell>
         <TableCell>{cliente.nombreCrm}</TableCell>
         <TableCell>{cliente.telContacto}</TableCell>
-        <TableCell>{formatDate(cliente.fechaSolicitud)}</TableCell>
+        <TableCell>
+          {cliente.estado === "Integrado"
+            ? formatDate(cliente.fechaIntegrado)
+            : formatDate(cliente.fechaSolicitud)}
+        </TableCell>
         <TableCell align="center" style={{ color: "green" }}>
           {formatDate(cliente.modificacion?.fechaModificacion) ||
             formatDate(cliente.fechaContacto) ||

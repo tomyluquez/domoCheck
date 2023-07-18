@@ -4,18 +4,21 @@ import CelebrationOutlinedIcon from "@mui/icons-material/CelebrationOutlined";
 import PermContactCalendarOutlinedIcon from "@mui/icons-material/PermContactCalendarOutlined";
 import LeaderboardOutlinedIcon from "@mui/icons-material/LeaderboardOutlined";
 import {
-  cantClientes,
-  cantidadIntegradosToday,
-  cantidadIntegradosTotales,
+  cantIntegradosMensual,
+  cantIntegradosMensualAnterior,
+  cantidadIntegradosSemana,
+  cantidadIntegradosSemanaAnterior,
+  cantidadSinIntegrar,
   promDiasIntegrados,
 } from "../services/CuantityClients";
 
 export const dataDashAdmin = (clientes, vendedor) => {
   return [
     {
-      title: "Clientes integrados Hoy",
+      title: "Clientes integrados esta semana",
       icon: <CelebrationOutlinedIcon style={{ color: "#fafafa" }} />,
-      data: cantidadIntegradosToday(clientes, vendedor),
+      data: cantidadIntegradosSemana(clientes, vendedor),
+      dataAnterior: cantidadIntegradosSemanaAnterior(clientes, vendedor),
       fondo: "#3AA6B9",
       letra: "#fafafa",
       iconExtra: (
@@ -23,10 +26,18 @@ export const dataDashAdmin = (clientes, vendedor) => {
       ),
     },
     {
-      title: "Clientes integrados Totales",
+      title: "Clientes integrados mensual",
       icon: <CheckCircleOutlineOutlinedIcon style={{ color: "#fafafa" }} />,
-      data: cantidadIntegradosTotales(clientes, vendedor),
+      data: cantIntegradosMensual(clientes, vendedor),
+      dataAnterior: cantIntegradosMensualAnterior(clientes, vendedor),
       fondo: "#5D9C59",
+      letra: "#fafafa",
+    },
+    {
+      title: "Clientes pendientes de integrarse",
+      icon: <LeaderboardOutlinedIcon style={{ color: "#fafafa" }} />,
+      data: cantidadSinIntegrar(clientes, vendedor),
+      fondo: "#E9B384",
       letra: "#fafafa",
     },
     {
@@ -34,18 +45,6 @@ export const dataDashAdmin = (clientes, vendedor) => {
       icon: <PermContactCalendarOutlinedIcon style={{ color: "#fafafa" }} />,
       data: promDiasIntegrados(clientes, vendedor),
       fondo: "#FF9EAA",
-      letra: "#fafafa",
-    },
-    {
-      title: "Promedio integrados",
-      icon: <LeaderboardOutlinedIcon style={{ color: "#fafafa" }} />,
-      data:
-        Math.round(
-          (cantidadIntegradosTotales(clientes, vendedor) /
-            cantClientes(clientes, vendedor)) *
-            100
-        ) + "%",
-      fondo: "#E9B384",
       letra: "#fafafa",
     },
   ];

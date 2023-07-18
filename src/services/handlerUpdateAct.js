@@ -19,7 +19,7 @@ const handlerUpdateAct = async (props) => {
   } = props;
 
   try {
-    const hito = getHiyto(actividad, data.resultado);
+    const hito = getHiyto(actividad, data.resultado, cliente);
     let tipo = actividad.dato;
     if (actividad.dato.includes("Seguimiento")) {
       tipo = actividad.dato.split("Seguimiento ")[1];
@@ -67,7 +67,7 @@ const handlerUpdateAct = async (props) => {
         estadoAct: data.resultado === "Entregado" ? "Cumplida" : "Pendiente",
         resultado:
           data.resultado === "Entregado"
-            ? `Cliente entrego ${actividad.dato}`
+            ? `${cliente.nombreLocal} entrego ${tipo}`
             : "",
         fechaCumplimiento: new Date(),
         cumplidor: userName,

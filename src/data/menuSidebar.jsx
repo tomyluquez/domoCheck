@@ -4,7 +4,6 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
-import { Avatar } from "@mui/material";
 
 export const menuSidebar = (user) => {
   return [
@@ -32,13 +31,6 @@ export const menuSidebar = (user) => {
       text: "Cerrar sesion",
       position: "absolute",
       bottom: "30px",
-      to: "/",
-    },
-    {
-      icon: <Avatar>{user.name.split("")[0].toUpperCase()}</Avatar>,
-      text: `Hola ! ${user.name}`,
-      position: "absolute",
-      top: "30px",
       to: "/",
     },
     {

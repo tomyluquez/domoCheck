@@ -1,29 +1,33 @@
-export const getOpcionesActividad = (actividad) => {
+export const getOpcionesActividad = (actividad, cliente) => {
   let opciones = [];
+  let tipo = actividad.dato;
+  if (actividad.dato.includes("Seguimiento")) {
+    tipo = actividad.dato.split("Seguimiento ")[1];
+  }
   if (actividad.dato === "Contactar") {
     opciones = [
       {
         value: "Entregado",
-        descripcion: "Cliente contactado",
+        descripcion: `${cliente.nombreLocal} contactado`,
       },
       {
         value: "No contesta",
-        descripcion: "Cliente no contesta",
+        descripcion: `${cliente.nombreLocal} no contesta`,
       },
       {
         value: "No lo quiere",
-        descripcion: "Cliente cancelo la integracion",
+        descripcion: `${cliente.nombreLocal} cancelo la integracion`,
       },
     ];
   } else {
     opciones = [
       {
         value: "Entregado",
-        descripcion: `Cliente entrego ${actividad.dato}`,
+        descripcion: `${cliente.nombreLocal} entrego ${tipo}`,
       },
       {
         value: "Aplazado",
-        descripcion: `Cliente aun no entrego ${actividad.dato}`,
+        descripcion: `${cliente.nombreLocal} aun no entrego ${tipo}`,
       },
     ];
   }

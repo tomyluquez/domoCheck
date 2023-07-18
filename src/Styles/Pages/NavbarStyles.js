@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
-import { colorLetra } from "../GeneralStyles";
+import { colorLetra, colorFondo } from "../GeneralStyles";
 
 export const Logo = styled.img`
   width: 50px;
   height: 50px;
+  position: absolute;
+  top: 30px;
+  left: 5px;
+  background-color: ${colorFondo};
+  border-radius: 50%;
+  padding: 5px;
 `;
 
 export const TitleNav = styled.h1`

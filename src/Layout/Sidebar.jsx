@@ -12,6 +12,7 @@ import { menuSidebar } from "../data/menuSidebar";
 import { openModal } from "../redux/slices/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/slices/users";
+import { Logo } from "../Styles/Pages/NavbarStyles";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const Sidebar = () => {
         ) : (
           <MenuRight onClick={() => setMenuOpen(!menuOpen)} />
         )}
+        <Logo src="/logoCheck.png" alt="logo check delivery" />
         <UlSidebar>
           {menuSidebar(user).map((menu) => (
             <LiSidebar

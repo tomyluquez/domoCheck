@@ -55,12 +55,14 @@ const handlerUpdateSolicitud = async (
 
   const newActPen = {
     _id: uuidv4(),
-    actividad: obs || `Realizar seguimiento para confirmar que entrego ${info}`,
+    actividad:
+      obs - cliente.nombreLocal ||
+      `Realizar seguimiento de ${info} - ${cliente.nombreLocal}`,
     fecha: new Date(),
     proximoContacto: new Date(proxContacto) || new Date(),
     dato: `Seguimiento ${info}`,
     estadoAct: "Pendiente",
-    userName,
+    creador: userName,
   };
 
   await new Promise((resolve, reject) => {

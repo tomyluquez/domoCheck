@@ -62,6 +62,11 @@ export const NumberData = styled.span`
   font-weight: bold;
 `;
 
+export const NumberDataAnterior = styled.span`
+  font-size: 20px;
+  font-weight: bold;
+`;
+
 export const DivTareas = styled.div`
   display: flex;
     justify-content: center;

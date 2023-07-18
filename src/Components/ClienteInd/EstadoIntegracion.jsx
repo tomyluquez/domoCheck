@@ -72,8 +72,8 @@ const EstadoIntegracion = ({ cliente }) => {
             width="150px"
             onClick={() =>
               handlerChange(
-                "Cliente despachado",
-                "Cliente despachado",
+                `${cliente.nombreLocal} fue Despachado`,
+                `${cliente.nombreLocal} fue Despachado`,
                 "Despachado"
               )
             }
@@ -86,8 +86,8 @@ const EstadoIntegracion = ({ cliente }) => {
             width="150px"
             onClick={() =>
               handlerChange(
-                "Cliente listo para testo",
-                "Cliente listo para testo",
+                `${cliente.nombreLocal} listo para testeo`,
+                `${cliente.nombreLocal} listo para testeo`,
                 "Testeo"
               )
             }
@@ -100,8 +100,8 @@ const EstadoIntegracion = ({ cliente }) => {
             width="150px"
             onClick={() =>
               handlerChange(
-                "Cliente listo para configurar",
-                "Cliente listo para configurar",
+                `${cliente.nombreLocal} listo para configurar`,
+                `${cliente.nombreLocal} listo para configurar`,
                 "Configuracion"
               )
             }
@@ -114,8 +114,8 @@ const EstadoIntegracion = ({ cliente }) => {
             width="150px"
             onClick={() =>
               handlerChange(
-                "Cliente listo para integrar",
-                "Cliente Integrado",
+                `${cliente.nombreLocal} listo para integrar`,
+                `Se integro ${cliente.nombreLocal}`,
                 "Integrado"
               )
             }

@@ -5,47 +5,65 @@ export const cantidadSolicitados = (clientes, vendedor) => {
     .length;
 };
 
-export const cantidadIntegradosTotales = (clientes, vendedor) => {
-  let clientesIntegradosTotales;
+export const cantidadIntegradosSemana = (clientes, vendedor) => {
+  let clientesIntegradosSemana;
+  const fechaActual = new Date();
+  const diaSemana = fechaActual.getDay();
+  const lunesSemanaActual = new Date(
+    fechaActual.getFullYear(),
+    fechaActual.getMonth(),
+    fechaActual.getDate() - diaSemana + 1
+  );
+  const proximoLunes = new Date(lunesSemanaActual);
+  proximoLunes.setDate(proximoLunes.getDate() + 7);
   if (vendedor) {
-    clientesIntegradosTotales = [...clientes].filter(
+    clientesIntegradosSemana = [...clientes].filter(
       (cliente) =>
-        cliente.estado === "Integrado" && cliente.vendedor === vendedor
+        cliente.estado === "Integrado" &&
+        cliente.vendedor === vendedor &&
+        new Date(cliente.fechaIntegrado) >= lunesSemanaActual &&
+        new Date(cliente.fechaIntegrado) < proximoLunes
     ).length;
   } else {
-    clientesIntegradosTotales = [...clientes].filter(
-      (cliente) => cliente.estado === "Integrado"
+    clientesIntegradosSemana = [...clientes].filter(
+      (cliente) =>
+        cliente.estado === "Integrado" &&
+        new Date(cliente.fechaIntegrado) >= lunesSemanaActual &&
+        new Date(cliente.fechaIntegrado) < proximoLunes
     ).length;
   }
-
-  return clientesIntegradosTotales;
+  return clientesIntegradosSemana;
 };
 
-export const cantidadIntegradosToday = (clientes, vendedor) => {
-  const day = new Date().getDate();
-  const month = new Date().getMonth();
-  const year = new Date().getFullYear();
-  let clientesIntegrados;
+export const cantidadIntegradosSemanaAnterior = (clientes, vendedor) => {
+  let clientesIntegradosSemanaAnterior;
+  const fechaActual = new Date();
+  const diaSemana = fechaActual.getDay();
+  const lunesSemanaActual = new Date(
+    fechaActual.getFullYear(),
+    fechaActual.getMonth(),
+    fechaActual.getDate() - diaSemana + 1
+  );
+  const lunesAnterior = new Date(lunesSemanaActual);
+  lunesAnterior.setDate(lunesAnterior.getDate() - 7);
   if (vendedor) {
-    clientesIntegrados = [...clientes].filter(
+    clientesIntegradosSemanaAnterior = [...clientes].filter(
       (cliente) =>
         cliente.estado === "Integrado" &&
-        new Date(cliente.fechaIntegrado).getDate() === day &&
-        new Date(cliente.fechaIntegrado).getMonth() === month &&
-        new Date(cliente.fechaIntegrado).getFullYear() === year &&
-        cliente.vendedor === vendedor
+        cliente.vendedor === vendedor &&
+        new Date(cliente.fechaIntegrado) >= lunesAnterior &&
+        new Date(cliente.fechaIntegrado) < lunesSemanaActual
     ).length;
   } else {
-    clientesIntegrados = [...clientes].filter(
+    clientesIntegradosSemanaAnterior = [...clientes].filter(
       (cliente) =>
         cliente.estado === "Integrado" &&
-        new Date(cliente.fechaIntegrado).getDate() === day &&
-        new Date(cliente.fechaIntegrado).getMonth === month &&
-        new Date(cliente.fechaIntegrado).getFullYear() === year
+        new Date(cliente.fechaIntegrado) >= lunesAnterior &&
+        new Date(cliente.fechaIntegrado) < lunesSemanaActual
     ).length;
   }
-
-  return clientesIntegrados;
+  console.log(new Date(lunesAnterior), new Date(lunesSemanaActual));
+  return clientesIntegradosSemanaAnterior;
 };
 
 export const cantidadDespachados = (clientes) => {
@@ -70,10 +88,84 @@ export const promDiasIntegrados = (clientes, vendedor) => {
   return Math.round(days.reduce((a, b) => a + b, 0) / days.length);
 };
 
-export const cantClientes = (clientes, vendedor) => {
+export const cantIntegradosMensual = (clientes, vendedor) => {
+  let integradosMensuales;
+  const fechaActual = new Date();
+  const primerDiaMesActual = new Date(
+    fechaActual.getFullYear(),
+    fechaActual.getMonth(),
+    1
+  );
+  const ultimoDiaMesActual = new Date(
+    fechaActual.getFullYear(),
+    fechaActual.getMonth() + 1,
+    0
+  );
   if (vendedor) {
-    return [...clientes].filter((cliente) => cliente.vendedor === vendedor)
-      .length;
+    integradosMensuales = [...clientes].filter(
+      (cliente) =>
+        cliente.estado === "Integrado" &&
+        cliente.vendedor === vendedor &&
+        new Date(cliente.fechaIntegrado) >= primerDiaMesActual &&
+        new Date(cliente.fechaIntegrado) <= ultimoDiaMesActual
+    ).length;
+  } else {
+    integradosMensuales = [...clientes].filter(
+      (cliente) =>
+        cliente.estado === "Integrado" &&
+        new Date(cliente.fechaIntegrado) >= primerDiaMesActual &&
+        new Date(cliente.fechaIntegrado) < ultimoDiaMesActual
+    ).length;
   }
-  return [...clientes].length;
+  return integradosMensuales;
+};
+
+export const cantIntegradosMensualAnterior = (clientes, vendedor) => {
+  let integradosMensuales;
+  const fechaActual = new Date();
+  const primerDiaMesAnterior = new Date(
+    fechaActual.getFullYear(),
+    fechaActual.getMonth() - 1,
+    1
+  );
+  const ultimoDiaMesAnterior = new Date(
+    fechaActual.getFullYear(),
+    fechaActual.getMonth(),
+    0
+  );
+  if (vendedor) {
+    integradosMensuales = [...clientes].filter(
+      (cliente) =>
+        cliente.estado === "Integrado" &&
+        cliente.vendedor === vendedor &&
+        new Date(cliente.fechaIntegrado) >= primerDiaMesAnterior &&
+        new Date(cliente.fechaIntegrado) <= ultimoDiaMesAnterior
+    ).length;
+  } else {
+    integradosMensuales = [...clientes].filter(
+      (cliente) =>
+        cliente.estado === "Integrado" &&
+        new Date(cliente.fechaIntegrado) >= primerDiaMesAnterior &&
+        new Date(cliente.fechaIntegrado) < ultimoDiaMesAnterior
+    ).length;
+  }
+  return integradosMensuales;
+};
+
+export const cantidadSinIntegrar = (clientes, vendedor) => {
+  let cantidadSinIntegrar;
+  if (vendedor) {
+    cantidadSinIntegrar = [...clientes].filter(
+      (cliente) =>
+        cliente.estado !== "Integrado" &&
+        cliente.estado !== "No lo quiere" &&
+        cliente.vendedor === vendedor
+    ).length;
+  } else {
+    cantidadSinIntegrar = [...clientes].filter(
+      (cliente) =>
+        cliente.estado !== "Integrado" && cliente.estado !== "No lo quiere"
+    ).length;
+  }
+  return cantidadSinIntegrar;
 };

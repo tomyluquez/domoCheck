@@ -60,7 +60,7 @@ const FilaActInd = ({
           : act.actividad.resultado}
       </TableCell>
       <TableCell className="icon">
-        {act.actividad.cumplidor || act.actividad.userName}
+        {act.actividad.cumplidor || act.actividad.creador}
       </TableCell>
       <TableCell className="icon">
         {findOthersAct(act.cliente) > 1 && (
