@@ -70,7 +70,6 @@ export const NumberDataAnterior = styled.span`
 export const DivTareas = styled.div`
   display: flex;
     justify-content: center;
-    width: 100%;
     padding: 0 25px;
 }
 `;
