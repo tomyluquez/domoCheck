@@ -32,10 +32,11 @@ const useLogin = () => {
             name: data.data.name,
             email: data.data.email,
             role: data.data.role,
+            vendedor: data.data.vendedor,
           })
         );
       },
-      onError: (error) => {
+      onError: () => {
         dispatch(
           openAlert({
             motivo: "El usuario o la contraseña son incorrectos",

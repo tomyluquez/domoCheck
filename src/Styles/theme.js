@@ -9,5 +9,8 @@ export const theme = createTheme({
       main: "#51514d",
       ligth: "#a0a09b",
     },
+    tercary: {
+      main: "red",
+    },
   },
 });

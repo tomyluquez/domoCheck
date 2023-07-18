@@ -12,7 +12,7 @@ export const DivContainerCards = styled.div`
 `;
 
 export const Cards = styled.div`
-  width: 20%;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,4 +41,31 @@ export const DivSpanNumber = styled.div`
   display: flex;
   gap: 50px;
   align-items: center;
+`;
+
+export const DivData = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+export const DivNumberData = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+`;
+
+export const NumberData = styled.span`
+  font-size: 40px;
+  font-weight: bold;
+`;
+
+export const DivTareas = styled.div`
+  display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 25px;
+}
 `;

@@ -10,7 +10,9 @@ const formatDateHours = (date) => {
   const hora = fechaCreacion.getHours();
   const minutos = fechaCreacion.getMinutes();
   // Formatea la fecha en el formato "DIA/MES/AÑO"
-  const fechaFormateada = `${dia}/${mes}/${anio} - ${hora}:${minutos}`;
+  const fechaFormateada = `${dia}/${mes}/${anio} - ${hora}:${
+    minutos < 10 ? `0${minutos}` : minutos
+  }`;
 
   return fechaFormateada;
 };

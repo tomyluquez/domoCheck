@@ -11,7 +11,6 @@ const TableActGral = ({ tipoActividad, actividades }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const role = useSelector((state) => state.user.role);
-  console.log(tipoActividad);
 
   const handleCellClick = (act) => {
     if (act.actividad.estadoAct !== "Cumplida") {
