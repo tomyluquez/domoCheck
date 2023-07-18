@@ -169,3 +169,10 @@ export const cantidadSinIntegrar = (clientes, vendedor) => {
   }
   return cantidadSinIntegrar;
 };
+
+export const cantidadIntegradosTotales = (clientes, vendedor) => {
+  const integradosTotales = [...clientes].filter(
+    (cliente) => cliente.estado === "Integrado" && cliente.vendedor === vendedor
+  ).length;
+  return integradosTotales;
+};
