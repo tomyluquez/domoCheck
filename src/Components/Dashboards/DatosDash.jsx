@@ -19,9 +19,10 @@ const DatosDash = ({ clientes, vendedor }) => {
             {dash.iconExtra && dash.data === 0 ? dash.iconExtra : dash.icon}
           </DivData>
           <DivNumberData style={{ color: dash.letra }} className="flex">
-            {dash.dataAnterior && compararData(dash.data, dash.dataAnterior)}
+            {dash.dataAnterior !== undefined &&
+              compararData(dash.data, dash.dataAnterior)}
             <NumberData>{dash.data}</NumberData>
-            {dash.dataAnterior && (
+            {dash.dataAnterior !== undefined && (
               <NumberDataAnterior>| {dash.dataAnterior}</NumberDataAnterior>
             )}
           </DivNumberData>

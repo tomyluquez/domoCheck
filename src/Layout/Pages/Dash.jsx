@@ -11,11 +11,6 @@ const Dash = () => {
 
   return (
     <div>
-      {/* {user.role === "admin" && <AdminDash clientes={clientes} />}
-      {user.role === "vendedor" && <VendedoresDash clientes={clientes} />}
-      {user.role === "integrador" && <IntegradoresDash clientes={clientes} />}
-      {user.role === "masDelivery" && <MasDeliDash clientes={clientes} />}
-      {user.role === "marketing" && <MarketingDash clientes={clientes} />} */}
       <AdminDash clientes={clientes} user={user} />
     </div>
   );

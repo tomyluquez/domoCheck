@@ -70,7 +70,7 @@ const handlerUpdateAct = async (props) => {
             ? `${cliente.nombreLocal} entrego ${tipo}`
             : "",
         fechaCumplimiento: new Date(),
-        cumplidor: userName,
+        creador: userName,
       };
 
       await mutationNewAct.mutateAsync({

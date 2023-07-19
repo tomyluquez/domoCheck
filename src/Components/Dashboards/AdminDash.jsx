@@ -8,9 +8,13 @@ import { vendedores } from "./../../data/vendedores";
 import DatosDashVendedor from "./DatosDashVendedor";
 import ActCumplidasDash from "./ActCumplidasDash";
 const AdminDash = ({ clientes, user }) => {
+  console.log(user.vendedor);
   return (
     <>
-      <DatosDash clientes={clientes} vendedor={user.vendedor || null} />
+      <DatosDash
+        clientes={clientes}
+        vendedor={user.vendedor !== null ? user.vendedor : ""}
+      />
       {user.role === "admin" && (
         <DivTareas>
           <ActCumplidasDash clientes={clientes} />

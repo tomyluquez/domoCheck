@@ -62,7 +62,6 @@ export const cantidadIntegradosSemanaAnterior = (clientes, vendedor) => {
         new Date(cliente.fechaIntegrado) < lunesSemanaActual
     ).length;
   }
-  console.log(new Date(lunesAnterior), new Date(lunesSemanaActual));
   return clientesIntegradosSemanaAnterior;
 };
 
