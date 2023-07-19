@@ -13,7 +13,8 @@ const AdminDash = ({ clientes, user }) => {
     <>
       <DatosDash
         clientes={clientes}
-        vendedor={user.vendedor !== null ? user.vendedor : ""}
+        vendedor={user.vendedor !== null ? user.vendedor : null}
+        role={user.role}
       />
       {user.role === "admin" && (
         <DivTareas>

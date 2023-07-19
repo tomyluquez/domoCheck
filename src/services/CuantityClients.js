@@ -175,3 +175,12 @@ export const cantidadIntegradosTotales = (clientes, vendedor) => {
   ).length;
   return integradosTotales;
 };
+
+export const clientesFaltanDatos = (clientes) => {
+  return [...clientes].filter((cliente) => cliente.estado === "Faltan datos")
+    .length;
+};
+export const clientesSinContestar = (clientes) => {
+  return [...clientes].filter((cliente) => cliente.estado === "No contesta")
+    .length;
+};

@@ -32,7 +32,8 @@ const useLogin = () => {
             name: data.data.name,
             email: data.data.email,
             role: data.data.role,
-            vendedor: data.data.vendedor,
+            vendedor:
+              data.data.vendedor === "false" ? null : data.data.vendedor,
           })
         );
       },
