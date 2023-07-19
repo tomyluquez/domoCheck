@@ -10,16 +10,25 @@ import {
 import { dataDashAdmin } from "../../data/cardsDashAdmin";
 import { compararData } from "../../data/comprarData";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const DatosDash = ({ clientes, vendedor, role }) => {
   const [data, setData] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(() => {
-    const { dashVentas, dashIntegracion } = dataDashAdmin(clientes, vendedor);
+    const { dashVentas, dashIntegracion } = dataDashAdmin(
+      clientes,
+      vendedor,
+      dispatch
+    );
     setData(role === "integrador" ? dashIntegracion : dashVentas);
-  }, [clientes, role, vendedor]);
+  }, [clientes, role, vendedor, dispatch]);
 
-  const handleClick = (to) => {
+  const handleClick = (to, functionDash) => {
+    if (functionDash) {
+      functionDash();
+    }
     navigate(to);
   };
   return (
@@ -28,12 +37,12 @@ const DatosDash = ({ clientes, vendedor, role }) => {
         data.map((dash, i) => (
           <Cards
             key={i}
-            hover={true}
+            hover={dash.hover}
             style={{
               backgroundColor: dash.fondo,
-              cursor: "pointer",
+              cursor: dash.hover ? "pointer" : "default",
             }}
-            onClick={() => handleClick(dash.to)}
+            onClick={() => handleClick(dash.to, dash.filters)}
           >
             <DivData>
               <span style={{ color: dash.letra }}>{dash.title}</span>

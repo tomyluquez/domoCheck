@@ -19,8 +19,9 @@ import {
 } from "../services/CuantityClients";
 import filterByAct from "../services/filterByAct";
 import ordenarActividades from "../services/ordenarActividades";
+import filterClients from "../services/filteredClients";
 
-export const dataDashAdmin = (clientes, vendedor) => {
+export const dataDashAdmin = (clientes, vendedor, dispatch) => {
   const { actividadesPendientes } = filterByAct(clientes);
   const actividadesOrdenadasPend = ordenarActividades(
     actividadesPendientes,
@@ -73,6 +74,19 @@ export const dataDashAdmin = (clientes, vendedor) => {
       fondo: "#FFD6A5",
       letra: "#fafafa",
       role: "integrador",
+      to: "/clientes",
+      hover: true,
+      filters: () => {
+        filterClients(
+          clientes,
+          undefined,
+          "Faltan datos",
+          undefined,
+          undefined,
+          undefined,
+          dispatch
+        );
+      },
     },
     {
       title: "Clientes sin contestar",
@@ -81,6 +95,19 @@ export const dataDashAdmin = (clientes, vendedor) => {
       fondo: "#FF9B9B",
       letra: "#fafafa",
       role: "integrador",
+      to: "/clientes",
+      hover: true,
+      filters: () => {
+        filterClients(
+          clientes,
+          undefined,
+          "No contesta",
+          undefined,
+          undefined,
+          undefined,
+          dispatch
+        );
+      },
     },
     {
       title: "Actividades sin cumplir",
@@ -90,6 +117,7 @@ export const dataDashAdmin = (clientes, vendedor) => {
       letra: "#fafafa",
       role: "integrador",
       to: "/actividades",
+      hover: true,
     },
   ];
 
