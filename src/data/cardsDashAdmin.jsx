@@ -89,6 +89,7 @@ export const dataDashAdmin = (clientes, vendedor) => {
       fondo: "#E97777 ",
       letra: "#fafafa",
       role: "integrador",
+      to: "/actividades",
     },
   ];
 
