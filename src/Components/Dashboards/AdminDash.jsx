@@ -8,7 +8,6 @@ import { vendedores } from "./../../data/vendedores";
 import DatosDashVendedor from "./DatosDashVendedor";
 import ActCumplidasDash from "./ActCumplidasDash";
 const AdminDash = ({ clientes, user }) => {
-  console.log(user.vendedor);
   return (
     <>
       <DatosDash
@@ -19,7 +18,7 @@ const AdminDash = ({ clientes, user }) => {
       {user.role === "admin" && (
         <DivTareas>
           <ActCumplidasDash clientes={clientes} />
-          <DivContainerCards>
+          <DivContainerCards style={{ width: "65%" }}>
             {vendedores.map((vendedor, i) => (
               <DatosDashVendedor
                 key={i}

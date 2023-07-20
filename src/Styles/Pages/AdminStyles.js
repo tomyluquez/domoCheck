@@ -59,3 +59,10 @@ export const DeleteIcon = styled(DeleteForeverOutlinedIcon)`
     color: ${hoverColors["No lo quiere"]};
   }
 `;
+
+export const ActividadesAdmin = styled(Cards)`
+  width: 30% !important;
+  @media screen and (max-width: 700px) {
+    width: 100% !important;
+  }
+`;

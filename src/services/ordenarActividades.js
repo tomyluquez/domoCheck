@@ -39,13 +39,20 @@ const ordenarActividades = (actividades, orden, tipo) => {
   if (tipo === "Cumplidas") {
     const actividadesOrdenadas = actividades.filter((actividad) => {
       let matchesFecha = true;
+      let matchesUser = true;
 
       const ActDate = new Date(actividad.actividad.fechaCumplimiento);
       const dateDesde = new Date(orden.dateStart);
       const dateHasta = new Date(orden.dateEnd);
 
       matchesFecha = ActDate >= dateDesde && ActDate <= dateHasta;
-      return matchesFecha;
+
+      if (orden.user !== "Todos") {
+        matchesUser = actividad.actividad.cumplidor === orden.user;
+      } else {
+        matchesUser = true;
+      }
+      return matchesFecha && matchesUser;
     });
     return actividadesOrdenadas.sort(
       (a, b) =>

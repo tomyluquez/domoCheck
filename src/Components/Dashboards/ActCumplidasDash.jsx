@@ -9,11 +9,11 @@ import {
   TimelineOppositeContent,
   TimelineSeparator,
 } from "@mui/lab";
-import { Cards } from "../../Styles/Pages/DashboardStyles";
 import { useState } from "react";
 import { Box, Tab } from "@mui/material";
 import { actTodayCump } from "../../services/actividadesToday";
 import formatDateHours from "../../services/formatDateHours";
+import { ActividadesAdmin } from "../../Styles/Pages/AdminStyles";
 
 const ActCumplidasDash = ({ clientes }) => {
   const [value, setValue] = useState(1);
@@ -23,7 +23,9 @@ const ActCumplidasDash = ({ clientes }) => {
     setValue(newValue);
   };
   return (
-    <Cards style={{ width: "80%", height: "550px", marginTop: "50px" }}>
+    <ActividadesAdmin
+      style={{ width: "80%", height: "700px", marginTop: "50px" }}
+    >
       <span>Actividades del dia</span>
       <TabContext value={value}>
         <Box
@@ -41,8 +43,16 @@ const ActCumplidasDash = ({ clientes }) => {
             onChange={handleChange}
             aria-label="lab API tabs example"
           >
-            <Tab key={1} label={"Cumplidas"} value={1} />
-            <Tab key={2} label={"Pendientes"} value={2} />
+            <Tab
+              key={1}
+              label={`Cumplidas (${actCumplidasToday.length})`}
+              value={1}
+            />
+            <Tab
+              key={2}
+              label={`Pendientes (${actPendientesToday.length})`}
+              value={2}
+            />
           </TabList>
         </Box>
 
@@ -99,7 +109,7 @@ const ActCumplidasDash = ({ clientes }) => {
           )}
         </TabPanel>
       </TabContext>
-    </Cards>
+    </ActividadesAdmin>
   );
 };
 

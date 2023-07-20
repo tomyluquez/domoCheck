@@ -8,15 +8,18 @@ import { useSelector } from "react-redux";
 import { ordenAct } from "./../../data/ordenAct";
 import { ButtonCustom } from "../../Styles/ButtonStyles";
 import FilterByDate from "../../Components/Actividades/FilterByDate";
+import useGetUsers from "../../Hooks/useGetUsers";
 
 const Actividades = () => {
+  const { data, isLoading } = useGetUsers();
   const [orden, setOrden] = useState(1);
   const [activ, setActiv] = useState("Pendientes");
   const clientes = useSelector((state) => state.clientes.clientes);
   const role = useSelector((state) => state.user.role);
-  const [data, setData] = useState({
+  const [dataActi, setData] = useState({
     dateStart: "",
     dateEnd: "",
+    user: "Todos",
   });
   const { actividadesPendientes, actividadesCumplidas } = filterByAct(clientes);
   const actividadesOrdenadasPend = ordenarActividades(
@@ -26,9 +29,13 @@ const Actividades = () => {
   );
   const actividadesCumplidasPend = ordenarActividades(
     actividadesCumplidas,
-    data,
+    dataActi,
     "Cumplidas"
   );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -44,8 +51,13 @@ const Actividades = () => {
       )}
       {activ === "Pendientes" && (
         <>
-          <Typography variant="h6" gutterBottom component="div">
-            Actividades
+          <Typography
+            variant="h6"
+            gutterBottom
+            component="div"
+            style={{ margin: "20px 0" }}
+          >
+            Actividades Pendientes ({actividadesOrdenadasPend.length})
           </Typography>
           <OrdenActividades
             orden={orden}
@@ -61,12 +73,21 @@ const Actividades = () => {
       )}
       {activ === "Cumplidas" && (
         <>
-          <Typography variant="h6" gutterBottom component="div">
-            Actividades
+          <Typography
+            variant="h6"
+            gutterBottom
+            component="div"
+            style={{ margin: "20px 0" }}
+          >
+            Actividades Cumplidas ({actividadesCumplidasPend.length})
           </Typography>
-          <FilterByDate data={data} setData={setData} />
+          <FilterByDate
+            dataUsers={dataActi}
+            setData={setData}
+            data={data.data}
+          />
           <TableActGral
-            key={`cumplidas-${data.dateStart}-${data.dateEnd}`} // Agregar información adicional a la clave
+            key={`cumplidas-${dataActi.dateStart}-${dataActi.dateEnd}`} // Agregar información adicional a la clave
             tipoActividad={activ}
             actividades={actividadesCumplidasPend}
           />

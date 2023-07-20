@@ -1,8 +1,8 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-const SelectCustom = ({ w, label, value, setValue, opciones }) => {
+const SelectCustom = ({ w, label, value, setValue, opciones, padding }) => {
   return (
-    <Box sx={{ minWidth: 180, width: w, backgroundColor: "white" }}>
+    <Box sx={{ minWidth: 180, width: w, paddingTop: padding }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">{label}</InputLabel>
         <Select
@@ -11,6 +11,7 @@ const SelectCustom = ({ w, label, value, setValue, opciones }) => {
           value={value}
           label={label}
           onChange={(e) => setValue(e.target.value)}
+          style={{ backgroundColor: "white" }}
         >
           {opciones.map((opcion, index) => (
             <MenuItem key={index} value={opcion.value}>
