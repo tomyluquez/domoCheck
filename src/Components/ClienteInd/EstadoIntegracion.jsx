@@ -41,7 +41,7 @@ const EstadoIntegracion = ({ cliente }) => {
       userName,
     };
     handlerChangeState(props);
-    navigate("/clientes");
+    navigate("/Clientes");
   };
 
   const handleModal = (motivo) => {

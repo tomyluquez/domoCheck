@@ -15,12 +15,12 @@ export const menuSidebar = (user) => {
     {
       icon: <FolderSharedOutlinedIcon />,
       text: "Clientes",
-      to: "/clientes",
+      to: "/Clientes",
     },
     {
       icon: <CalendarMonthOutlinedIcon />,
       text: "Actividades",
-      to: "/actividades",
+      to: "/Actividades",
     },
     {
       icon: <PersonAddAltOutlinedIcon />,
@@ -36,7 +36,7 @@ export const menuSidebar = (user) => {
     {
       icon: <BuildOutlinedIcon />,
       text: "Configuracion",
-      to: "/configuracion",
+      to: "/Configuracion",
     },
   ].filter((item) => {
     if (user.role === "integrador" && item.text === "Configuracion") {

@@ -11,7 +11,7 @@ import { Navigate } from "react-router-dom";
 const Login = () => {
   const roleUser = useSelector((state) => state.user.role);
   if (roleUser !== "") {
-    return <Navigate to={"/Dashboard"} />;
+    return <Navigate to={"/"} />;
   }
   return (
     <DivContainer>

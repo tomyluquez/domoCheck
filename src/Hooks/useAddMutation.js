@@ -25,7 +25,7 @@ const useNewMutation = () => {
         setIsLoading(false);
         dispatch(openAlert({ motivo: "Cliente creado", estado: "success" }));
         queryclient.invalidateQueries("clients");
-        navigate("/clientes");
+        navigate("/Clientes");
         dispatch(closeModal());
       },
     }

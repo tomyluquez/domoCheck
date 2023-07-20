@@ -10,9 +10,10 @@ import {
   EditIcon,
 } from "../../Styles/Pages/AdminStyles";
 import { openModal } from "../../redux/slices/modal";
-import { Avatar, Skeleton, Tooltip } from "@mui/material";
+import { Avatar, Tooltip } from "@mui/material";
 import { colorFondo, colorLogo } from "../../Styles/GeneralStyles";
 import DeleteUser from "../../Components/Configuracion/DeleteUser";
+import Loading from "../../Components/Loading";
 
 const Config = () => {
   const { data, isLoading } = useGetUsers();
@@ -28,11 +29,7 @@ const Config = () => {
   return (
     <>
       {isLoading ? (
-        <>
-          <Skeleton variant="circular" width={40} height={40} />
-          <Skeleton variant="rectangular" width={210} height={60} />
-          <Skeleton variant="rounded" width={210} height={60} />
-        </>
+        <Loading />
       ) : (
         <div data-aos="fade-right" data-aos-duration="1200">
           <h4>Usuarios Creados ({data && data.data.length})</h4>

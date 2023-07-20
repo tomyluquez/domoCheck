@@ -81,7 +81,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/actividades"
+                  path="/Actividades"
                   element={
                     <ProtectedRoute
                       isAllowed={role === "admin" || role === "integrador"}
@@ -92,7 +92,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/clientes"
+                  path="/Clientes"
                   element={
                     <ProtectedRoute
                       isAllowed={
@@ -108,7 +108,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/configuracion"
+                  path="/Configuracion"
                   element={
                     <ProtectedRoute isAllowed={role === "admin"}>
                       <Config />

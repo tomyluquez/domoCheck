@@ -1,4 +1,4 @@
-import { Box, Skeleton, Tab, Typography } from "@mui/material";
+import { Box, Tab, Typography } from "@mui/material";
 import TableActGral from "../../Components/Actividades/TableActGral";
 import OrdenActividades from "../../Components/Actividades/OrdenActividades";
 import { useState } from "react";
@@ -9,6 +9,7 @@ import { ordenAct } from "./../../data/ordenAct";
 import FilterByDate from "../../Components/Actividades/FilterByDate";
 import useGetUsers from "../../Hooks/useGetUsers";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import Loading from "./../../Components/Loading";
 
 const Actividades = () => {
   const { data, isLoading } = useGetUsers();
@@ -39,13 +40,7 @@ const Actividades = () => {
   return (
     <>
       {isLoading ? (
-        <Skeleton
-          sx={{ bgcolor: "grey" }}
-          className="flex"
-          variant="rectangular"
-          width={1500}
-          height={600}
-        />
+        <Loading />
       ) : (
         <div data-aos="fade-right" data-aos-duration="1200">
           <TabContext value={value}>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { colorFondo } from "../Styles/GeneralStyles";
+import { colorFondo, colorLetra } from "../Styles/GeneralStyles";
 import {
   ASidebar,
   LiSidebar,
@@ -13,15 +13,15 @@ import { openModal } from "../redux/slices/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/slices/users";
 import { Logo } from "../Styles/Pages/NavbarStyles";
+import { useLocation } from "react-router-dom";
 
 const Sidebar = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
-  const [active, setActive] = useState("Dashboard");
   const user = useSelector((state) => state.user);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handlerActive = (text) => {
-    setActive(text);
     if (text === "Agregar cliente") {
       dispatch(openModal({ type: "Agregar cliente" }));
     }
@@ -46,7 +46,8 @@ const Sidebar = () => {
             <LiSidebar
               key={menu.text}
               style={{
-                backgroundColor: active === menu.text ? colorFondo : "",
+                backgroundColor:
+                  location.pathname === menu.to ? colorFondo : "",
                 borderRadius: "10px",
                 position: `${menu.position}` || "relative",
                 bottom: `${menu.bottom}` || "0",
@@ -59,7 +60,9 @@ const Sidebar = () => {
                 menuOpen={menuOpen}
                 to={menu.to}
                 onClick={() => handlerActive(menu.text)}
-                style={{ color: active === menu.text ? "white" : "" }}
+                style={{
+                  color: location.pathname === menu.to ? colorLetra : "",
+                }}
               >
                 {menu.icon}
                 <span>{menu.text}</span>

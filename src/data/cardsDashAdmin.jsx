@@ -74,7 +74,7 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
       fondo: "#FFD6A5",
       letra: "#fafafa",
       role: "integrador",
-      to: "/clientes",
+      to: "/Clientes",
       hover: true,
       filters: () => {
         filterClients(
@@ -95,7 +95,7 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
       fondo: "#FF9B9B",
       letra: "#fafafa",
       role: "integrador",
-      to: "/clientes",
+      to: "/Clientes",
       hover: true,
       filters: () => {
         filterClients(
@@ -116,7 +116,7 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
       fondo: "#E97777 ",
       letra: "#fafafa",
       role: "integrador",
-      to: "/actividades",
+      to: "/Actividades",
       hover: true,
     },
   ];

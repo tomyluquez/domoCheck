@@ -38,7 +38,7 @@ const SidebarMobile = ({ setSidebarOpen }) => {
             <span>Hola ! {user.name}</span>
           </LinkMobile>
 
-          <LinkMobile to="/dashboard">
+          <LinkMobile to="/">
             <DashboardOutlinedIcon />
             <span>Dashboard</span>
           </LinkMobile>
@@ -46,14 +46,14 @@ const SidebarMobile = ({ setSidebarOpen }) => {
           {(user.role === "admin" ||
             user.role === "integrador" ||
             user.role === "masDelivery") && (
-            <LinkMobile to="/clientes">
+            <LinkMobile to="/Clientes">
               <FolderSharedOutlinedIcon />
               <span>Clientes</span>
             </LinkMobile>
           )}
 
           {(user.role === "admin" || user.role === "integrador") && (
-            <LinkMobile to="/actividades">
+            <LinkMobile to="/Actividades">
               <CalendarMonthOutlinedIcon />
               <span>Actividades</span>
             </LinkMobile>
@@ -69,7 +69,7 @@ const SidebarMobile = ({ setSidebarOpen }) => {
           )}
 
           {user.role === "admin" && (
-            <LinkMobile to="/configuracion">
+            <LinkMobile to="/Configuracion">
               <BuildOutlinedIcon />
               <span>Configuracion</span>
             </LinkMobile>
