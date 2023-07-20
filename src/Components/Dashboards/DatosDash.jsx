@@ -43,6 +43,8 @@ const DatosDash = ({ clientes, vendedor, role }) => {
               cursor: dash.hover ? "pointer" : "default",
             }}
             onClick={() => handleClick(dash.to, dash.filters)}
+            data-aos="fade-down"
+            data-aos-duration="1200"
           >
             <DivData>
               <span style={{ color: dash.letra }}>{dash.title}</span>

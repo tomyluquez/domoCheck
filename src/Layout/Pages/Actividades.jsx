@@ -41,7 +41,7 @@ const Actividades = () => {
   }
 
   return (
-    <div>
+    <div data-aos="fade-left" data-aos-duration="1200">
       <TabContext value={value}>
         <Box
           sx={{

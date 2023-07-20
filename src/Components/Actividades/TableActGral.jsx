@@ -45,42 +45,44 @@ const TableActGral = ({ tipoActividad, actividades }) => {
   return (
     <>
       <Divider />
-      <Box sx={{ margin: 1, marginTop: "40px" }}>
-        <TableCellStyle size="small" aria-label="purchases">
-          <TableHead>
-            <TableStyles>
-              <TableCell>Estado Actividad</TableCell>
-              <TableCell>Nombre Local</TableCell>
-              <TableCell>Nombre Cliente</TableCell>
-              <TableCell>Telefono Contacto</TableCell>
-              <TableCell>
-                Fecha{" "}
-                {tipoActividad === "Pendientes"
-                  ? "Vencimiento"
-                  : "Cumplimiento"}
-              </TableCell>
-              <TableCell>Actividad</TableCell>
-              <TableCell>
-                {tipoActividad === "Pendientes" ? "Comentario" : "Resultado"}
-              </TableCell>
-              <TableCell>Usuario</TableCell>
-              {tipoActividad === "Pendientes" && <TableCell>asdas</TableCell>}
-            </TableStyles>
-          </TableHead>
-          <TableBody>
-            {actividades.map((act) => (
-              <FilaActInd
-                key={act.actividad._id}
-                act={act}
-                tipoActividad={tipoActividad}
-                handleCellClick={handleCellClick}
-                handleNameCLick={handleNameCLick}
-                handleIconClick={handleIconClick}
-              />
-            ))}
-          </TableBody>
-        </TableCellStyle>
-      </Box>
+      <div>
+        <Box sx={{ margin: 1, marginTop: "40px" }}>
+          <TableCellStyle size="small" aria-label="purchases">
+            <TableHead>
+              <TableStyles>
+                <TableCell>Estado Actividad</TableCell>
+                <TableCell>Nombre Local</TableCell>
+                <TableCell>Nombre Cliente</TableCell>
+                <TableCell>Telefono Contacto</TableCell>
+                <TableCell>
+                  Fecha{" "}
+                  {tipoActividad === "Pendientes"
+                    ? "Vencimiento"
+                    : "Cumplimiento"}
+                </TableCell>
+                <TableCell>Actividad</TableCell>
+                <TableCell>
+                  {tipoActividad === "Pendientes" ? "Comentario" : "Resultado"}
+                </TableCell>
+                <TableCell>Usuario</TableCell>
+                {tipoActividad === "Pendientes" && <TableCell>asdas</TableCell>}
+              </TableStyles>
+            </TableHead>
+            <TableBody>
+              {actividades.map((act) => (
+                <FilaActInd
+                  key={act.actividad._id}
+                  act={act}
+                  tipoActividad={tipoActividad}
+                  handleCellClick={handleCellClick}
+                  handleNameCLick={handleNameCLick}
+                  handleIconClick={handleIconClick}
+                />
+              ))}
+            </TableBody>
+          </TableCellStyle>
+        </Box>
+      </div>
     </>
   );
 };

@@ -16,7 +16,7 @@ const AdminDash = ({ clientes, user }) => {
         role={user.role}
       />
       {user.role === "admin" && (
-        <DivTareas>
+        <DivTareas data-aos="fade-left" data-aos-duration="1200">
           <ActCumplidasDash clientes={clientes} />
           <DivContainerCards style={{ width: "65%" }}>
             {vendedores.map((vendedor, i) => (

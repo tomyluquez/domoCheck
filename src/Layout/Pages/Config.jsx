@@ -36,7 +36,7 @@ const Config = () => {
   }
 
   return (
-    <>
+    <div data-aos="fade-left" data-aos-duration="1200">
       <h4>Usuarios Creados ({data && data.data.length})</h4>
       <ButtonCustom onClick={handlerCreateUser}>Crear Usuario</ButtonCustom>
       <DivContainerUsers>
@@ -64,7 +64,7 @@ const Config = () => {
             </CardsAdmin>
           ))}
       </DivContainerUsers>
-    </>
+    </div>
   );
 };
 
