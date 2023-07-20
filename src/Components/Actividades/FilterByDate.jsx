@@ -23,7 +23,7 @@ const FilterByDate = ({ dataUsers, setData, data }) => {
   };
 
   return (
-    <div className="flex" style={{ gap: "50px" }}>
+    <div className="flex" style={{ gap: "50px", marginBottom: "20px" }}>
       <ButtonCustom width="150px" onClick={handleToday}>
         Hoy
       </ButtonCustom>
