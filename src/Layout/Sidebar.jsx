@@ -40,7 +40,7 @@ const Sidebar = () => {
         ) : (
           <MenuRight onClick={() => setMenuOpen(!menuOpen)} />
         )}
-        <Logo src="/logoCheck.png" alt="logo check delivery" />
+        <Logo src="/logodomo.png" alt="logo check delivery" />
         <UlSidebar>
           {menuSidebar(user).map((menu) => (
             <LiSidebar

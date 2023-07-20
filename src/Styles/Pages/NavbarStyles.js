@@ -8,7 +8,6 @@ export const Logo = styled.img`
   position: absolute;
   top: 30px;
   left: 5px;
-  background-color: ${colorFondo};
   border-radius: 50%;
   padding: 5px;
 `;
