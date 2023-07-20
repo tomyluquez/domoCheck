@@ -2,7 +2,6 @@ import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import FolderSharedOutlinedIcon from "@mui/icons-material/FolderSharedOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
-import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 
 export const menuSidebar = (user) => {
@@ -25,13 +24,6 @@ export const menuSidebar = (user) => {
     {
       icon: <PersonAddAltOutlinedIcon />,
       text: "Agregar cliente",
-    },
-    {
-      icon: <ExitToAppOutlinedIcon />,
-      text: "Cerrar sesion",
-      position: "absolute",
-      bottom: "30px",
-      to: "/",
     },
     {
       icon: <BuildOutlinedIcon />,

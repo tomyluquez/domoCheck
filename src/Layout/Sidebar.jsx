@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/slices/users";
 import { Logo } from "../Styles/Pages/NavbarStyles";
 import { useLocation } from "react-router-dom";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -70,6 +71,19 @@ const Sidebar = () => {
             </LiSidebar>
           ))}
         </UlSidebar>
+        <ASidebar
+          menuOpen={menuOpen}
+          to="/"
+          style={{
+            position: "absolute",
+            bottom: "30px",
+            left: "15px",
+          }}
+          onClick={() => handlerActive("Cerrar sesion")}
+        >
+          <ExitToAppOutlinedIcon />
+          <span>Cerrar sesion</span>
+        </ASidebar>
       </SidebarStyle>
     </>
   );
