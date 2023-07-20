@@ -21,7 +21,7 @@ const Clientes = () => {
   }
 
   return (
-    <div data-aos="fade-left" data-aos-duration="1200">
+    <div data-aos="fade-right" data-aos-duration="1200">
       <Filters clientes={clientes} clientesActivos={clientesActivos} />
       <TablaPrincipal clientes={clientesActivos} />
     </div>

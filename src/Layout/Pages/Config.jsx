@@ -25,46 +25,46 @@ const Config = () => {
     dispatch(openModal({ type: "Editar usuario", referencia: user }));
   };
 
-  if (isLoading) {
-    return (
-      <div>
-        <Skeleton variant="circular" width={40} height={40} />
-        <Skeleton variant="rectangular" width={210} height={60} />
-        <Skeleton variant="rounded" width={210} height={60} />
-      </div>
-    );
-  }
-
   return (
-    <div data-aos="fade-left" data-aos-duration="1200">
-      <h4>Usuarios Creados ({data && data.data.length})</h4>
-      <ButtonCustom onClick={handlerCreateUser}>Crear Usuario</ButtonCustom>
-      <DivContainerUsers>
-        {data &&
-          data.data.map((user) => (
-            <CardsAdmin key={user._id}>
-              <DivIcons>
-                <DivAvatar>
-                  <Avatar style={{ backgroundColor: colorLogo }}>
-                    {user.name.split("")[0].toUpperCase()}
-                  </Avatar>
-                  <span style={{ color: colorFondo }}>
-                    {user.name.toUpperCase()}
-                  </span>
-                </DivAvatar>
-                <DivIconsUser>
-                  <Tooltip title="Editar">
-                    <EditIcon onClick={() => handlerEditUser(user)} />
-                  </Tooltip>
-                  <DeleteUser user={user} />
-                </DivIconsUser>
-              </DivIcons>
-              <span>{user.email}</span>
-              <span>{user.role}</span>
-            </CardsAdmin>
-          ))}
-      </DivContainerUsers>
-    </div>
+    <>
+      {isLoading ? (
+        <>
+          <Skeleton variant="circular" width={40} height={40} />
+          <Skeleton variant="rectangular" width={210} height={60} />
+          <Skeleton variant="rounded" width={210} height={60} />
+        </>
+      ) : (
+        <div data-aos="fade-right" data-aos-duration="1200">
+          <h4>Usuarios Creados ({data && data.data.length})</h4>
+          <ButtonCustom onClick={handlerCreateUser}>Crear Usuario</ButtonCustom>
+          <DivContainerUsers>
+            {data &&
+              data.data.map((user) => (
+                <CardsAdmin key={user._id}>
+                  <DivIcons>
+                    <DivAvatar>
+                      <Avatar style={{ backgroundColor: colorLogo }}>
+                        {user.name.split("")[0].toUpperCase()}
+                      </Avatar>
+                      <span style={{ color: colorFondo }}>
+                        {user.name.toUpperCase()}
+                      </span>
+                    </DivAvatar>
+                    <DivIconsUser>
+                      <Tooltip title="Editar">
+                        <EditIcon onClick={() => handlerEditUser(user)} />
+                      </Tooltip>
+                      <DeleteUser user={user} />
+                    </DivIconsUser>
+                  </DivIcons>
+                  <span>{user.email}</span>
+                  <span>{user.role}</span>
+                </CardsAdmin>
+              ))}
+          </DivContainerUsers>
+        </div>
+      )}
+    </>
   );
 };
 
