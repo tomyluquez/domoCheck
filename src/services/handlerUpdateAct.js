@@ -46,7 +46,11 @@ const handlerUpdateAct = async (props) => {
         id: cliente._id,
         datoClient: tipo,
         estadoClient:
-          data.resultado === "Entregado" ? "Entregado" : "Solicitado",
+          data.resultado === "Entregado"
+            ? tipo !== "menu" && tipo !== "datos"
+              ? "Entregado"
+              : "Entregado no procesado"
+            : "Solicitado",
         userName,
       });
     }
