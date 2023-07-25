@@ -22,7 +22,7 @@ const DatosDash = ({ clientes, vendedor, role }) => {
       vendedor,
       dispatch
     );
-    setData(role === "integrador" ? dashIntegracion : dashVentas);
+    setData(role === "comercial" ? dashIntegracion : dashVentas);
   }, [clientes, role, vendedor, dispatch]);
 
   const handleClick = (to, functionDash) => {

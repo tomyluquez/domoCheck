@@ -7,6 +7,7 @@ import {
   colorLabel,
 } from "../GeneralStyles";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
+import DriveFileRenameOutlineOutlinedIcon from "@mui/icons-material/DriveFileRenameOutlineOutlined";
 
 export const BoxFicha = styled(Box)`
   width: 100%;
@@ -73,6 +74,16 @@ export const SpanIcon = styled.span`
 `;
 
 export const IconAdd = styled(ControlPointOutlinedIcon)`
+  cursor: pointer;
+  font-size: 20px !important;
+  color: ${colorFondo};
+  transition: all 0.3s ease-in-out !important;
+  &:hover {
+    color: ${colorLogo};
+  }
+`;
+
+export const IconEdit = styled(DriveFileRenameOutlineOutlinedIcon)`
   cursor: pointer;
   font-size: 20px !important;
   color: ${colorFondo};

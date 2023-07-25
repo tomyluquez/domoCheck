@@ -14,7 +14,7 @@ const TableActGral = ({ tipoActividad, actividades }) => {
 
   const handleCellClick = (act) => {
     if (act.actividad.estadoAct !== "Cumplida") {
-      if (role !== "integrador") return;
+      if (role !== "comercial" && role !== "integrador") return;
 
       let tipo = act.actividad.dato;
       if (act.actividad.dato.includes("Seguimiento")) {

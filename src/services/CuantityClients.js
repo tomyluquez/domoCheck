@@ -170,9 +170,17 @@ export const cantidadSinIntegrar = (clientes, vendedor) => {
 };
 
 export const cantidadIntegradosTotales = (clientes, vendedor) => {
-  const integradosTotales = [...clientes].filter(
-    (cliente) => cliente.estado === "Integrado" && cliente.vendedor === vendedor
-  ).length;
+  let integradosTotales;
+  if (vendedor) {
+    integradosTotales = [...clientes].filter(
+      (cliente) =>
+        cliente.estado === "Integrado" && cliente.vendedor === vendedor
+    ).length;
+  } else {
+    integradosTotales = [...clientes].filter(
+      (cliente) => cliente.estado === "Integrado"
+    ).length;
+  }
   return integradosTotales;
 };
 

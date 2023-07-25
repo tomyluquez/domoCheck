@@ -20,7 +20,7 @@ const Actividades = () => {
   const [dataActi, setData] = useState({
     dateStart: "",
     dateEnd: "",
-    user: "Todos",
+    user: "",
   });
   const { actividadesPendientes, actividadesCumplidas } = filterByAct(clientes);
   const actividadesOrdenadasPend = ordenarActividades(
@@ -65,7 +65,6 @@ const Actividades = () => {
                 )}
               </TabList>
             </Box>
-
             <TabPanel
               style={{ marginTop: "15px", overflow: "auto" }}
               value={1}
@@ -97,7 +96,7 @@ const Actividades = () => {
                   Actividades Cumplidas ({actividadesCumplidasPend.length})
                 </Typography>
                 <FilterByDate
-                  dataUsers={dataActi}
+                  dataActi={dataActi}
                   setData={setData}
                   data={data.data}
                 />

@@ -72,6 +72,7 @@ function App() {
                         role === "admin" ||
                         role === "integrador" ||
                         role === "masDelivery" ||
+                        role === "comercial" ||
                         role === "marketing"
                       }
                     >
@@ -84,7 +85,11 @@ function App() {
                   path="/Actividades"
                   element={
                     <ProtectedRoute
-                      isAllowed={role === "admin" || role === "integrador"}
+                      isAllowed={
+                        role === "admin" ||
+                        role === "integrador" ||
+                        role === "comercial"
+                      }
                     >
                       <Actividades />
                     </ProtectedRoute>
@@ -99,6 +104,7 @@ function App() {
                         role === "admin" ||
                         role === "integrador" ||
                         role === "masDelivery" ||
+                        role === "comercial" ||
                         role === "marketing"
                       }
                     >

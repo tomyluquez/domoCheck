@@ -45,7 +45,7 @@ const DatosMarketing = ({ cliente }) => {
             {dato.value}: {data[dato.value].estado}
           </span>
           <span>Comentario: {data[dato.value].comentario}</span>
-          {role === "marketing" && (
+          {(role === "marketing" || role === "integrador") && (
             <>
               <SelectCustom
                 w="15%"

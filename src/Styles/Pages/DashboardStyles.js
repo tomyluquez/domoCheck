@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 import { colorFondoHover, colorLetra, colorLogo } from "../GeneralStyles";
 
 export const DivContainerCards = styled.div`
-  padding: 0 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -12,7 +11,8 @@ export const DivContainerCards = styled.div`
 `;
 
 export const Cards = styled.div`
-  width: 300px;
+  width: 15%;
+  min-height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,6 +53,7 @@ export const DivData = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 40px;
 `;
 
 export const DivNumberData = styled.div`

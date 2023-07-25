@@ -1,12 +1,6 @@
-import { useDispatch } from "react-redux";
-import { openModal } from "../../redux/slices/modal";
 import formatDate from "../../services/formatDate";
 import {
   DivDatosContacto,
-  DivTitle,
-  IconAdd,
-  SpanTitle,
-  SpanIcon,
   SpanLabel,
   DivContactos,
   DivContactoInd,
@@ -14,22 +8,12 @@ import {
   SpanValue,
 } from "../../Styles/Pages/ClientsIndStyles";
 import { Divider } from "@mui/material";
+import NameClient from "../ClienteInd/NameClient";
 
 const DatosCliente = ({ cliente }) => {
-  const dispatch = useDispatch();
-
   return (
     <DivDatosContacto>
-      <DivTitle>
-        <SpanTitle>{cliente.nombreLocal}</SpanTitle>
-        <SpanIcon>
-          <IconAdd
-            onClick={() =>
-              dispatch(openModal({ type: "Agregar contacto", id: cliente._id }))
-            }
-          />
-        </SpanIcon>
-      </DivTitle>
+      <NameClient cliente={cliente} />
       <Divider />
       <DivContactos>
         <DivContactoInd>
