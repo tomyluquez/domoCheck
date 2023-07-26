@@ -32,7 +32,6 @@ const DatosDash = ({ clientes, vendedor, role }) => {
     }
     navigate(to);
   };
-  console.log(data);
   return (
     <DivContainerCards>
       {data &&

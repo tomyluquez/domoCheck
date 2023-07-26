@@ -32,7 +32,6 @@ export const cantidadIntegradosSemana = (clientes, vendedor) => {
         new Date(cliente.fechaIntegrado) < proximoLunes
     );
   }
-  console.log(clientesIntegradosSemana);
   return clientesIntegradosSemana;
 };
 
