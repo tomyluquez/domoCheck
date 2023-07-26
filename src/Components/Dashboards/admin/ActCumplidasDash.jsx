@@ -11,9 +11,9 @@ import {
 } from "@mui/lab";
 import { useState } from "react";
 import { Box, Tab } from "@mui/material";
-import { actTodayCump } from "../../services/actividadesToday";
-import formatDateHours from "../../services/formatDateHours";
-import { ActividadesAdmin } from "../../Styles/Pages/AdminStyles";
+import { actTodayCump } from "../../../services/actividadesToday";
+import formatDateHours from "../../../services/formatDateHours";
+import { ActividadesAdmin } from "../../../Styles/Pages/AdminStyles";
 
 const ActCumplidasDash = ({ clientes }) => {
   const [value, setValue] = useState(1);

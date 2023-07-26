@@ -12,7 +12,22 @@ export const datosMarketing = [
     value: "MP Conectado",
   },
   {
-    value: "Marketing",
+    value: "Link IG",
+  },
+  {
+    value: "Link Whatsapp",
+  },
+  {
+    value: "Historias",
+  },
+  {
+    value: "Promos",
+  },
+  {
+    value: "Campañas email",
+  },
+  {
+    value: "Playstore",
   },
 ];
 

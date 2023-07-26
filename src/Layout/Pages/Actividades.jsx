@@ -20,7 +20,7 @@ const Actividades = () => {
   const [dataActi, setData] = useState({
     dateStart: "",
     dateEnd: "",
-    user: "",
+    user: "Todos",
   });
   const { actividadesPendientes, actividadesCumplidas } = filterByAct(clientes);
   const actividadesOrdenadasPend = ordenarActividades(

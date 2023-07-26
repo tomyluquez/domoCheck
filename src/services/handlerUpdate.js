@@ -34,7 +34,7 @@ const handlerUpdateSolicitud = async (
     proximoContacto: new Date(),
     dato: info,
     estadoAct: "Cumplida",
-    resultado: `${info} Solicitado`,
+    resultado: `Se solicito ${info} a ${cliente.nombreLocal}`,
     fechaCumplimiento: new Date(),
     cumplidor: userName,
   };

@@ -14,9 +14,7 @@ export const DivContainerUsers = styled.div`
   margin-top: 20px;
 `;
 
-export const CardsAdmin = styled(Cards)`
-  cursor: pointer;
-`;
+export const CardsAdmin = styled(Cards)``;
 
 export const DivIcons = styled.div`
   display: flex;

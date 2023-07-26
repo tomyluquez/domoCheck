@@ -24,10 +24,11 @@ export const Cards = styled.div`
   -webkit-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
   padding: 15px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
-    transform: ${(props) => (props.hover ? "scale(1.1)" : "scale(1)")};
+    transform: ${(props) =>
+      props.hover ? "scale(1.1)" : "scale(1)"} !important;
   }
 `;
 
