@@ -6,23 +6,19 @@ import { ButtonCustom } from "../../Styles/ButtonStyles";
 import {
   DivContainerDatosDespachados,
   DivFlex,
-  IconEdit,
 } from "../../Styles/Pages/ClientsIndStyles";
 import useUpdateDatosDesp from "../../Hooks/useUpdateDatosDesp";
 import Loading from "./../Loading";
 import { useSelector } from "react-redux";
 import { Cards } from "../../Styles/Pages/DashboardStyles";
-import { colorFondo } from "../../Styles/GeneralStyles";
-import useMutationVentas from "../../Hooks/useMutationVentas";
+import VentasClientes from "./VentasClientes";
 
 const DatosMarketing = ({ cliente }) => {
   const role = useSelector((state) => state.user.role);
   const userName = useSelector((state) => state.user.name);
-  const [edit, setEdit] = useState(false);
-  const [ventas, setVentas] = useState(cliente.ventas || 0);
+
   const mutationDatos = useUpdateDatosDesp();
   const { isLoading } = mutationDatos;
-  const mutationVentas = useMutationVentas();
 
   const [data, setData] = useState(() => {
     const initialData = datosMarketing.reduce((acc, dato) => {
@@ -38,11 +34,6 @@ const DatosMarketing = ({ cliente }) => {
     return initialData;
   });
 
-  const handlerVentas = () => {
-    setEdit(false);
-    mutationVentas.mutate({ idClient: cliente._id, ventas, userName });
-  };
-
   const handlerUpdate = (value) => {
     const datos = {
       idClient: cliente._id,
@@ -56,29 +47,7 @@ const DatosMarketing = ({ cliente }) => {
 
   return (
     <>
-      <div
-        className="flex"
-        style={{
-          marginBottom: "20px",
-          fontSize: "40px",
-          color: colorFondo,
-          gap: "40px",
-        }}
-      >
-        {" "}
-        <span>Ventas:</span>
-        {edit ? (
-          <input
-            type="number"
-            defaultValue={ventas}
-            onBlur={handlerVentas}
-            onChange={(e) => setVentas(e.target.value)}
-          />
-        ) : (
-          <span>{ventas}</span>
-        )}
-        <IconEdit onClick={() => setEdit(!edit)} />
-      </div>
+      <VentasClientes cliente={cliente} userName={userName} role={role} />
       <DivFlex>
         {datosMarketing.map((dato, index) => (
           <Cards key={index}>

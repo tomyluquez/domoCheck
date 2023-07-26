@@ -23,15 +23,16 @@ export const cantidadIntegradosSemana = (clientes, vendedor) => {
         cliente.vendedor === vendedor &&
         new Date(cliente.fechaIntegrado) >= lunesSemanaActual &&
         new Date(cliente.fechaIntegrado) < proximoLunes
-    ).length;
+    );
   } else {
     clientesIntegradosSemana = [...clientes].filter(
       (cliente) =>
         cliente.estado === "Integrado" &&
         new Date(cliente.fechaIntegrado) >= lunesSemanaActual &&
         new Date(cliente.fechaIntegrado) < proximoLunes
-    ).length;
+    );
   }
+  console.log(clientesIntegradosSemana);
   return clientesIntegradosSemana;
 };
 
@@ -107,14 +108,14 @@ export const cantIntegradosMensual = (clientes, vendedor) => {
         cliente.vendedor === vendedor &&
         new Date(cliente.fechaIntegrado) >= primerDiaMesActual &&
         new Date(cliente.fechaIntegrado) <= ultimoDiaMesActual
-    ).length;
+    );
   } else {
     integradosMensuales = [...clientes].filter(
       (cliente) =>
         cliente.estado === "Integrado" &&
         new Date(cliente.fechaIntegrado) >= primerDiaMesActual &&
         new Date(cliente.fechaIntegrado) < ultimoDiaMesActual
-    ).length;
+    );
   }
   return integradosMensuales;
 };
@@ -190,5 +191,10 @@ export const clientesFaltanDatos = (clientes) => {
 };
 export const clientesSinContestar = (clientes) => {
   return [...clientes].filter((cliente) => cliente.estado === "No contesta")
+    .length;
+};
+
+export const clientesPendientes = (clientes) => {
+  return [...clientes].filter((cliente) => cliente.estado === "Pendiente")
     .length;
 };

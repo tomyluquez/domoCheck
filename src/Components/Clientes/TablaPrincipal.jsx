@@ -41,8 +41,8 @@ const TablaPrincipal = ({ clientes }) => {
           {rowsTable
             .slice()
             .reverse()
-            .map((row) => (
-              <Row className="table" key={row.name} cliente={row} />
+            .map((row, i) => (
+              <Row className="table" key={i} cliente={row} />
             ))}
         </TableBody>
       </Table>

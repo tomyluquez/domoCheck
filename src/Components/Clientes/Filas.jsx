@@ -6,14 +6,16 @@ import { DivContainerState, TableStyles } from "../../Styles/TableStyles";
 import formatDate from "../../services/formatDate";
 import { useNavigate } from "react-router-dom";
 import EstadoIntegracion from "../ClienteInd/EstadoIntegracion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeValue } from "../../redux/slices/value";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import UsersClient from "../ClienteInd/UsersClient";
 import { stateColors } from "../../data/colors";
+import VentasClientes from "../ClienteInd/VentasClientes";
 
 function Row(props) {
   const { cliente } = props;
+  const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -109,6 +111,13 @@ function Row(props) {
             )}
             {cliente.estado === "Despachado" && (
               <UsersClient cliente={cliente} />
+            )}
+            {cliente.estado === "Integrado" && (
+              <VentasClientes
+                cliente={cliente}
+                userName={user.name}
+                role={user.role}
+              />
             )}
           </Collapse>
         </TableCell>

@@ -11,6 +11,7 @@ import { dataDashAdmin } from "../../data/cardsDashAdmin";
 import { compararData } from "../../data/comprarData";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Tooltip } from "@mui/material";
 
 const DatosDash = ({ clientes, vendedor, role }) => {
   const [data, setData] = useState(false);
@@ -31,6 +32,7 @@ const DatosDash = ({ clientes, vendedor, role }) => {
     }
     navigate(to);
   };
+  console.log(data);
   return (
     <DivContainerCards>
       {data &&
@@ -53,7 +55,25 @@ const DatosDash = ({ clientes, vendedor, role }) => {
             <DivNumberData style={{ color: dash.letra }} className="flex">
               {dash.dataAnterior !== undefined &&
                 compararData(dash.data, dash.dataAnterior)}
-              <NumberData>{dash.data}</NumberData>
+              <NumberData>
+                {dash.clientes ? (
+                  <Tooltip
+                    title={
+                      <div className="flex" style={{ flexDirection: "column" }}>
+                        {dash.clientes.map((cliente, index) => (
+                          <span key={index}>
+                            {cliente.nombreLocal} - ({cliente.vendedor})
+                          </span>
+                        ))}
+                      </div>
+                    }
+                  >
+                    {dash.data}
+                  </Tooltip>
+                ) : (
+                  dash.data
+                )}
+              </NumberData>
               {dash.dataAnterior !== undefined && (
                 <NumberDataAnterior>| {dash.dataAnterior}</NumberDataAnterior>
               )}

@@ -15,6 +15,7 @@ import { logoutUser } from "../redux/slices/users";
 import { Logo } from "../Styles/Pages/NavbarStyles";
 import { useLocation } from "react-router-dom";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import { Tooltip } from "@mui/material";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -65,7 +66,7 @@ const Sidebar = () => {
                   color: location.pathname === menu.to ? colorLetra : "",
                 }}
               >
-                {menu.icon}
+                <Tooltip title={menu.text}>{menu.icon}</Tooltip>
                 <span>{menu.text}</span>
               </ASidebar>
             </LiSidebar>

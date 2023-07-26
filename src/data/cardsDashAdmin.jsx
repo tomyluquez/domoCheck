@@ -6,6 +6,7 @@ import LeaderboardOutlinedIcon from "@mui/icons-material/LeaderboardOutlined";
 import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
 import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
+import AddIcCallOutlinedIcon from "@mui/icons-material/AddIcCallOutlined";
 
 import {
   cantIntegradosMensual,
@@ -15,6 +16,7 @@ import {
   cantidadIntegradosTotales,
   cantidadSinIntegrar,
   clientesFaltanDatos,
+  clientesPendientes,
   clientesSinContestar,
   promDiasIntegrados,
 } from "../services/CuantityClients";
@@ -34,7 +36,8 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
     {
       title: "Clientes integrados esta semana",
       icon: <CelebrationOutlinedIcon style={{ color: "#fafafa" }} />,
-      data: cantidadIntegradosSemana(clientes, vendedor),
+      data: cantidadIntegradosSemana(clientes, vendedor).length,
+      clientes: cantidadIntegradosSemana(clientes, vendedor),
       dataAnterior: cantidadIntegradosSemanaAnterior(clientes, vendedor),
       fondo: "#3AA6B9",
       letra: "#fafafa",
@@ -46,7 +49,8 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
     {
       title: "Clientes integrados mensual",
       icon: <CheckCircleOutlineOutlinedIcon style={{ color: "#fafafa" }} />,
-      data: cantIntegradosMensual(clientes, vendedor),
+      data: cantIntegradosMensual(clientes, vendedor).length,
+      clientes: cantIntegradosMensual(clientes, vendedor),
       dataAnterior: cantIntegradosMensualAnterior(clientes, vendedor),
       fondo: "#5D9C59",
       letra: "#fafafa",
@@ -77,12 +81,33 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
       role: "admin",
     },
     {
+      title: "Clientes pendientes de contactar",
+      icon: <AddIcCallOutlinedIcon style={{ color: "#fafafa" }} />,
+      data: clientesPendientes(clientes),
+      fondo: "#1D5D9B",
+      letra: "#fafafa",
+      role: "comercial",
+      to: "/Clientes",
+      hover: true,
+      filters: () => {
+        filterClients(
+          clientes,
+          undefined,
+          "Pendiente",
+          undefined,
+          undefined,
+          undefined,
+          dispatch
+        );
+      },
+    },
+    {
       title: "Clientes faltan datos",
       icon: <ContactMailOutlinedIcon style={{ color: "#fafafa" }} />,
       data: clientesFaltanDatos(clientes),
       fondo: "#FFD6A5",
       letra: "#fafafa",
-      role: "integrador",
+      role: "comercial",
       to: "/Clientes",
       hover: true,
       filters: () => {
@@ -103,7 +128,7 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
       data: clientesSinContestar(clientes),
       fondo: "#FF9B9B",
       letra: "#fafafa",
-      role: "integrador",
+      role: "comercial",
       to: "/Clientes",
       hover: true,
       filters: () => {
@@ -124,16 +149,14 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
       data: actividadesOrdenadasPend.length,
       fondo: "#E97777 ",
       letra: "#fafafa",
-      role: "integrador",
+      role: "comercial",
       to: "/Actividades",
       hover: true,
     },
   ];
 
-  const dashVentas = cardsDash.filter((dash) => dash.role !== "integrador");
-  const dashIntegracion = cardsDash.filter(
-    (dash) => dash.role === "integrador"
-  );
+  const dashVentas = cardsDash.filter((dash) => dash.role !== "comercial");
+  const dashIntegracion = cardsDash.filter((dash) => dash.role === "comercial");
 
   return { dashVentas, dashIntegracion };
 };
