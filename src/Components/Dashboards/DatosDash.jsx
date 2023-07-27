@@ -34,7 +34,7 @@ const DatosDash = ({ clientes, vendedor, role }) => {
     navigate(to);
   };
   return (
-    <DivContainerCardsUp>
+    <DivContainerCardsUp data-aos="fade-up" data-aos-duration="1200">
       {data &&
         data.map((dash, i) => (
           <CardsUp

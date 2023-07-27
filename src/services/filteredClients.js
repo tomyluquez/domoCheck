@@ -48,4 +48,11 @@ export const filterByVendedor = (clientes, vendedor) => {
   return [...clientes].filter((cliente) => cliente.vendedor === vendedor);
 };
 
+export const filterMkt = (clientes) => {
+  return [...clientes].filter((cliente) => {
+    const ventas = cliente.ventas || 0;
+    return cliente.estado === "Integrado" && ventas <= 10;
+  });
+};
+
 export default filterClients;

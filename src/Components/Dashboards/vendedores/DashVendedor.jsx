@@ -12,7 +12,7 @@ import formatDate from "./../../../services/formatDate";
 const DashVendedor = ({ clientes, user }) => {
   const clientesVendedor = filterByVendedor(clientes, user.vendedor);
   return (
-    <DivContainerCardsVendedores>
+    <DivContainerCardsVendedores data-aos="fade-right" data-aos-duration="1200">
       {clientesVendedor.map((cliente) => (
         <Tooltip
           key={cliente._id}

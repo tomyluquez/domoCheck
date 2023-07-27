@@ -7,7 +7,7 @@ import DatosDashVendedor from "../DatosDashVendedor";
 import ActCumplidasDash from "./ActCumplidasDash";
 const AdminDash = ({ clientes }) => {
   return (
-    <DivTareas data-aos="fade-left" data-aos-duration="1200">
+    <DivTareas data-aos="fade-right" data-aos-duration="1200">
       <ActCumplidasDash clientes={clientes} />
       <DivContainerCards style={{ width: "65%" }}>
         {vendedores.map((vendedor, i) => (
