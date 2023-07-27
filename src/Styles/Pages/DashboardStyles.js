@@ -10,6 +10,25 @@ export const DivContainerCards = styled.div`
   gap: 20px;
 `;
 
+export const DivContainerCardsUp = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: ${colorLetra};
+  box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 15px 0;
+  width: 95%;
+  text-align: center;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
+`;
+
 export const Cards = styled.div`
   width: 15%;
   min-height: 110px;
@@ -29,6 +48,32 @@ export const Cards = styled.div`
   &:hover {
     transform: ${(props) =>
       props.hover ? "scale(1.1)" : "scale(1)"} !important;
+  }
+`;
+
+export const CardsUp = styled.div`
+  width: 15%;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: ${colorLetra};
+  border-radius: 20px;
+  box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    transform: ${(props) =>
+      props.hover ? "scale(1.1)" : "scale(1)"} !important;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 80%;
   }
 `;
 

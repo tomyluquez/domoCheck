@@ -63,7 +63,7 @@ const FormFilters = ({ clientes }) => {
         disablePortal
         id="combo-box-demo"
         options={clientesPorLocal}
-        sx={{ width: 300, background: "white" }}
+        sx={{ width: "20%", background: "white" }}
         renderInput={(params) => (
           <TextField {...params} label="Por Nombre del Local" />
         )}

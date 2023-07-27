@@ -32,8 +32,12 @@ const Config = () => {
         <Loading />
       ) : (
         <div data-aos="fade-right" data-aos-duration="1200">
-          <h4>Usuarios Creados ({data && data.data.length})</h4>
-          <ButtonCustom onClick={handlerCreateUser}>Crear Usuario</ButtonCustom>
+          <div className="flex">
+            <h4>Usuarios Creados ({data && data.data.length})</h4>
+            <ButtonCustom onClick={handlerCreateUser}>
+              Crear Usuario
+            </ButtonCustom>
+          </div>
           <DivContainerUsers>
             {data &&
               data.data.map((user) => (

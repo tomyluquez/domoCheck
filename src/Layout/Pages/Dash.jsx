@@ -6,7 +6,7 @@ const Dash = () => {
   const clientes = useSelector((state) => state.clientes.clientes);
 
   return (
-    <div>
+    <div className="flexColumn">
       <DashPpal clientes={clientes} user={user} />
     </div>
   );

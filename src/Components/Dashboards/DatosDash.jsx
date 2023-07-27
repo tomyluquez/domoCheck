@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
-  Cards,
-  DivContainerCards,
+  CardsUp,
+  DivContainerCardsUp,
   DivData,
   DivNumberData,
   NumberData,
@@ -33,10 +33,10 @@ const DatosDash = ({ clientes, vendedor, role }) => {
     navigate(to);
   };
   return (
-    <DivContainerCards>
+    <DivContainerCardsUp>
       {data &&
         data.map((dash, i) => (
-          <Cards
+          <CardsUp
             key={i}
             hover={dash.hover}
             style={{
@@ -77,9 +77,9 @@ const DatosDash = ({ clientes, vendedor, role }) => {
                 <NumberDataAnterior>| {dash.dataAnterior}</NumberDataAnterior>
               )}
             </DivNumberData>
-          </Cards>
+          </CardsUp>
         ))}
-    </DivContainerCards>
+    </DivContainerCardsUp>
   );
 };
 

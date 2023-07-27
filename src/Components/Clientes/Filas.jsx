@@ -79,6 +79,7 @@ function Row(props) {
         </TableCell>
         <TableCell align="center" style={{ color: "green" }}>
           {formatDate(cliente.modificacion?.fechaModificacion) ||
+            formatDate(cliente.fechaModificacion) ||
             formatDate(cliente.fechaContacto) ||
             "Pendiente de Contactar"}
         </TableCell>

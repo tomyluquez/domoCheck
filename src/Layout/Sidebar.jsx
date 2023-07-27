@@ -82,7 +82,9 @@ const Sidebar = () => {
           }}
           onClick={() => handlerActive("Cerrar sesion")}
         >
-          <ExitToAppOutlinedIcon />
+          <Tooltip title="Cerrar sesion">
+            <ExitToAppOutlinedIcon />
+          </Tooltip>
           <span>Cerrar sesion</span>
         </ASidebar>
       </SidebarStyle>

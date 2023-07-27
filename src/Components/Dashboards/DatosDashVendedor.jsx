@@ -13,7 +13,14 @@ import {
 
 const DatosDashVendedor = ({ clientes, vendedor }) => {
   return (
-    <Cards style={{ width: "200px", height: "200px", gap: "10px" }}>
+    <Cards
+      style={{
+        width: "200px",
+        height: "300px",
+        gap: "10px",
+        padding: "0 15px",
+      }}
+    >
       <h2 style={{ margin: 0, color: colorFondo }}>{vendedor}</h2>
       <Divider />
       <DivSpanNumber>

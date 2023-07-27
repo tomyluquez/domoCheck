@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
-import { colorLetra, colorFondo } from "../GeneralStyles";
+import { colorLetra } from "../GeneralStyles";
 
 export const Logo = styled.img`
   width: 50px;
@@ -32,13 +32,17 @@ export const MenuHamburguer = styled(ListOutlinedIcon)`
 export const NavbarStyles = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px;
+  justify-content: end;
+  padding: 15px 80px;
   height: 50px;
   width: auto;
-  background-color: ${colorLetra};
-  box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  @media screen and (max-width: 700px) {
+    justify-content: space-between;
+    padding: 15px;
+  }
+  // background-color: ${colorLetra};
+  // box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  // -webkit-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
+  // -moz-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
   z-index: 1;
 `;

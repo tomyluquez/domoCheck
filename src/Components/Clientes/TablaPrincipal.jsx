@@ -11,6 +11,7 @@ import Row from "./Filas";
 import { TableStyles } from "../../Styles/TableStyles";
 
 const TablaPrincipal = ({ clientes }) => {
+  console.log(clientes);
   const rowsTable = [
     ...clientes.map((cliente) => {
       return createData(cliente);
@@ -38,12 +39,9 @@ const TablaPrincipal = ({ clientes }) => {
           </TableStyles>
         </TableHead>
         <TableBody className="table">
-          {rowsTable
-            .slice()
-            .reverse()
-            .map((row, i) => (
-              <Row className="table" key={i} cliente={row} />
-            ))}
+          {rowsTable.map((row, i) => (
+            <Row className="table" key={i} cliente={row} />
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

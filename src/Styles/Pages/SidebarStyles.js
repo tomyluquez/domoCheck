@@ -21,7 +21,7 @@ export const ASidebar = styled(Link)`
   border-radius: 10px;
   transition: background-color 0.3s ease-in-out;
   span {
-    width: 120px;
+    width: 125px;
     display: ${(props) => (props.menuOpen ? "block" : "none")};
     transition: display 0.3s ease-in-out;
   }

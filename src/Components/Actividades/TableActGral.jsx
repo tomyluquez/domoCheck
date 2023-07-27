@@ -65,7 +65,7 @@ const TableActGral = ({ tipoActividad, actividades }) => {
                   {tipoActividad === "Pendientes" ? "Comentario" : "Resultado"}
                 </TableCell>
                 <TableCell>Usuario</TableCell>
-                {tipoActividad === "Pendientes" && <TableCell>asdas</TableCell>}
+                {tipoActividad === "Pendientes" && <TableCell>Hito</TableCell>}
               </TableStyles>
             </TableHead>
             <TableBody>

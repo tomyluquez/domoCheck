@@ -63,6 +63,19 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
       fondo: "#1D5D9B",
       letra: "#fafafa",
       role: "admin",
+      to: "/Clientes",
+      hover: true,
+      filters: () => {
+        filterClients(
+          clientes,
+          undefined,
+          "Integrado",
+          undefined,
+          undefined,
+          undefined,
+          dispatch
+        );
+      },
     },
     {
       title: "Clientes pendientes de integrarse",

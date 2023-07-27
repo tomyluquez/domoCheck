@@ -23,9 +23,7 @@ const ActCumplidasDash = ({ clientes }) => {
     setValue(newValue);
   };
   return (
-    <ActividadesAdmin
-      style={{ width: "80%", height: "700px", marginTop: "50px" }}
-    >
+    <ActividadesAdmin style={{ marginTop: "50px" }}>
       <span>Actividades del dia</span>
       <TabContext value={value}>
         <Box

@@ -60,6 +60,7 @@ export const DeleteIcon = styled(DeleteForeverOutlinedIcon)`
 
 export const ActividadesAdmin = styled(Cards)`
   width: 30% !important;
+  justify-content: start !important;
   @media screen and (max-width: 700px) {
     width: 100% !important;
   }
