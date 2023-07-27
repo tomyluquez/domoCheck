@@ -27,6 +27,7 @@ const DatosDash = ({ clientes, vendedor, role }) => {
   }, [clientes, role, vendedor, dispatch]);
 
   const handleClick = (to, functionDash) => {
+    if (vendedor) return;
     if (functionDash) {
       functionDash();
     }

@@ -44,4 +44,8 @@ const filterClients = (
   } else dispatch(filters(filteredClients));
 };
 
+export const filterByVendedor = (clientes, vendedor) => {
+  return [...clientes].filter((cliente) => cliente.vendedor === vendedor);
+};
+
 export default filterClients;

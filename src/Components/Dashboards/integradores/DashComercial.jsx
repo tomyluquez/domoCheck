@@ -10,33 +10,46 @@ const DashComercial = ({ clientes }) => {
   return (
     <div
       className="flex"
-      style={{ marginTop: "50px" }}
+      style={{ marginTop: "50px", width: "100%", flexWrap: "wrap" }}
       data-aos="fade-right"
       data-aos-duration="1200"
     >
       {datosDashComer.map((dato, i) => (
-        <CardsAdmin key={i} style={{ minHeight: "300px" }}>
-          <div className="flex">
+        <CardsAdmin key={i} style={{ minHeight: "300px", width: "25%" }}>
+          <div className="flex" style={{ fontWeight: "bold" }}>
             <span>{dato.totales}</span>
             <span>{filterByType(clientes, dato.dato, "todos")}</span>
           </div>
-          <div className="flex">
-            <span>{dato.solicitados}</span>
-            <span>{filterByType(clientes, dato.dato, "Solicitado")}</span>
-            <Progress
-              value={filterByTypePorcent(clientes, dato.dato, "Solicitado")}
-            />
-          </div>
-          <div className="flex">
-            <span>{dato.entregados}</span>
-            <span>{filterByType(clientes, dato.dato, "Entregado")}</span>
+          <div className="flexBet">
+            <span>
+              {dato.entregados}-{" "}
+              <span style={{ color: "grey" }}>
+                ({filterByType(clientes, dato.dato, "Entregado")})
+              </span>
+            </span>
             <Progress
               value={filterByTypePorcent(clientes, dato.dato, "Entregado")}
             />
           </div>
-          <div className="flex">
-            <span>{dato.pendientes}</span>
-            <span>{filterByType(clientes, dato.dato, "Pendientes")}</span>
+          <div className="flexBet">
+            <span>
+              {dato.solicitados}-
+              <span style={{ color: "grey" }}>
+                ({filterByType(clientes, dato.dato, "Solicitado")})
+              </span>
+            </span>
+
+            <Progress
+              value={filterByTypePorcent(clientes, dato.dato, "Solicitado")}
+            />
+          </div>
+          <div className="flexBet">
+            <span>
+              {dato.pendientes}-{" "}
+              <span style={{ color: "grey" }}>
+                ({filterByType(clientes, dato.dato, "Pendientes")})
+              </span>
+            </span>
             <Progress
               value={filterByTypePorcent(clientes, dato.dato, "Pendientes")}
             />

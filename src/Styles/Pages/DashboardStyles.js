@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { colorFondoHover, colorLetra, colorLogo } from "../GeneralStyles";
+import { hoverColors } from "../../data/colors";
 
 export const DivContainerCards = styled.div`
   display: flex;
@@ -125,4 +126,26 @@ export const DivTareas = styled.div`
     padding: 0 25px;
     flex-wrap: wrap;
 }
+`;
+
+export const CardVendedores = styled(Cards)`
+  width: 30%;
+  min-height: 50px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  &:hover {
+    background-color: ${(props) => hoverColors[props.estado]};
+    cursor: pointer;
+  }
+`;
+
+export const DivContainerCardsVendedores = styled.div`
+  width: 95%;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: start;
 `;
