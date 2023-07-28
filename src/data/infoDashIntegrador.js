@@ -24,6 +24,22 @@ const datosDashIntegrador = (clientes, estado) => {
   if (estado === "Clientes despachados") {
     return [...clientes].filter((cliente) => cliente.estado === "Despachado");
   }
+
+  if (estado === "Menu sin procesar") {
+    return [...clientes].filter(
+      (cliente) =>
+        cliente.estado === "Faltan datos" &&
+        cliente.menu.estado === "Entregado no procesado"
+    );
+  }
+
+  if (estado === "Datos sin procesar") {
+    return [...clientes].filter(
+      (cliente) =>
+        cliente.estado === "Faltan datos" &&
+        cliente.datos.estado === "Entregado no procesado"
+    );
+  }
 };
 
 export const dataDash = (clientes, role) => {
@@ -36,6 +52,14 @@ export const dataDash = (clientes, role) => {
     ];
   }
   return [
+    {
+      estado: "Menu sin procesar",
+      data: datosDashIntegrador(clientes, "Menu sin procesar"),
+    },
+    {
+      estado: "Datos sin procesar",
+      data: datosDashIntegrador(clientes, "Datos sin procesar"),
+    },
     {
       estado: "Pendientes de despachar",
       data: datosDashIntegrador(clientes, "Pendientes de despachar"),
