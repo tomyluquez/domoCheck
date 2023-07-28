@@ -4,15 +4,19 @@ import { Cards } from "../../../Styles/Pages/DashboardStyles";
 import { dataDash } from "../../../data/infoDashIntegrador";
 import { useEffect, useState } from "react";
 
-const DashIntegrador = ({ clientes }) => {
+const DashIntegrador = ({ clientes, role }) => {
   const [datos, setDatos] = useState(null);
 
   useEffect(() => {
-    setDatos(dataDash(clientes));
-  }, [clientes]);
+    setDatos(dataDash(clientes, role));
+  }, [clientes, role]);
 
   return (
-    <Cards style={{ marginTop: "20px", width: "50%" }}>
+    <Cards
+      style={{ marginTop: "20px", width: "50%" }}
+      data-aos="fade-right"
+      data-aos-duration="1200"
+    >
       <h2 style={{ margin: 0, color: colorFondo }}>Estado Clientes</h2>
       {datos &&
         datos.map((data, i) => (

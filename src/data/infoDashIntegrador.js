@@ -20,9 +20,21 @@ const datosDashIntegrador = (clientes, estado) => {
       (cliente) => cliente.estado === "Configuracion"
     );
   }
+
+  if (estado === "Clientes despachados") {
+    return [...clientes].filter((cliente) => cliente.estado === "Despachado");
+  }
 };
 
-export const dataDash = (clientes) => {
+export const dataDash = (clientes, role) => {
+  if (role === "masDelivery") {
+    return [
+      {
+        estado: "Clientes despachados",
+        data: datosDashIntegrador(clientes, "Clientes despachados"),
+      },
+    ];
+  }
   return [
     {
       estado: "Pendientes de despachar",
