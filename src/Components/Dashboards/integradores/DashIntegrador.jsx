@@ -23,7 +23,7 @@ const DashIntegrador = ({ clientes, role }) => {
           <Tooltip
             key={i}
             title={
-              data.data &&
+              data.data?.length > 0 &&
               data.data.map((cliente) => (
                 <div className="flex" key={cliente._id}>
                   {cliente.nombreLocal}
@@ -36,12 +36,16 @@ const DashIntegrador = ({ clientes, role }) => {
               className="flex"
             >
               <span style={{ cursor: "default", width: "40%" }}>
-                {data.estado} - ({data.data ? data.data.length : 0})
+                {data.estado} - ({data.data?.length > 0 ? data.data.length : 0})
               </span>
               <LinearProgress
                 variant="determinate"
-                value={(data.data ? data.data.length : 0) * 10}
-                sx={{ width: "50%" }}
+                value={100}
+                sx={{
+                  width: (data.data?.length > 0 ? data.data.length : 0) * 30,
+                  borderRadius: "20px",
+                  height: "10px",
+                }}
               />
             </Box>
           </Tooltip>
