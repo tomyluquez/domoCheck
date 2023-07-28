@@ -1,6 +1,7 @@
 import DatosDash from "./DatosDash";
 import AdminDash from "./admin/AdminDash";
 import DashComercial from "./integradores/DashComercial";
+import DashIntegrador from "./integradores/DashIntegrador";
 import DashMkt from "./masDelivery/DashMkt";
 import DashVendedor from "./vendedores/DashVendedor";
 
@@ -18,6 +19,7 @@ const DashPpal = ({ clientes, user }) => {
         <DashVendedor clientes={clientes} user={user} />
       )}
       {user.role === "marketing" && <DashMkt clientes={clientes} />}
+      {user.role === "integrador" && <DashIntegrador clientes={clientes} />}
     </>
   );
 };

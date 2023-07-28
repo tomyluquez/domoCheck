@@ -10,7 +10,12 @@ const DashComercial = ({ clientes }) => {
   return (
     <div
       className="flex"
-      style={{ marginTop: "50px", width: "100%", flexWrap: "wrap" }}
+      style={{
+        marginTop: "50px",
+        width: "100%",
+        flexWrap: "wrap",
+        gap: "20px",
+      }}
       data-aos="fade-right"
       data-aos-duration="1200"
     >

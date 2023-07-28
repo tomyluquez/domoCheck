@@ -2,7 +2,6 @@ import { Box, Divider, TableBody, TableCell, TableHead } from "@mui/material";
 import { TableCellStyle, TableStyles } from "../../Styles/TableStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../redux/slices/modal";
-
 import { useNavigate } from "react-router-dom";
 import { changeValue } from "../../redux/slices/value";
 import FilaActInd from "./FilaActInd";
