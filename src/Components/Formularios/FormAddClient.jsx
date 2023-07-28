@@ -50,6 +50,7 @@ const FormAddClient = () => {
     };
     setIsLoading(true);
     mutation.mutate(newUser);
+
     setData({
       fechaSolicitud: "",
       nombreCrm: "",
