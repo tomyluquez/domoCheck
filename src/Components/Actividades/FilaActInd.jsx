@@ -23,7 +23,10 @@ const FilaActInd = ({
     setDiasVencidas(diasTranscurridos);
     setVencimiento(estadoActividad);
   }, [act.actividad.proximoContacto, act.actividad.estadoAct]);
-  const isVencida = vencimiento === "Vencida" || vencimiento === "Peligro";
+  const isVencida =
+    (vencimiento === "Vencida" || vencimiento === "Peligro") &&
+    diasVencida >= 1;
+
   return (
     <TableStyles
       fondo={vencimiento}
