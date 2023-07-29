@@ -1,3 +1,5 @@
+import { actTodayCump } from "../services/actividadesToday";
+
 export const tabs = [
   {
     label: "Estado de integracion",
@@ -24,3 +26,31 @@ export const tabs = [
     value: "6",
   },
 ];
+
+export const generateTabsDashAdmin = (clientes, usuario) => {
+  const { actCumplidasToday, actPendientesToday, actVencidas } = actTodayCump(
+    clientes,
+    usuario
+  );
+
+  return [
+    {
+      value: 1,
+      array: actCumplidasToday,
+      condicion: "cumplidor",
+      label: `Cumplidas (${actCumplidasToday.length})`,
+    },
+    {
+      value: 2,
+      array: actPendientesToday,
+      condicion: "creador",
+      label: `Pendientes (${actPendientesToday.length})`,
+    },
+    {
+      value: 3,
+      array: actVencidas,
+      condicion: "creador",
+      label: `Vencidas (${actVencidas.length})`,
+    },
+  ];
+};

@@ -3,7 +3,6 @@ import { SpanTabla, TableStyles } from "../../Styles/TableStyles";
 import { Avatar, TableCell, Tooltip } from "@mui/material";
 import actVencidas from "../../services/actVencidas";
 import { stateColors } from "../../data/colors";
-import formatDate from "../../services/formatDate";
 import findOthersAct from "../../services/findOtherAct";
 import formatDateHours from "../../services/formatDateHours";
 
@@ -50,7 +49,7 @@ const FilaActInd = ({
       <TableCell className="icon">{act.cliente.telContacto}</TableCell>
       <TableCell className="icon">
         {tipoActividad === "Pendientes"
-          ? formatDate(act.actividad.proximoContacto)
+          ? formatDateHours(act.actividad.proximoContacto)
           : formatDateHours(act.actividad.fechaCumplimiento)}
       </TableCell>
       <TableCell className="icon">{act.actividad.dato}</TableCell>

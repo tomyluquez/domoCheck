@@ -9,104 +9,106 @@ import {
   TimelineOppositeContent,
   TimelineSeparator,
 } from "@mui/lab";
-import { useState } from "react";
-import { Box, Tab } from "@mui/material";
-import { actTodayCump } from "../../../services/actividadesToday";
+import { useEffect, useState, useCallback } from "react";
+import { Box, CircularProgress, Tab } from "@mui/material";
 import formatDateHours from "../../../services/formatDateHours";
 import { ActividadesAdmin } from "../../../Styles/Pages/AdminStyles";
+import useGetUsers from "../../../Hooks/useGetUsers";
+import { getOptionUsers } from "../../../services/getOptionUsers";
+import SelectCustom from "../../SelectCustom";
+import { generateTabsDashAdmin } from "../../../data/tabs";
 
 const ActCumplidasDash = ({ clientes }) => {
+  const { data, isLoading } = useGetUsers();
+  const [dataUsers, setDataUsers] = useState([]);
   const [value, setValue] = useState(1);
-  const { actCumplidasToday, actPendientesToday } = actTodayCump(clientes);
+  const [usuario, setUsuario] = useState("Todos");
 
-  const handleChange = (event, newValue) => {
+  useEffect(() => {
+    if (data) {
+      setDataUsers(getOptionUsers(data.data));
+    }
+  }, [data]);
+
+  const handleChange = useCallback((event, newValue) => {
     setValue(newValue);
-  };
+  }, []);
   return (
     <ActividadesAdmin style={{ marginTop: "50px" }}>
-      <span>Actividades del dia</span>
-      <TabContext value={value}>
-        <Box
-          sx={{
-            borderBottom: 1,
-            borderColor: "divider",
-          }}
-        >
-          <TabList
-            style={{
-              backgroundColor: "#fafafa",
-              zIndex: 2,
-              width: "100%",
-            }}
-            onChange={handleChange}
-            aria-label="lab API tabs example"
-          >
-            <Tab
-              key={1}
-              label={`Cumplidas (${actCumplidasToday.length})`}
-              value={1}
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <div className="flex">
+            <span>Actividades del dia</span>
+            <SelectCustom
+              w="20%"
+              label="Usuario"
+              value={usuario}
+              setValue={(newValue) => setUsuario(newValue)}
+              opciones={dataUsers}
             />
-            <Tab
-              key={2}
-              label={`Pendientes (${actPendientesToday.length})`}
-              value={2}
-            />
-          </TabList>
-        </Box>
-
-        <TabPanel
-          style={{ marginTop: "15px", overflow: "auto", height: "450px" }}
-          value={1}
-          key={1}
-        >
-          {actCumplidasToday.length > 0 ? (
-            actCumplidasToday.map((act) => (
-              <div key={act._id}>
-                <TimelineItem>
-                  <TimelineOppositeContent color="textSecondary">
-                    {formatDateHours(act.actividad.fechaCumplimiento)} -
-                    {act.actividad.cumplidor}
-                  </TimelineOppositeContent>
-                  <TimelineSeparator>
-                    <TimelineDot color="primary" />
-                    <TimelineConnector />
-                  </TimelineSeparator>
-                  <TimelineContent>{act.actividad.resultado}</TimelineContent>
-                </TimelineItem>
-                <TimelineItem></TimelineItem>
-              </div>
-            ))
-          ) : (
-            <span>No hay actividades cumplidas hoy</span>
-          )}
-        </TabPanel>
-        <TabPanel
-          style={{ marginTop: "15px", overflow: "auto", height: "450px" }}
-          value={2}
-          key={2}
-        >
-          {actPendientesToday.length > 0 ? (
-            actPendientesToday.map((act) => (
-              <div key={act._id}>
-                <TimelineItem>
-                  <TimelineOppositeContent color="textSecondary">
-                    {formatDateHours(act.actividad.proximoContacto)} -
-                    {act.actividad.creador}
-                  </TimelineOppositeContent>
-                  <TimelineSeparator>
-                    <TimelineDot color="tercary" />
-                    <TimelineConnector />
-                  </TimelineSeparator>
-                  <TimelineContent>{act.actividad.actividad}</TimelineContent>
-                </TimelineItem>
-                <TimelineItem></TimelineItem>
-              </div>
-            ))
-          ) : (
-            <span>No hay actividades para hoy</span>
-          )}
-        </TabPanel>
-      </TabContext>
+          </div>
+          <TabContext value={value}>
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: "divider",
+              }}
+            >
+              <TabList
+                style={{
+                  backgroundColor: "#fafafa",
+                  zIndex: 2,
+                  width: "100%",
+                }}
+                onChange={handleChange}
+                aria-label="lab API tabs example"
+              >
+                {generateTabsDashAdmin(clientes, usuario).map((tab) => (
+                  <Tab key={tab.value} label={tab.label} value={tab.value} />
+                ))}
+              </TabList>
+            </Box>
+            {generateTabsDashAdmin(clientes, usuario).map((dash) => (
+              <TabPanel
+                style={{ marginTop: "15px", overflow: "auto", height: "450px" }}
+                value={dash.value}
+                key={dash.value}
+              >
+                {dash.array.length > 0 ? (
+                  dash.array.map((act) => (
+                    <div key={act._id}>
+                      <TimelineItem>
+                        <TimelineOppositeContent color="textSecondary">
+                          {dash.condicion === "cumplidor"
+                            ? `${formatDateHours(
+                                act.actividad.fechaCumplimiento
+                              )} - ${act.actividad.cumplidor}`
+                            : `${formatDateHours(act.actividad.proximoContacto)}
+                            ) - ${act.actividad.creador}`}
+                        </TimelineOppositeContent>
+                        <TimelineSeparator>
+                          <TimelineDot color="primary" />
+                          <TimelineConnector />
+                        </TimelineSeparator>
+                        <TimelineContent>
+                          {dash.condicion === "cumplidor"
+                            ? act.actividad.resultado
+                            : act.actividad.actividad}
+                        </TimelineContent>
+                      </TimelineItem>
+                      <TimelineItem></TimelineItem>
+                    </div>
+                  ))
+                ) : (
+                  <span>No hay actividades para hoy</span>
+                )}
+              </TabPanel>
+            ))}
+          </TabContext>
+        </>
+      )}
     </ActividadesAdmin>
   );
 };

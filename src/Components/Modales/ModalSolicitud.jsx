@@ -1,4 +1,7 @@
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import {
+  DesktopDateTimePicker,
+  LocalizationProvider,
+} from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useState } from "react";
 import TexTarea from "../TexTarea";
@@ -10,6 +13,7 @@ import handlerUpdateSolicitud from "../../services/handlerUpdate";
 import filterById from "../../services/filterById";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalActividades } from "../../Styles/ActividadesStyle";
+import dayjs from "dayjs";
 
 const ModalSolicitud = ({ clientes, idClient, referencia }) => {
   const cliente = filterById(clientes, idClient);
@@ -23,6 +27,8 @@ const ModalSolicitud = ({ clientes, idClient, referencia }) => {
     obs: "",
   });
   const disabled = data.proxContacto === "" || data.obs === "";
+
+  console.log(data.proxContacto, data.obs);
 
   const handlerUpdate = (e) => {
     e.preventDefault();
@@ -42,9 +48,11 @@ const ModalSolicitud = ({ clientes, idClient, referencia }) => {
   return (
     <ModalActividades>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
+        <DesktopDateTimePicker
           sx={{ minWidth: 180, width: "45%" }}
           label="Fecha Proximo Contacto"
+          disablePast
+          defaultValue={dayjs()}
           onChange={(e) => setData({ ...data, proxContacto: e.$d })}
         />
       </LocalizationProvider>
