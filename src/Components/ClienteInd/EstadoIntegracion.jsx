@@ -9,6 +9,7 @@ import { colorLetra } from "../../Styles/GeneralStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../redux/slices/modal";
 import { useNavigate } from "react-router-dom";
+import ButtonChangeState from "./EstadoDatos/ButtonChangeState";
 
 const EstadoIntegracion = ({ cliente }) => {
   const datosEntregados =
@@ -68,46 +69,31 @@ const EstadoIntegracion = ({ cliente }) => {
           Estado: {datosEntregados ? "Pendiente de despachar" : cliente.estado}
         </span>
         {datosEntregados && (
-          <ButtonCustom
-            width="150px"
-            onClick={() =>
-              handlerChange(
-                `${cliente.nombreLocal} fue Despachado`,
-                `${cliente.nombreLocal} fue Despachado`,
-                "Despachado"
-              )
-            }
-          >
-            {isLoading ? <Loading /> : "Despachar"}
-          </ButtonCustom>
+          <ButtonChangeState
+            cliente={cliente}
+            isLoading={isLoading}
+            handlerChange={handlerChange}
+            label="Despachar"
+            estado="Despachado"
+          />
         )}
         {cliente.estado === "Despachado" && (
-          <ButtonCustom
-            width="150px"
-            onClick={() =>
-              handlerChange(
-                `${cliente.nombreLocal} listo para testeo`,
-                `${cliente.nombreLocal} listo para testeo`,
-                "Testeo"
-              )
-            }
-          >
-            {isLoading ? <Loading /> : "Listo para testeo"}
-          </ButtonCustom>
+          <ButtonChangeState
+            cliente={cliente}
+            isLoading={isLoading}
+            handlerChange={handlerChange}
+            label="Listo para testeo"
+            estado="Testeo"
+          />
         )}
         {cliente.estado === "Testeo" && (
-          <ButtonCustom
-            width="150px"
-            onClick={() =>
-              handlerChange(
-                `${cliente.nombreLocal} listo para configurar`,
-                `${cliente.nombreLocal} listo para configurar`,
-                "Configuracion"
-              )
-            }
-          >
-            {isLoading ? <Loading /> : "Listo para configurar"}
-          </ButtonCustom>
+          <ButtonChangeState
+            cliente={cliente}
+            isLoading={isLoading}
+            handlerChange={handlerChange}
+            label="Listo para configurar"
+            estado="Configuracion"
+          />
         )}
         {cliente.estado === "Configuracion" && (
           <ButtonCustom
