@@ -3,13 +3,32 @@ import { colorFondo } from "../../../Styles/GeneralStyles";
 import { Cards } from "../../../Styles/Pages/DashboardStyles";
 import { dataDash } from "../../../data/infoDashIntegrador";
 import { useEffect, useState } from "react";
+import filterClients from "../../../services/filteredClients";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const DashIntegrador = ({ clientes, role }) => {
   const [datos, setDatos] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setDatos(dataDash(clientes, role));
   }, [clientes, role]);
+
+  const handlerClick = (click, busqueda) => {
+    if (!click) return;
+    filterClients(
+      clientes,
+      undefined,
+      busqueda,
+      undefined,
+      undefined,
+      undefined,
+      dispatch
+    );
+    navigate("/Clientes");
+  };
 
   return (
     <Cards
@@ -32,10 +51,19 @@ const DashIntegrador = ({ clientes, role }) => {
             }
           >
             <Box
-              sx={{ width: "100%", justifyContent: "start" }}
+              sx={{
+                width: "100%",
+                justifyContent: "start",
+              }}
               className="flex"
+              onClick={() => handlerClick(data.click, data.busqueda)}
             >
-              <span style={{ cursor: "default", width: "40%" }}>
+              <span
+                style={{
+                  cursor: data.click ? "pointer" : "default",
+                  width: "40%",
+                }}
+              >
                 {data.estado} - ({data.data?.length > 0 ? data.data.length : 0})
               </span>
               <LinearProgress

@@ -48,6 +48,8 @@ export const dataDash = (clientes, role) => {
       {
         estado: "Clientes despachados",
         data: datosDashIntegrador(clientes, "Clientes despachados"),
+        click: true,
+        busqueda: "Despachado",
       },
     ];
   }
@@ -55,23 +57,30 @@ export const dataDash = (clientes, role) => {
     {
       estado: "Menu sin procesar",
       data: datosDashIntegrador(clientes, "Menu sin procesar"),
+      click: false,
     },
     {
       estado: "Datos sin procesar",
       data: datosDashIntegrador(clientes, "Datos sin procesar"),
+      click: false,
     },
     {
       estado: "Pendientes de despachar",
       data: datosDashIntegrador(clientes, "Pendientes de despachar"),
+      click: false,
     },
     {
       estado: "En testeo",
       data: datosDashIntegrador(clientes, "En testeo"),
+      click: true,
+      busqueda: "Testo",
     },
 
     {
       estado: "En configuracion",
       data: datosDashIntegrador(clientes, "En configuracion"),
+      click: true,
+      busqueda: "Configuracion",
     },
   ];
 };
