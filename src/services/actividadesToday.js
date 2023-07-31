@@ -14,7 +14,7 @@ export const actTodayCump = (clientes, usuario) => {
       (act) => act.actividad.creador === usuario
     );
     actividadesCumplidas = [...actividadesCumplidas].filter(
-      (act) => act.actividad.creador === usuario
+      (act) => act.actividad.cumplidor === usuario
     );
   }
 

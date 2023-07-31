@@ -86,10 +86,16 @@ const ActCumplidasDash = ({ clientes }) => {
                                 act.actividad.fechaCumplimiento
                               )} - ${act.actividad.cumplidor}`
                             : `${formatDateHours(act.actividad.proximoContacto)}
-                            ) - ${act.actividad.creador}`}
+                            - ${act.actividad.creador}`}
                         </TimelineOppositeContent>
                         <TimelineSeparator>
-                          <TimelineDot color="primary" />
+                          <TimelineDot
+                            color={
+                              dash.condicion === "cumplidor"
+                                ? "primary"
+                                : "tercary"
+                            }
+                          />
                           <TimelineConnector />
                         </TimelineSeparator>
                         <TimelineContent>

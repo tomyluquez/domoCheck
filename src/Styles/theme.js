@@ -12,5 +12,8 @@ export const theme = createTheme({
     tercary: {
       main: "red",
     },
+    act: {
+      main: "yellow",
+    },
   },
 });
