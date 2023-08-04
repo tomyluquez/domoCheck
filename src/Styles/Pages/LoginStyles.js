@@ -1,13 +1,14 @@
 import { styled } from "styled-components";
-import { colorFondo, colorLetra } from "../GeneralStyles";
+import { colorFondo, colorLetra, colorLogo } from "../GeneralStyles";
 
 export const DivContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
-  background-color: ${colorLetra};
+  background-color: #404040;
 `;
 
 export const DivBackground = styled.div`
@@ -23,9 +24,7 @@ export const DivBackground = styled.div`
 
 export const DivLogin = styled.div`
   width: 35%;
-  height: 100%;
-  border-left: 1px solid ${colorFondo};
-
+  height: 35%;
   @media screen and (max-width: 700px) {
     width: 100%;
     border-left: none;
@@ -39,9 +38,13 @@ export const ImgLogin = styled.img`
 export const FormLoginStyles = styled.form`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100vh;
+  width: 30%;
   align-items: center;
   justify-content: end;
   gap: 20px;
+  border: 1px solid ${colorLogo};
+  background-color: ${colorLetra};
+  box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);
+  -webkit-box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);
+  -moz-box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);
 `;

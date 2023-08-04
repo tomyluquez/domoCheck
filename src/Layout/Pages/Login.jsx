@@ -1,12 +1,8 @@
 import { useSelector } from "react-redux";
 import FormLogin from "../../Components/Formularios/FormLogin";
-import {
-  DivBackground,
-  DivLogin,
-  DivContainer,
-  ImgLogin,
-} from "../../Styles/Pages/LoginStyles";
+import { DivContainer } from "../../Styles/Pages/LoginStyles";
 import { Navigate } from "react-router-dom";
+import { colorLetra } from "../../Styles/GeneralStyles";
 
 const Login = () => {
   const roleUser = useSelector((state) => state.user.role);
@@ -15,12 +11,9 @@ const Login = () => {
   }
   return (
     <DivContainer>
-      <DivBackground>
-        <ImgLogin src="/fondoLogin.png" alt="" />
-      </DivBackground>
-      <DivLogin>
-        <FormLogin />
-      </DivLogin>
+      <img src="/fondoLog.png" alt="" />
+      <FormLogin />
+      <span style={{ color: colorLetra }}>Nucloe IT - Mas Delivery</span>
     </DivContainer>
   );
 };
