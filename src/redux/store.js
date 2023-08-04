@@ -14,7 +14,14 @@ const clientsPersistConfig = {
   storage,
 };
 
+const usersPersistConfig = {
+  key: "clients",
+  version: 1,
+  storage,
+};
+
 const persistedCart = persistReducer(clientsPersistConfig, clientesReducer);
+const persistUsers = persistReducer(usersPersistConfig, usersReducer);
 
 export const store = configureStore({
   reducer: {
@@ -22,7 +29,7 @@ export const store = configureStore({
     clientes: persistedCart,
     alert: alertReducer,
     value: valueReducer,
-    user: usersReducer,
+    user: persistUsers,
     notis: notiReducer,
   },
 });
