@@ -48,6 +48,29 @@ export const filterByVendedor = (clientes, vendedor) => {
   return [...clientes].filter((cliente) => cliente.vendedor === vendedor);
 };
 
+export const filterByVendedorAndState = (clientes, vendedor, estado) => {
+  return [...clientes]
+    .filter(
+      (cliente) => cliente.vendedor === vendedor && cliente.estado === estado
+    )
+    .sort((a, b) => {
+      if (
+        estado === "No lo quiere" ||
+        estado === "Faltan datos" ||
+        estado === "No contesta"
+      ) {
+        return (
+          new Date(b.modificacion.fechaModificacion) -
+          new Date(a.modificacion.fechaModificacion)
+        );
+      } else if (estado === "Pendiente") {
+        return new Date(b.fechaSolicitud) - new Date(a.fechaSolicitud);
+      } else {
+        return new Date(b[`fecha${estado}`]) - new Date(a[`fecha${estado}`]);
+      }
+    });
+};
+
 export const filterMkt = (clientes) => {
   return [...clientes].filter((cliente) => {
     const ventas = cliente.ventas || 0;

@@ -16,7 +16,12 @@ const Progress = ({ value }) => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="caption" component="div" color="text.secondary">
+        <Typography
+          variant="caption"
+          component="div"
+          color="text.secondary"
+          style={{ fontFamily: "poppins" }}
+        >
           {Math.round(value)}%
         </Typography>
       </Box>

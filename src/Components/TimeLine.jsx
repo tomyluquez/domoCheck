@@ -34,11 +34,16 @@ export default function TinmeLineClient({ hitos }) {
             </TimelineDot>
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: "12px", px: 2 }}>
+          <TimelineContent
+            sx={{ py: "12px", px: 2 }}
+            style={{ fontFamily: "poppins" }}
+          >
             <Typography variant="h6" component="span">
               {hito.dato}
             </Typography>
-            <Typography>{hito.resultado}</Typography>
+            <Typography style={{ fontFamily: "poppins" }}>
+              {hito.resultado}
+            </Typography>
           </TimelineContent>
         </TimelineItem>
       ))}

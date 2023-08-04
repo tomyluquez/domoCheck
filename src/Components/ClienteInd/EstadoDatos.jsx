@@ -15,7 +15,12 @@ const EstadoDatos = ({ cliente }) => {
 
   return (
     <Box sx={{ margin: 1 }}>
-      <Typography variant="h6" gutterBottom component="div">
+      <Typography
+        variant="h6"
+        gutterBottom
+        component="div"
+        style={{ fontFamily: "poppins" }}
+      >
         Datos
       </Typography>
       <TableCellStyle size="small" aria-label="purchases">

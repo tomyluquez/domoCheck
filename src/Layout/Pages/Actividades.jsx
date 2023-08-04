@@ -71,7 +71,12 @@ const Actividades = () => {
               key={1}
             >
               <>
-                <Typography variant="h6" gutterBottom component="div">
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  component="div"
+                  style={{ fontFamily: "poppins" }}
+                >
                   Actividades Pendientes ({actividadesOrdenadasPend.length})
                 </Typography>
                 <OrdenActividades
@@ -92,7 +97,12 @@ const Actividades = () => {
               key={2}
             >
               <>
-                <Typography variant="h6" gutterBottom component="div">
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  component="div"
+                  style={{ fontFamily: "poppins" }}
+                >
                   Actividades Cumplidas ({actividadesCumplidasPend.length})
                 </Typography>
                 <FilterByDate

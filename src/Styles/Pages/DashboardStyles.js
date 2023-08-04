@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { colorFondoHover, colorLetra, colorLogo } from "../GeneralStyles";
 import { hoverColors } from "../../data/colors";
+import { AccordionDetails } from "@mui/material";
 
 export const DivContainerCards = styled.div`
   display: flex;
@@ -129,12 +130,14 @@ export const DivTareas = styled.div`
 `;
 
 export const CardVendedores = styled(Cards)`
-  width: 30%;
+  width: 80%;
   min-height: 50px !important;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  position: relative;
+  text-align: center;
   &:hover {
     background-color: ${(props) => hoverColors[props.estado]};
     cursor: pointer;
@@ -143,9 +146,31 @@ export const CardVendedores = styled(Cards)`
 
 export const DivContainerCardsVendedores = styled.div`
   width: 95%;
+  min-height: 600px;
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
+  flex-direction: column;
   margin-top: 20px;
   justify-content: start;
+  align-items: center;
+`;
+
+export const AccordionDetailsDash = styled(AccordionDetails)`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SpanDate = styled.span`
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+  display: flex;
+  width: 100%;
+  color: grey;
+  font-size: 12px;
+  gap: 5px;
 `;
