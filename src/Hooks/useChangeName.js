@@ -1,23 +1,20 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 import { openAlert } from "../redux/slices/Alert";
-import { useNavigate } from "react-router-dom";
+import { closeModal } from "../redux/slices/modal";
 
 const useChangeName = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const queryclient = useQueryClient();
   const changeNameMutation = useMutation(
     (data) =>
-      fetch(
-        `https://crnventas.onrender.com/api/clientes/changeName/${data.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      ).then((response) => {
+      fetch(`https://crnventas.onrender.com/api/clientes/changeData`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((response) => {
         if (!response.ok) {
           throw new Error(response.status);
         }
@@ -27,11 +24,12 @@ const useChangeName = () => {
       onSuccess: () => {
         dispatch(
           openAlert({
-            motivo: "Usuario editado con exito",
+            motivo: "Cliente editado con exito",
             estado: "success",
           })
         );
-        navigate("/Clientes");
+        dispatch(closeModal());
+        queryclient.invalidateQueries("clients");
       },
       onError: (error) => {
         dispatch(

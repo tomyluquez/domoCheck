@@ -9,11 +9,13 @@ import {
 } from "../../Styles/Pages/ClientsIndStyles";
 import { Divider } from "@mui/material";
 import NameClient from "../ClienteInd/NameClient";
+import DatosRedes from "../ClienteInd/DatosRedes";
 
 const DatosCliente = ({ cliente }) => {
   return (
     <DivDatosContacto>
       <NameClient cliente={cliente} />
+      <DatosRedes cliente={cliente} />
       <Divider />
       <DivContactos>
         <DivContactoInd>

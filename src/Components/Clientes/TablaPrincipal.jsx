@@ -11,7 +11,6 @@ import Row from "./Filas";
 import { TableStyles } from "../../Styles/TableStyles";
 
 const TablaPrincipal = ({ clientes }) => {
-  console.log(clientes);
   const rowsTable = [
     ...clientes.map((cliente) => {
       return createData(cliente);

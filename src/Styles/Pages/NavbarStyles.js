@@ -46,3 +46,16 @@ export const NavbarStyles = styled.nav`
   // -moz-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
   z-index: 1;
 `;
+
+export const DivNotifications = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  width: 250px;
+  background-color: ${(props) =>
+    props.estado === "Pendiente" ? "#deecfc" : "#eff3f8"};
+  cursor: pointer;
+`;

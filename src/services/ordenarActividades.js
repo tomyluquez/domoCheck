@@ -7,31 +7,37 @@ const ordenarActividades = (actividades, orden, tipo) => {
         return (
           actividadDate.getFullYear() <= today.getFullYear() &&
           actividadDate.getMonth() <= today.getMonth() &&
-          actividadDate.getDate() <= today.getDate()
+          actividadDate.getDate() <= today.getDate() &&
+          actividad.cliente.estado !== "No lo quiere"
         );
       }
       if (orden === 2) {
         return (
           actividadDate.getFullYear() <= today.getFullYear() &&
           actividadDate.getMonth() <= today.getMonth() &&
-          actividadDate.getDate() < today.getDate()
+          actividadDate.getDate() < today.getDate() &&
+          actividad.cliente.estado !== "No lo quiere"
         );
       }
       if (orden === 3) {
         return (
           actividadDate.getFullYear() === today.getFullYear() &&
           actividadDate.getMonth() === today.getMonth() &&
-          actividadDate.getDate() === today.getDate()
+          actividadDate.getDate() === today.getDate() &&
+          actividad.cliente.estado !== "No lo quiere"
         );
       }
       if (orden === 4) {
         return (
           actividadDate.getFullYear() >= today.getFullYear() &&
           actividadDate.getMonth() >= today.getMonth() &&
-          actividadDate.getDate() >= today.getDate()
+          actividadDate.getDate() >= today.getDate() &&
+          actividad.cliente.estado !== "No lo quiere"
         );
       }
-      return true; // orden === 5: Todas las actividades
+      if (orden === 5) {
+        return actividad.cliente.estado !== "No lo quiere";
+      } // orden === 5: Todas las actividades
     });
     return actividadesOrdenadas;
   }

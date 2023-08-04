@@ -6,6 +6,7 @@ import valueReducer from "./slices/value";
 import alertReducer from "./slices/Alert";
 import clientesReducer from "./slices/clientes";
 import usersReducer from "./slices/users";
+import notiReducer from "./slices/notifications";
 
 const clientsPersistConfig = {
   key: "clients",
@@ -28,6 +29,7 @@ export const store = configureStore({
     alert: alertReducer,
     value: valueReducer,
     user: persistUser,
+    notis: notiReducer,
   },
 });
 

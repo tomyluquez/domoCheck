@@ -7,17 +7,22 @@ import useMutations from "../Hooks/useMutations";
 import useMutationNewAct from "../Hooks/useMutationNewAct";
 import filterById from "../services/filterById";
 import Loading from "./Loading";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../redux/slices/modal";
 import { v4 as uuidv4 } from "uuid";
+import useCreateNotifi from "../Hooks/useCreateNotifi";
+import { bodyNotification } from "../services/getNotifi";
 
-const CancelIntergacion = ({ clientes, idClient }) => {
+const CancelIntergacion = ({ clientes, idClient, users }) => {
   const cliente = filterById(clientes, idClient);
   const [obs, setObs] = useState(null);
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
   const dispatch = useDispatch();
   const { isLoading } = mutationclient;
+  const notifiMutation = useCreateNotifi();
+  const userName = useSelector((state) => state.user.name);
+
   const handlerCancel = async () => {
     const newActOk = {
       _id: uuidv4(),
@@ -33,11 +38,20 @@ const CancelIntergacion = ({ clientes, idClient }) => {
     await mutationNewAct.mutateAsync({
       id: cliente._id,
       newActOk,
+      userName,
     });
     await mutationclient.mutateAsync({
       id: cliente._id,
       estado: "No lo quiere",
+      userName,
     });
+    const bodyNotifi = bodyNotification(
+      "No lo quiere",
+      cliente,
+      users.data,
+      userName
+    );
+    notifiMutation.mutate(bodyNotifi);
     dispatch(closeModal());
   };
 

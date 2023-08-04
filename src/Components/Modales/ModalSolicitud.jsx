@@ -28,8 +28,6 @@ const ModalSolicitud = ({ clientes, idClient, referencia }) => {
   });
   const disabled = data.proxContacto === "" || data.obs === "";
 
-  console.log(data.proxContacto, data.obs);
-
   const handlerUpdate = (e) => {
     e.preventDefault();
     handlerUpdateSolicitud(

@@ -18,6 +18,8 @@ import ModalStopIntegracion from "./ModalStopIntegracion";
 import ModalReturnIntegracion from "./ModalReturnIntegracion";
 import ModalSolicitud from "./ModalSolicitud";
 import ModalCreateUser from "./ModalUser";
+import useGetUsers from "../../Hooks/useGetUsers";
+import ModalModCliente from "./ModalModCliente";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -60,6 +62,7 @@ BootstrapDialogTitle.propTypes = {
 export default function Modal({ isOpen, reference, idClient, idAct }) {
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes.clientes);
+  const users = useGetUsers();
 
   const datosHistorial =
     isOpen === "menu Historial" ||
@@ -125,14 +128,29 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
           {isOpen === "Agregar contacto" && (
             <ModalAddContacto idClient={idClient} />
           )}
+          {isOpen === "Modificar cliente" && (
+            <ModalModCliente clientes={clientes} idClient={idClient} />
+          )}
           {isOpen === "Cancelar integracion" && (
-            <CancelIntergacion clientes={clientes} idClient={idClient} />
+            <CancelIntergacion
+              clientes={clientes}
+              idClient={idClient}
+              users={users}
+            />
           )}
           {isOpen === "Detener integracion" && (
-            <ModalStopIntegracion clientes={clientes} idClient={idClient} />
+            <ModalStopIntegracion
+              clientes={clientes}
+              idClient={idClient}
+              users={users}
+            />
           )}
           {isOpen === "Retomar integracion" && (
-            <ModalReturnIntegracion clientes={clientes} idClient={idClient} />
+            <ModalReturnIntegracion
+              clientes={clientes}
+              idClient={idClient}
+              users={users}
+            />
           )}
           {datosSolicitud && (
             <ModalSolicitud

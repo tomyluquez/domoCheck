@@ -97,7 +97,7 @@ export const cantIntegradosMensual = (clientes, vendedor) => {
   );
   const ultimoDiaMesActual = new Date(
     fechaActual.getFullYear(),
-    fechaActual.getMonth() + 1,
+    fechaActual.getMonth() + 1
   );
   if (vendedor) {
     integradosMensuales = [...clientes].filter(
@@ -128,8 +128,7 @@ export const cantIntegradosMensualAnterior = (clientes, vendedor) => {
   );
   const ultimoDiaMesAnterior = new Date(
     fechaActual.getFullYear(),
-    fechaActual.getMonth(),
-    0
+    fechaActual.getMonth() + 1
   );
   if (vendedor) {
     integradosMensuales = [...clientes].filter(
@@ -144,7 +143,7 @@ export const cantIntegradosMensualAnterior = (clientes, vendedor) => {
       (cliente) =>
         cliente.estado === "Integrado" &&
         new Date(cliente.fechaIntegrado) >= primerDiaMesAnterior &&
-        new Date(cliente.fechaIntegrado) < ultimoDiaMesAnterior
+        new Date(cliente.fechaIntegrado) <= ultimoDiaMesAnterior
     ).length;
   }
   return integradosMensuales;

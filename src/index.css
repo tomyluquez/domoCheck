@@ -23,6 +23,11 @@
   }
 }
 
+.css-3bmhjh-MuiPaper-root-MuiPopover-paper{
+  max-height: 370px !important;
+  overflow: hidden;
+}
+
 
 body{
   background-color: #eff3f8 !important;

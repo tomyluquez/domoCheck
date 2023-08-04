@@ -1,4 +1,3 @@
-import Navbar from "./Layout/Navbar";
 import Sidebar from "./Layout/Sidebar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Flex } from "./Styles/GeneralStyles";
@@ -18,6 +17,7 @@ const Dash = lazy(() => import("./Layout/Pages/Dash"));
 const Clientes = lazy(() => import("./Layout/Pages/Clientes"));
 const Actividades = lazy(() => import("./Layout/Pages/Actividades"));
 const Config = lazy(() => import("./Layout/Pages/Config"));
+const Navbar = lazy(() => import("./Layout/Navbar"));
 
 function App() {
   const { data } = useGetClients();
@@ -26,13 +26,13 @@ function App() {
     (state) => state.modal
   );
   const { alertOpen, motivo, estado } = useSelector((state) => state.alert);
-  const role = useSelector((state) => state.user.role);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(addClients(data));
   }, [dispatch, data]);
 
-  if (role === "") {
+  if (user.role === "") {
     return (
       <>
         <Login />
@@ -60,7 +60,7 @@ function App() {
             <ContainerPpal>
               <Navbar />
               <Routes>
-                <Route element={<ProtectedRoute isAllowed={!!role} />}>
+                <Route element={<ProtectedRoute isAllowed={!!user.role} />}>
                   <Route exact path="/" element={<Dash />} />
                 </Route>
                 <Route
@@ -69,11 +69,11 @@ function App() {
                   element={
                     <ProtectedRoute
                       isAllowed={
-                        role === "admin" ||
-                        role === "integrador" ||
-                        role === "masDelivery" ||
-                        role === "comercial" ||
-                        role === "marketing"
+                        user.role === "admin" ||
+                        user.role === "integrador" ||
+                        user.role === "masDelivery" ||
+                        user.role === "comercial" ||
+                        user.role === "marketing"
                       }
                     >
                       <ClienteIdn />
@@ -86,9 +86,9 @@ function App() {
                   element={
                     <ProtectedRoute
                       isAllowed={
-                        role === "admin" ||
-                        role === "integrador" ||
-                        role === "comercial"
+                        user.role === "admin" ||
+                        user.role === "integrador" ||
+                        user.role === "comercial"
                       }
                     >
                       <Actividades />
@@ -101,11 +101,11 @@ function App() {
                   element={
                     <ProtectedRoute
                       isAllowed={
-                        role === "admin" ||
-                        role === "integrador" ||
-                        role === "masDelivery" ||
-                        role === "comercial" ||
-                        role === "marketing"
+                        user.role === "admin" ||
+                        user.role === "integrador" ||
+                        user.role === "masDelivery" ||
+                        user.role === "comercial" ||
+                        user.role === "marketing"
                       }
                     >
                       <Clientes />
@@ -116,7 +116,7 @@ function App() {
                   exact
                   path="/Configuracion"
                   element={
-                    <ProtectedRoute isAllowed={role === "admin"}>
+                    <ProtectedRoute isAllowed={user.role === "admin"}>
                       <Config />
                     </ProtectedRoute>
                   }

@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../redux/slices/modal";
 import { useNavigate } from "react-router-dom";
 import ButtonChangeState from "./EstadoDatos/ButtonChangeState";
+import useCreateNotifi from "../../Hooks/useCreateNotifi";
+import useGetUsers from "../../Hooks/useGetUsers";
 
 const EstadoIntegracion = ({ cliente }) => {
   const datosEntregados =
@@ -26,6 +28,8 @@ const EstadoIntegracion = ({ cliente }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userName = useSelector((state) => state.user.name);
+  const notifiMutation = useCreateNotifi();
+  const users = useGetUsers();
 
   const handlerChange = (setObs, setResultado, setEstado) => {
     const props = {
@@ -40,6 +44,8 @@ const EstadoIntegracion = ({ cliente }) => {
       cliente,
       estado: setEstado,
       userName,
+      users: users.data,
+      notifiMutation,
     };
     handlerChangeState(props);
     navigate("/Clientes");
@@ -121,19 +127,19 @@ const EstadoIntegracion = ({ cliente }) => {
             Cancelar Integracion
           </ButtonCustom>
         )}
-        {(cliente.estado === "Pendiente" ||
-          cliente.estado === "Faltan datos") && (
-          <ButtonCustom
-            width="80px"
-            fondo={stateColors["No contesta"]}
-            color={colorLetra}
-            hfondo={hoverColors["No contesta"]}
-            borde={colorLetra}
-            onClick={() => handleModal("Detener integracion")}
-          >
-            No contesta
-          </ButtonCustom>
-        )}
+        {cliente.estado !== "No lo quiere" &&
+          cliente.estado !== "No contesta" && (
+            <ButtonCustom
+              width="80px"
+              fondo={stateColors["No contesta"]}
+              color={colorLetra}
+              hfondo={hoverColors["No contesta"]}
+              borde={colorLetra}
+              onClick={() => handleModal("Detener integracion")}
+            >
+              No contesta
+            </ButtonCustom>
+          )}
         {(cliente.estado === "No contesta" ||
           cliente.estado === "No lo quiere") && (
           <ButtonCustom

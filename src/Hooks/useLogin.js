@@ -34,6 +34,7 @@ const useLogin = () => {
             role: data.data.role,
             vendedor:
               data.data.vendedor === "false" ? null : data.data.vendedor,
+            id: data.data._id,
           })
         );
       },

@@ -28,7 +28,11 @@ function Row(props) {
     cliente.estado === "Faltan datos";
 
   const handleNavigate = (id) => {
-    dispatch(changeValue("1"));
+    if (user.role === "marketing") {
+      dispatch(changeValue("8"));
+    } else if (user.role === "masDelivery") {
+      dispatch(changeValue("6"));
+    } else dispatch(changeValue("1"));
     navigate(`/clientes/${id}`);
   };
 

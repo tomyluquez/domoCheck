@@ -10,14 +10,17 @@ import { ButtonCustom } from "../../Styles/ButtonStyles";
 import { hoverColors, stateColors } from "../../data/colors";
 import { colorLetra } from "../../Styles/GeneralStyles";
 import Loading from "../Loading";
+import useCreateNotifi from "../../Hooks/useCreateNotifi";
+import { bodyNotification } from "../../services/getNotifi";
 
-const ModalStopIntegracion = ({ clientes, idClient }) => {
+const ModalStopIntegracion = ({ clientes, idClient, users }) => {
   const cliente = filterById(clientes, idClient);
   const [obs, setObs] = useState(null);
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
   const dispatch = useDispatch();
   const { isLoading } = mutationclient;
+  const notifiMutation = useCreateNotifi();
   const userName = useSelector((state) => state.user.name);
 
   const handlerStop = async () => {
@@ -30,6 +33,7 @@ const ModalStopIntegracion = ({ clientes, idClient }) => {
       estadoAct: "Cumplida",
       resultado: "Cliente no contesta",
       fechaCumplimiento: new Date(),
+      cumplidor: userName,
     };
 
     await mutationNewAct.mutateAsync({
@@ -42,6 +46,13 @@ const ModalStopIntegracion = ({ clientes, idClient }) => {
       estado: "No contesta",
       userName,
     });
+    const bodyNotifi = bodyNotification(
+      "No contesta",
+      cliente,
+      users.data,
+      userName
+    );
+    notifiMutation.mutate(bodyNotifi);
     dispatch(closeModal());
   };
 

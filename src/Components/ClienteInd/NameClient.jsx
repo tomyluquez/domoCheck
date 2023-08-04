@@ -6,37 +6,21 @@ import {
   SpanTitle,
 } from "../../Styles/Pages/ClientsIndStyles";
 import { openModal } from "../../redux/slices/modal";
-import useChangeName from "../../Hooks/useChangeName";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
 
 const NameClient = ({ cliente }) => {
   const dispatch = useDispatch();
-  const changeNameMutation = useChangeName();
-  const [edit, setEdit] = useState(false);
-  const [nombreLocal, setNombreLocal] = useState(cliente.nombreLocal);
-
-  const handleChangeName = () => {
-    setEdit(false);
-    if (nombreLocal !== cliente.nombreLocal) {
-      changeNameMutation.mutate({ nombreLocal, idClient: cliente._id });
-    }
-  };
+  console.log(cliente);
 
   return (
     <DivTitle>
       <div className="flex">
-        {edit ? (
-          <input
-            type="text"
-            defaultValue={cliente.nombreLocal}
-            onBlur={handleChangeName}
-            onChange={(e) => setNombreLocal(e.target.value)}
-          />
-        ) : (
-          <SpanTitle>{cliente.nombreLocal}</SpanTitle>
-        )}
-        <IconEdit onClick={() => setEdit(!edit)} />
+        <SpanTitle>{cliente.nombreLocal}</SpanTitle>
+        <IconEdit
+          onClick={() =>
+            dispatch(openModal({ type: "Modificar cliente", id: cliente._id }))
+          }
+        />
       </div>
       <SpanIcon>
         <IconAdd

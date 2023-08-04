@@ -6,7 +6,8 @@ const filterClientByRole = (clientes, role) => {
           cliente.estado === "Pendiente" ||
           cliente.estado === "Faltan datos" ||
           cliente.estado === "No contesta" ||
-          cliente.estado === "No lo quiere"
+          cliente.estado === "No lo quiere" ||
+          cliente.estado === "Integrado"
       )
       .sort((a, b) => {
         const fechaA =

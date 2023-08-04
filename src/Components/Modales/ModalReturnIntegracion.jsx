@@ -10,14 +10,17 @@ import { ButtonCustom } from "../../Styles/ButtonStyles";
 import { hoverColors, stateColors } from "../../data/colors";
 import { colorLetra } from "../../Styles/GeneralStyles";
 import Loading from "../Loading";
+import { bodyNotification } from "../../services/getNotifi";
+import useCreateNotifi from "../../Hooks/useCreateNotifi";
 
-const ModalReturnIntegracion = ({ clientes, idClient }) => {
+const ModalReturnIntegracion = ({ clientes, idClient, users }) => {
   const cliente = filterById(clientes, idClient);
   const [obs, setObs] = useState(null);
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
   const dispatch = useDispatch();
   const { isLoading } = mutationclient;
+  const notifiMutation = useCreateNotifi();
   const userName = useSelector((state) => state.user.name);
 
   const handlerStop = async () => {
@@ -30,6 +33,7 @@ const ModalReturnIntegracion = ({ clientes, idClient }) => {
       estadoAct: "Cumplida",
       resultado: "Cliente retomo la integracion",
       fechaCumplimiento: new Date(),
+      cumplidor: userName,
     };
 
     await mutationNewAct.mutateAsync({
@@ -42,6 +46,14 @@ const ModalReturnIntegracion = ({ clientes, idClient }) => {
       estado: "Faltan datos",
       userName,
     });
+    const bodyNotifi = bodyNotification(
+      "retoma",
+      cliente,
+      users.data,
+      userName
+    );
+    notifiMutation.mutate(bodyNotifi);
+
     dispatch(closeModal());
   };
 
