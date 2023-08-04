@@ -5,7 +5,7 @@ import modalReducer from "./slices/modal";
 import valueReducer from "./slices/value";
 import alertReducer from "./slices/Alert";
 import clientesReducer from "./slices/clientes";
-import usersReducer from "./slices/users";
+import usersReducer, { logoutUser } from "./slices/users";
 import notiReducer from "./slices/notifications";
 
 const clientsPersistConfig = {
@@ -35,3 +35,15 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+let inactivityTimer;
+
+const resetInactivityTimer = () => {
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(() => {
+    store.dispatch(logoutUser());
+  }, 15 * 60 * 1000); // 15 minutos (tiempo en milisegundos)
+};
+
+window.addEventListener("mousemove", resetInactivityTimer);
+window.addEventListener("keydown", resetInactivityTimer);
