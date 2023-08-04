@@ -47,4 +47,7 @@ export const FormLoginStyles = styled.form`
   box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);
   -webkit-box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);
   -moz-box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);
+  @media screen and (max-width: 700px) {
+    width: 90%;
+  }
 `;
