@@ -2,7 +2,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { dataAutocomplete } from "../../services/dataAutocomplete";
 import { vendedores } from "../../data/vendedores";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { estados } from "./../../data/estados";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -15,11 +15,13 @@ import {
   colorFondo,
   colorFondoHover,
   colorLetra,
+  colorLogo,
 } from "../../Styles/GeneralStyles";
 import Filters from "../Clientes/Filters";
 import filterClients from "./../../services/filteredClients";
 import SelectCustom from "../SelectCustom";
 const FormFilters = ({ clientes }) => {
+  const darkMode = useSelector((state) => state.mode.darkMode);
   const dispatch = useDispatch();
   const [data, setData] = useState({
     nombreLocal: "",
@@ -63,7 +65,7 @@ const FormFilters = ({ clientes }) => {
         disablePortal
         id="combo-box-demo"
         options={clientesPorLocal}
-        sx={{ width: "20%", background: "white" }}
+        sx={{ width: "20%", bgcolor: "color.inputs" }}
         renderInput={(params) => (
           <TextField {...params} label="Por Nombre del Local" />
         )}
@@ -85,7 +87,7 @@ const FormFilters = ({ clientes }) => {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DateRangePicker"]}>
           <DateRangePicker
-            sx={{ background: "white" }}
+            sx={{ bgcolor: "color.inputs" }}
             onChange={(e) =>
               setData({ ...data, dateStart: e[0].$d, dateEnd: e[1].$d })
             }
@@ -93,7 +95,12 @@ const FormFilters = ({ clientes }) => {
           />
         </DemoContainer>
       </LocalizationProvider>
-      <ButtonCustom width="120px" height="50px" type="submit">
+      <ButtonCustom
+        width="120px"
+        height="50px"
+        type="submit"
+        fondo={darkMode ? colorLogo : colorLetra}
+      >
         Filtrar
       </ButtonCustom>
       <ButtonCustom
@@ -101,7 +108,7 @@ const FormFilters = ({ clientes }) => {
         height="50px"
         fondo={colorFondoHover}
         color={colorLetra}
-        hfondo={colorFondo}
+        hfondo={darkMode ? "#404040" : colorFondo}
         borde={colorFondo}
         onClick={handlerReset}
       >

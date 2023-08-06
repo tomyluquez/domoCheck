@@ -117,7 +117,7 @@ const EstadoIntegracion = ({ cliente }) => {
         )}
         {cliente.estado !== "No lo quiere" && (
           <ButtonCustom
-            width="80px"
+            width="100px"
             fondo={stateColors["No lo quiere"]}
             color={colorLetra}
             hfondo={hoverColors["No lo quiere"]}

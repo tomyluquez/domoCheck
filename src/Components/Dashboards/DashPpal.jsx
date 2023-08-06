@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import DatosDash from "./DatosDash";
 import AdminDash from "./admin/AdminDash";
 import DashComercial from "./integradores/DashComercial";
@@ -7,24 +8,34 @@ import DashMkt from "./masDelivery/DashMkt";
 import DashVendedor from "./vendedores/DashVendedor";
 
 const DashPpal = ({ clientes, user }) => {
+  const darkMode = useSelector((state) => state.mode.darkMode);
   return (
     <>
       <DatosDash
         clientes={clientes}
         vendedor={user.vendedor !== null ? user.vendedor : null}
         role={user.role}
+        darkMode={darkMode}
       />
       {user.role === "admin" && <AdminDash clientes={clientes} />}
-      {user.role === "comercial" && <DashComercial clientes={clientes} />}
-      {user.role === "vendedor" && (
-        <DashVendedor clientes={clientes} user={user} />
+      {user.role === "comercial" && (
+        <DashComercial clientes={clientes} darkMode={darkMode} />
       )}
-      {user.role === "marketing" && <DashMkt clientes={clientes} />}
+      {user.role === "vendedor" && (
+        <DashVendedor clientes={clientes} user={user} darkMode={darkMode} />
+      )}
+      {user.role === "marketing" && (
+        <DashMkt clientes={clientes} darkMode={darkMode} />
+      )}
       {user.role === "integrador" && (
-        <DashIntegrador clientes={clientes} role={user.role} />
+        <DashIntegrador
+          clientes={clientes}
+          role={user.role}
+          darkMode={darkMode}
+        />
       )}
       {user.role === "masDelivery" && (
-        <DashMas clientes={clientes} role={user.role} />
+        <DashMas clientes={clientes} role={user.role} darkMode={darkMode} />
       )}
     </>
   );

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { styled } from "styled-components";
 import {
   colorLetra,
@@ -47,7 +47,8 @@ export const DivDatosContacto = styled.div`
   margin: 20px 0;
   max-height: 450px;
   overflow: auto;
-  background-color: ${colorLetra};
+  background-color: ${(props) =>
+    props.modo === "dark" ? "#404040" : colorLetra};
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
@@ -61,13 +62,12 @@ export const DivTitle = styled.div`
   padding: 0 20px;
 `;
 
-export const SpanTitle = styled.span`
-  font-size: 40px;
+export const SpanTitle = styled(Typography)`
+  font-size: 40px !important;
   font-weight: bold;
-  color: ${colorFondo};
 `;
 
-export const SpanIcon = styled.span`
+export const SpanIcon = styled(Typography)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +76,6 @@ export const SpanIcon = styled.span`
 export const IconAdd = styled(ControlPointOutlinedIcon)`
   cursor: pointer;
   font-size: 20px !important;
-  color: ${colorFondo};
   transition: all 0.3s ease-in-out !important;
   &:hover {
     color: ${colorLogo};
@@ -86,7 +85,6 @@ export const IconAdd = styled(ControlPointOutlinedIcon)`
 export const IconEdit = styled(DriveFileRenameOutlineOutlinedIcon)`
   cursor: pointer;
   font-size: 20px !important;
-  color: ${colorFondo};
   transition: all 0.3s ease-in-out !important;
   &:hover {
     color: ${colorLogo};
@@ -95,7 +93,6 @@ export const IconEdit = styled(DriveFileRenameOutlineOutlinedIcon)`
 
 export const SpanLabel = styled.span`
   font-size: 15px;
-  color: ${colorFondo};
 `;
 
 export const SpanValue = styled.span`
@@ -109,6 +106,7 @@ export const DivContactos = styled.div`
   align-items: center;
   gap: 55px;
   flex-wrap: wrap;
+  positon: relative;
 `;
 
 export const DivContactoInd = styled.div`
@@ -170,7 +168,6 @@ export const DivUsersGrid = styled.div`
   h4 {
     width: 100%;
     text-align: center;
-    color: ${colorFondo};
   }
 `;
 

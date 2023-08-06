@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import modalReducer from "./slices/modal";
 import valueReducer from "./slices/value";
 import alertReducer from "./slices/Alert";
+import modeReducer from "./slices/mode";
 import clientesReducer from "./slices/clientes";
 import usersReducer, { logoutUser } from "./slices/users";
 import notiReducer from "./slices/notifications";
@@ -20,8 +21,15 @@ const usersPersistConfig = {
   storage,
 };
 
+const modePersistConfig = {
+  key: "mode",
+  version: 1,
+  storage,
+};
+
 const persistedCart = persistReducer(clientsPersistConfig, clientesReducer);
 const persistUsers = persistReducer(usersPersistConfig, usersReducer);
+const persistMode = persistReducer(modePersistConfig, modeReducer);
 
 export const store = configureStore({
   reducer: {
@@ -31,6 +39,7 @@ export const store = configureStore({
     value: valueReducer,
     user: persistUsers,
     notis: notiReducer,
+    mode: persistMode,
   },
 });
 

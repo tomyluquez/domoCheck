@@ -13,20 +13,21 @@ const DatosRedes = ({ cliente }) => {
         <a
           href={`https://www.instagram.com/${cliente.redes.instagram}`}
           target="blank"
+          style={{ color: "inherit" }}
         >
           <Tooltip title="Instagram del cliente">
-            <FontAwesomeIcon icon={faInstagram} style={{ color: "grey" }} />
+            <FontAwesomeIcon icon={faInstagram} />
           </Tooltip>
         </a>
       )}
       {cliente.redes && cliente.redes.seguidores && (
         <Tooltip title={`${cliente.redes.seguidores} seguidores`}>
-          <FontAwesomeIcon icon={faPeopleArrows} style={{ color: "grey" }} />
+          <FontAwesomeIcon icon={faPeopleArrows} />
         </Tooltip>
       )}
       {cliente.redes && cliente.redes.logistica === "si" && (
         <Tooltip title="Cliente tiene logistica propia">
-          <FontAwesomeIcon icon={faMotorcycle} style={{ color: "grey" }} />
+          <FontAwesomeIcon icon={faMotorcycle} />
         </Tooltip>
       )}
     </div>

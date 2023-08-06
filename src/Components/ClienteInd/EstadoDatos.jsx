@@ -14,18 +14,13 @@ const EstadoDatos = ({ cliente }) => {
   const dataCliente = createData(cliente);
 
   return (
-    <Box sx={{ margin: 1 }}>
-      <Typography
-        variant="h6"
-        gutterBottom
-        component="div"
-        style={{ fontFamily: "poppins" }}
-      >
+    <Box sx={{ margin: 1, bgcolor: "color.inputs" }}>
+      <Typography variant="h6" gutterBottom component="div">
         Datos
       </Typography>
       <TableCellStyle size="small" aria-label="purchases">
         <TableHead>
-          <TableStyles>
+          <TableStyles sx={{ bgcolor: "color.inputs" }}>
             <TableCell>Tipo</TableCell>
             <TableCell>Estado</TableCell>
             <TableCell>Fecha</TableCell>

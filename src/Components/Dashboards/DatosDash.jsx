@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Tooltip } from "@mui/material";
 
-const DatosDash = ({ clientes, vendedor, role }) => {
+const DatosDash = ({ clientes, vendedor, role, darkMode }) => {
   const [data, setData] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const DatosDash = ({ clientes, vendedor, role }) => {
     navigate(to);
   };
   return (
-    <DivContainerCardsUp data-aos="fade-up" data-aos-duration="1200">
+    <DivContainerCardsUp modo={darkMode ? "dark" : ""}>
       {data &&
         data.map((dash, i) => (
           <CardsUp

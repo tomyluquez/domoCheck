@@ -17,12 +17,14 @@ import useGetUsers from "../../../Hooks/useGetUsers";
 import { getOptionUsers } from "../../../services/getOptionUsers";
 import SelectCustom from "../../SelectCustom";
 import { generateTabsDashAdmin } from "../../../data/tabs";
+import { useSelector } from "react-redux";
 
 const ActCumplidasDash = ({ clientes }) => {
   const { data, isLoading } = useGetUsers();
   const [dataUsers, setDataUsers] = useState([]);
   const [value, setValue] = useState(1);
   const [usuario, setUsuario] = useState("Todos");
+  const darkMode = useSelector((state) => state.mode.darkMode);
 
   useEffect(() => {
     if (data) {
@@ -34,7 +36,10 @@ const ActCumplidasDash = ({ clientes }) => {
     setValue(newValue);
   }, []);
   return (
-    <ActividadesAdmin style={{ marginTop: "50px" }}>
+    <ActividadesAdmin
+      style={{ marginTop: "50px" }}
+      modo={darkMode ? "dark" : ""}
+    >
       {isLoading ? (
         <CircularProgress />
       ) : (
@@ -58,10 +63,11 @@ const ActCumplidasDash = ({ clientes }) => {
             >
               <TabList
                 style={{
-                  backgroundColor: "#fafafa",
                   zIndex: 2,
                   width: "100%",
                 }}
+                textColor="primary"
+                indicatorColor="primary"
                 onChange={handleChange}
                 aria-label="lab API tabs example"
               >

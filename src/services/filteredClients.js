@@ -60,8 +60,8 @@ export const filterByVendedorAndState = (clientes, vendedor, estado) => {
         estado === "No contesta"
       ) {
         return (
-          new Date(b.modificacion.fechaModificacion) -
-          new Date(a.modificacion.fechaModificacion)
+          new Date(b.modificacion?.fechaModificacion) -
+          new Date(a.modificacion?.fechaModificacion)
         );
       } else if (estado === "Pendiente") {
         return new Date(b.fechaSolicitud) - new Date(a.fechaSolicitud);

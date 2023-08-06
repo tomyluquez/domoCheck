@@ -42,8 +42,9 @@ export const FormLoginStyles = styled.form`
   align-items: center;
   justify-content: end;
   gap: 20px;
+  background-color: ${(props) =>
+    props.modo === "dark" ? colorFondo : colorLetra};
   border: 1px solid ${colorLogo};
-  background-color: ${colorLetra};
   box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);
   -webkit-box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);
   -moz-box-shadow: 0px 8px 14px -3px rgb(189, 216, 25);

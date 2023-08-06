@@ -22,10 +22,14 @@ const TablaPrincipal = ({ clientes }) => {
   }
 
   return (
-    <TableContainer className="table" component={Paper}>
-      <Table aria-label="collapsible table">
+    <TableContainer
+      className="table"
+      component={Paper}
+      sx={{ bgcolor: "color.inputs" }}
+    >
+      <Table aria-label="collapsible table" sx={{ bgcolor: "color.inputs" }}>
         <TableHead>
-          <TableStyles>
+          <TableStyles sx={{ bgcolor: "color.inputs" }}>
             <TableCell />
             <TableCell>Estado</TableCell>
             <TableCell>Nombre Local</TableCell>

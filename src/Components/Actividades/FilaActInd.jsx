@@ -32,6 +32,7 @@ const FilaActInd = ({
       fondo={vencimiento}
       key={act._id}
       onClick={() => handleCellClick(act)}
+      sx={{ bgcolor: "color.inputs" }}
     >
       <TableCell className="icon" component="th" scope="row">
         <SpanTabla
@@ -65,18 +66,19 @@ const FilaActInd = ({
         {act.actividad.cumplidor || act.actividad.creador}
       </TableCell>
       <TableCell className="icon">
-        {findOthersAct(act.cliente) > 1 && (
-          <Tooltip
-            title={`El cliente tiene ${findOthersAct(
-              act.cliente
-            )} actividades pendientes`}
-            onClick={(event) => handleIconClick(event, act.cliente)}
-          >
-            <Avatar sx={{ width: 25, height: 25, bgcolor: "primary" }}>
-              {findOthersAct(act.cliente)}
-            </Avatar>
-          </Tooltip>
-        )}
+        {findOthersAct(act.cliente) > 1 &&
+          act.actividad.estadoAct === "Pendiente" && (
+            <Tooltip
+              title={`El cliente tiene ${findOthersAct(
+                act.cliente
+              )} actividades pendientes`}
+              onClick={(event) => handleIconClick(event, act.cliente)}
+            >
+              <Avatar sx={{ width: 25, height: 25, bgcolor: "primary" }}>
+                {findOthersAct(act.cliente)}
+              </Avatar>
+            </Tooltip>
+          )}
         {isVencida && (
           <Tooltip
             title={`La actividad lleva ${vencimiento}  ${diasVencida} dias`}

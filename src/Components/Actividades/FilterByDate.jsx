@@ -23,7 +23,7 @@ const FilterByDate = ({ dataActi, setData, data }) => {
           sx={{ paddingTop: "0" }}
         >
           <DateRangePicker
-            sx={{ background: "white", width: "80%" }}
+            sx={{ background: "white", width: "80%", bgcolor: "color.inputs" }}
             onChange={(e) =>
               setData({ ...dataActi, dateStart: e[0].$d, dateEnd: e[1].$d })
             }

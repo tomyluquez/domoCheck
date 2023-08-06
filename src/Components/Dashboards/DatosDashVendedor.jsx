@@ -4,14 +4,15 @@ import {
   NumberCard,
   SpanCard,
 } from "../../Styles/Pages/DashboardStyles";
-import { colorFondo } from "../../Styles/GeneralStyles";
-import { Divider } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import {
   cantidadIntegradosTotales,
   cantidadSolicitados,
 } from "../../services/CuantityClients";
+import { useSelector } from "react-redux";
 
 const DatosDashVendedor = ({ clientes, vendedor }) => {
+  const darkMode = useSelector((state) => state.mode.darkMode);
   return (
     <Cards
       style={{
@@ -20,8 +21,11 @@ const DatosDashVendedor = ({ clientes, vendedor }) => {
         gap: "10px",
         padding: "0 15px",
       }}
+      modo={darkMode ? "dark" : ""}
     >
-      <h2 style={{ margin: 0, color: colorFondo }}>{vendedor}</h2>
+      <Typography sx={{ color: "secondary.main", fontSize: "20px" }}>
+        {vendedor}
+      </Typography>
       <Divider />
       <DivSpanNumber>
         <SpanCard>clientes Solicitados:</SpanCard>

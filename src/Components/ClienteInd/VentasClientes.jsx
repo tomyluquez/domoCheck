@@ -1,6 +1,5 @@
 import { useState } from "react";
 import useMutationVentas from "../../Hooks/useMutationVentas";
-import { colorFondo } from "../../Styles/GeneralStyles";
 import { IconEdit } from "../../Styles/Pages/ClientsIndStyles";
 
 const VentasClientes = ({ cliente, userName, role }) => {
@@ -19,7 +18,6 @@ const VentasClientes = ({ cliente, userName, role }) => {
       style={{
         marginBottom: "20px",
         fontSize: "40px",
-        color: colorFondo,
         gap: "40px",
       }}
     >

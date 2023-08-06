@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useGetUsers from "../../Hooks/useGetUsers";
 import { ButtonCustom } from "../../Styles/ButtonStyles";
 import {
@@ -11,13 +11,14 @@ import {
 } from "../../Styles/Pages/AdminStyles";
 import { openModal } from "../../redux/slices/modal";
 import { Avatar, Tooltip } from "@mui/material";
-import { colorFondo, colorLogo } from "../../Styles/GeneralStyles";
+import { colorLogo } from "../../Styles/GeneralStyles";
 import DeleteUser from "../../Components/Configuracion/DeleteUser";
 import Loading from "../../Components/Loading";
 
 const Config = () => {
   const { data, isLoading } = useGetUsers();
   const dispatch = useDispatch();
+  const darkMode = useSelector((state) => state.mode.darkMode);
   const handlerCreateUser = () => {
     dispatch(openModal({ type: "Agregar usuario" }));
   };
@@ -41,15 +42,13 @@ const Config = () => {
           <DivContainerUsers>
             {data &&
               data.data.map((user) => (
-                <CardsAdmin key={user._id}>
+                <CardsAdmin key={user._id} modo={darkMode ? "dark" : ""}>
                   <DivIcons>
                     <DivAvatar>
                       <Avatar style={{ backgroundColor: colorLogo }}>
                         {user.name.split("")[0].toUpperCase()}
                       </Avatar>
-                      <span style={{ color: colorFondo }}>
-                        {user.name.toUpperCase()}
-                      </span>
+                      <span>{user.name.toUpperCase()}</span>
                     </DivAvatar>
                     <DivIconsUser>
                       <Tooltip title="Editar">

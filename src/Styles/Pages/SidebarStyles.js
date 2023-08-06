@@ -59,7 +59,6 @@ export const ContainerPpal = styled.div`
   width: calc(100% - 5%);
   padding: 10px;
   margin-left: 80px;
-  background-color: #eff3f8;
 
   ${SidebarStyle} :hover & {
     margin-left: 195px !important;

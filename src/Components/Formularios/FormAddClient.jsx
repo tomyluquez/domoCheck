@@ -38,7 +38,6 @@ const FormAddClient = () => {
     seguidores: "",
   });
   const [checked, setChecked] = useState(false);
-  console.log(data);
 
   const disabled =
     data.fechaSolicitud === "" ||

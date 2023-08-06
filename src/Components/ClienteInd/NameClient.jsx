@@ -1,8 +1,6 @@
 import {
   DivTitle,
-  IconAdd,
   IconEdit,
-  SpanIcon,
   SpanTitle,
 } from "../../Styles/Pages/ClientsIndStyles";
 import { openModal } from "../../redux/slices/modal";
@@ -15,20 +13,15 @@ const NameClient = ({ cliente }) => {
   return (
     <DivTitle>
       <div className="flex">
-        <SpanTitle>{cliente.nombreLocal}</SpanTitle>
+        <SpanTitle sx={{ color: "letra.main" }}>
+          {cliente.nombreLocal}
+        </SpanTitle>
         <IconEdit
           onClick={() =>
             dispatch(openModal({ type: "Modificar cliente", id: cliente._id }))
           }
         />
       </div>
-      <SpanIcon>
-        <IconAdd
-          onClick={() =>
-            dispatch(openModal({ type: "Agregar contacto", id: cliente._id }))
-          }
-        />
-      </SpanIcon>
     </DivTitle>
   );
 };

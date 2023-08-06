@@ -16,6 +16,7 @@ import VentasClientes from "./VentasClientes";
 const DatosMarketing = ({ cliente }) => {
   const role = useSelector((state) => state.user.role);
   const userName = useSelector((state) => state.user.name);
+  const darkMode = useSelector((state) => state.mode.darkMode);
 
   const mutationDatos = useUpdateDatosDesp();
   const { isLoading } = mutationDatos;
@@ -50,7 +51,7 @@ const DatosMarketing = ({ cliente }) => {
       <VentasClientes cliente={cliente} userName={userName} role={role} />
       <DivFlex>
         {datosMarketing.map((dato, index) => (
-          <Cards key={index}>
+          <Cards key={index} modo={darkMode ? "dark" : ""}>
             <DivContainerDatosDespachados style={{ width: "100%" }}>
               <span>
                 {dato.value}: {data[dato.value]?.estado}

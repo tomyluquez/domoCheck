@@ -17,7 +17,6 @@ export const DivContainerCardsUp = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: ${colorLetra};
   box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
@@ -25,6 +24,8 @@ export const DivContainerCardsUp = styled.div`
   padding: 15px 0;
   width: 95%;
   text-align: center;
+  background-color: ${(props) =>
+    props.modo === "dark" ? "#404040" : colorLetra};
 
   @media screen and (max-width: 700px) {
     flex-direction: column;
@@ -39,7 +40,8 @@ export const Cards = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: ${colorLetra};
+  background-color: ${(props) =>
+    props.modo === "dark" ? "#404040" : colorLetra};
   border-radius: 20px;
   box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);

@@ -43,7 +43,7 @@ const FormModCliente = ({ cliente }) => {
   return (
     <FormCreate onSubmit={handlerModCliente}>
       <TextField
-        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%" }}
         value={data.name}
         id="outlined-basic"
         label="Nombre Local"
@@ -52,7 +52,7 @@ const FormModCliente = ({ cliente }) => {
         onChange={(e) => setData({ ...data, nombreLocal: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%" }}
         value={data.email}
         id="outlined-basic"
         label="Instagram (solo nombre)"
@@ -61,7 +61,7 @@ const FormModCliente = ({ cliente }) => {
         onChange={(e) => setData({ ...data, instagram: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%" }}
         value={data.name}
         id="outlined-basic"
         label="Seguidores (solo numeros)"
@@ -71,7 +71,7 @@ const FormModCliente = ({ cliente }) => {
         onChange={(e) => setData({ ...data, seguidores: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%" }}
         value={data.name}
         id="outlined-basic"
         label="Logistica Propia (Si o No)"

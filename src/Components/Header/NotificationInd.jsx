@@ -3,10 +3,14 @@ import { Divider } from "@mui/material";
 import { IconsNoti } from "../../data/iconsNoti";
 import formatDateHours from "../../services/formatDateHours";
 
-const NotificationInd = ({ noti }) => {
+const NotificationInd = ({ noti, darkMode }) => {
   return (
     <>
-      <DivNotifications key={noti.idNoti} estado={noti.status}>
+      <DivNotifications
+        key={noti.idNoti}
+        estado={noti.status}
+        modo={darkMode ? "dark" : ""}
+      >
         <div
           className="flex"
           style={{ justifyContent: "space-between", width: "100%" }}

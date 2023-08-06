@@ -6,7 +6,7 @@ import {
 import { CardsAdmin } from "../../../Styles/Pages/AdminStyles";
 import Progress from "../../Progress";
 
-const DashComercial = ({ clientes }) => {
+const DashComercial = ({ clientes, darkMode }) => {
   return (
     <div
       className="flex"
@@ -20,7 +20,11 @@ const DashComercial = ({ clientes }) => {
       data-aos-duration="1200"
     >
       {datosDashComer.map((dato, i) => (
-        <CardsAdmin key={i} style={{ minHeight: "300px", width: "25%" }}>
+        <CardsAdmin
+          key={i}
+          style={{ minHeight: "300px", width: "25%" }}
+          modo={darkMode ? "dark" : ""}
+        >
           <div className="flex" style={{ fontWeight: "bold" }}>
             <span>{dato.totales}</span>
             <span>{filterByType(clientes, dato.dato, "todos")}</span>

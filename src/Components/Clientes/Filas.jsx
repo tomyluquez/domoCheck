@@ -43,6 +43,7 @@ function Row(props) {
           "& > *": {
             borderBottom: "unset",
           },
+          bgcolor: "color.inputs",
         }}
         estado={cliente.estado}
         border={cliente.estado}
@@ -105,6 +106,7 @@ function Row(props) {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
+                sx={{ bgcolor: "color.inputs" }}
               >
                 {cliente.estado}
               </Box>

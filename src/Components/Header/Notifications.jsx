@@ -6,6 +6,7 @@ import { DivNotifications } from "../../Styles/Pages/NavbarStyles";
 import NotificationInd from "./NotificationInd";
 import useChangeStateNoti from "../../Hooks/useChangeNoti";
 import { useQueryClient } from "react-query";
+import { useSelector } from "react-redux";
 
 const Notifications = ({ notifications, user }) => {
   const queryClient = useQueryClient();
@@ -13,6 +14,7 @@ const Notifications = ({ notifications, user }) => {
   const [pendingNotifications, setPendingNotifications] = useState(0);
   const [notiSorted, setNotiSorted] = useState(null);
   const changeStateNoti = useChangeStateNoti();
+  const darkMode = useSelector((state) => state.mode.darkMode);
 
   const handlerChangeState = async () => {
     setOpen(!open);
@@ -21,6 +23,7 @@ const Notifications = ({ notifications, user }) => {
       const pendingNotis = notiSorted.filter(
         (noti) => noti.status === "Pendiente"
       );
+
       setPendingNotifications(pendingNotis.length);
       // Realizar la mutación para cambiar el estado de las notificaciones a "Leída"
       await Promise.all(
@@ -56,12 +59,13 @@ const Notifications = ({ notifications, user }) => {
     <>
       <Badge
         badgeContent={pendingNotifications || 0}
-        color="tercary"
+        color="notifi"
         style={{ color: "white" }}
         onClick={handlerChangeState}
       >
         <NotificationsNoneOutlinedIcon
-          style={{ cursor: "pointer", color: "black" }}
+          style={{ cursor: "pointer" }}
+          sx={{ color: "color.secondary" }}
         />
       </Badge>
 
@@ -77,10 +81,14 @@ const Notifications = ({ notifications, user }) => {
       >
         {notiSorted !== null ? (
           notiSorted.map((noti) => (
-            <NotificationInd key={noti.idNoti} noti={noti} />
+            <NotificationInd
+              key={noti.idNoti}
+              noti={noti}
+              darkMode={darkMode}
+            />
           ))
         ) : (
-          <DivNotifications>
+          <DivNotifications modo={darkMode ? "dark" : ""}>
             <span>No hay notificaciones</span>
           </DivNotifications>
         )}

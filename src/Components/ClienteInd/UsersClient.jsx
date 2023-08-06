@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { ButtonCustom } from "../../Styles/ButtonStyles";
 import { dataTienda, dataUsers } from "../../data/dataUsers";
@@ -53,7 +53,12 @@ const UsersClient = ({ cliente }) => {
   return (
     <DivUsers>
       <DivUserAPi>
-        <h4 style={{ margin: 0 }}>Usuarios API</h4>
+        <Typography
+          sx={{ color: "letra.main" }}
+          style={{ margin: 0, fontWeight: "bold" }}
+        >
+          Usuarios API
+        </Typography>
         {dataTienda.map((dataUser) => (
           <TextField
             key={dataUser.value}

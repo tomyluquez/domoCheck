@@ -12,6 +12,9 @@ import AlertToast from "./Components/Alert";
 import Loading from "./Components/Loading";
 import Login from "./Layout/Pages/Login";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import { Paper } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import { theme, darkTheme } from "./Styles/theme.js";
 
 const Dash = lazy(() => import("./Layout/Pages/Dash"));
 const Clientes = lazy(() => import("./Layout/Pages/Clientes"));
@@ -26,6 +29,7 @@ function App() {
     (state) => state.modal
   );
   const { alertOpen, motivo, estado } = useSelector((state) => state.alert);
+  const darkMode = useSelector((state) => state.mode.darkMode);
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -34,17 +38,17 @@ function App() {
 
   if (user.role === "") {
     return (
-      <>
+      <ThemeProvider theme={darkMode ? darkTheme : theme}>
         <Login />
         {alertOpen && (
           <AlertToast alertOpen={alertOpen} motivo={motivo} estado={estado} />
         )}
-      </>
+      </ThemeProvider>
     );
   }
 
   return (
-    <>
+    <ThemeProvider theme={darkMode ? darkTheme : theme}>
       <Suspense fallback={<Loading />}>
         <Router>
           {isOpen && (
@@ -55,81 +59,86 @@ function App() {
               idAct={idAct}
             />
           )}
-          <Flex>
-            <Sidebar />
-            <ContainerPpal>
-              <Navbar />
-              <Routes>
-                <Route element={<ProtectedRoute isAllowed={!!user.role} />}>
-                  <Route exact path="/" element={<Dash />} />
-                </Route>
-                <Route
-                  exact
-                  path="/clientes/:id"
-                  element={
-                    <ProtectedRoute
-                      isAllowed={
-                        user.role === "admin" ||
-                        user.role === "integrador" ||
-                        user.role === "masDelivery" ||
-                        user.role === "comercial" ||
-                        user.role === "marketing"
-                      }
-                    >
-                      <ClienteIdn />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  exact
-                  path="/Actividades"
-                  element={
-                    <ProtectedRoute
-                      isAllowed={
-                        user.role === "admin" ||
-                        user.role === "integrador" ||
-                        user.role === "comercial"
-                      }
-                    >
-                      <Actividades />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  exact
-                  path="/Clientes"
-                  element={
-                    <ProtectedRoute
-                      isAllowed={
-                        user.role === "admin" ||
-                        user.role === "integrador" ||
-                        user.role === "masDelivery" ||
-                        user.role === "comercial" ||
-                        user.role === "marketing"
-                      }
-                    >
-                      <Clientes />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  exact
-                  path="/Configuracion"
-                  element={
-                    <ProtectedRoute isAllowed={user.role === "admin"}>
-                      <Config />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </ContainerPpal>
-          </Flex>
+          <Paper
+            sx={{ bgcolor: "background.default" }}
+            style={{ minHeight: "100vh" }}
+          >
+            <Flex>
+              <Sidebar />
+              <ContainerPpal>
+                <Navbar />
+                <Routes>
+                  <Route element={<ProtectedRoute isAllowed={!!user.role} />}>
+                    <Route exact path="/" element={<Dash />} />
+                  </Route>
+                  <Route
+                    exact
+                    path="/clientes/:id"
+                    element={
+                      <ProtectedRoute
+                        isAllowed={
+                          user.role === "admin" ||
+                          user.role === "integrador" ||
+                          user.role === "masDelivery" ||
+                          user.role === "comercial" ||
+                          user.role === "marketing"
+                        }
+                      >
+                        <ClienteIdn />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/Actividades"
+                    element={
+                      <ProtectedRoute
+                        isAllowed={
+                          user.role === "admin" ||
+                          user.role === "integrador" ||
+                          user.role === "comercial"
+                        }
+                      >
+                        <Actividades />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/Clientes"
+                    element={
+                      <ProtectedRoute
+                        isAllowed={
+                          user.role === "admin" ||
+                          user.role === "integrador" ||
+                          user.role === "masDelivery" ||
+                          user.role === "comercial" ||
+                          user.role === "marketing"
+                        }
+                      >
+                        <Clientes />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/Configuracion"
+                    element={
+                      <ProtectedRoute isAllowed={user.role === "admin"}>
+                        <Config />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Routes>
+              </ContainerPpal>
+            </Flex>
+          </Paper>
         </Router>
       </Suspense>
       {alertOpen && (
         <AlertToast alertOpen={alertOpen} motivo={motivo} estado={estado} />
       )}
-    </>
+    </ThemeProvider>
   );
 }
 

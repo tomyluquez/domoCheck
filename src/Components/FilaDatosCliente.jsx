@@ -28,7 +28,7 @@ const FilaDatosCliente = ({ dato, cliente }) => {
   };
 
   return (
-    <TableStyles estado={dato.estado}>
+    <TableStyles estado={dato.estado} sx={{ bgcolor: "color.inputs" }}>
       <TableCell className="icon" component="th" scope="row">
         {dato.tipo}
       </TableCell>

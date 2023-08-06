@@ -46,9 +46,13 @@ const TableActGral = ({ tipoActividad, actividades }) => {
       <Divider />
       <div>
         <Box sx={{ margin: 1, marginTop: "40px" }}>
-          <TableCellStyle size="small" aria-label="purchases">
+          <TableCellStyle
+            size="small"
+            aria-label="purchases"
+            sx={{ bgcolor: "color.inputs" }}
+          >
             <TableHead>
-              <TableStyles>
+              <TableStyles sx={{ bgcolor: "color.inputs" }}>
                 <TableCell>Estado Actividad</TableCell>
                 <TableCell>Nombre Local</TableCell>
                 <TableCell>Nombre Cliente</TableCell>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
-import { colorLetra } from "../GeneralStyles";
+import { colorFondo, colorLetra } from "../GeneralStyles";
 
 export const Logo = styled.img`
   width: 50px;
@@ -55,7 +55,20 @@ export const DivNotifications = styled.div`
   padding: 10px;
   gap: 10px;
   width: 250px;
-  background-color: ${(props) =>
-    props.estado === "Pendiente" ? "#deecfc" : "#eff3f8"};
+  background-color: ${(props) => {
+    if (props.modo === "dark") {
+      if (props.estado === "Pendiente") {
+        return "#404040";
+      } else {
+        return colorFondo;
+      }
+    } else {
+      if (props.estado === "Pendiente") {
+        return "#eff3f8";
+      } else {
+        return "#fafafa";
+      }
+    }
+  }};
   cursor: pointer;
 `;

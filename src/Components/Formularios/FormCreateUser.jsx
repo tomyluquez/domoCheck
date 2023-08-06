@@ -50,7 +50,7 @@ const FormCreateUser = ({ user }) => {
   return (
     <FormCreate onSubmit={handleCreateUser}>
       <TextField
-        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%" }}
         value={data.name}
         id="outlined-basic"
         label="Nombre Usuario"
@@ -58,7 +58,7 @@ const FormCreateUser = ({ user }) => {
         onChange={(e) => setData({ ...data, name: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%" }}
         value={data.password}
         id="outlined-basic"
         label="Contraseña"
@@ -67,7 +67,7 @@ const FormCreateUser = ({ user }) => {
         onChange={(e) => setData({ ...data, password: e.target.value })}
       />
       <TextField
-        sx={{ minWidth: 180, width: "100%", backgroundColor: "#fafafa" }}
+        sx={{ minWidth: 180, width: "100%" }}
         value={data.email}
         id="outlined-basic"
         label="Email"

@@ -1,5 +1,4 @@
 import { Box, LinearProgress, Tooltip } from "@mui/material";
-import { colorFondo } from "../../../Styles/GeneralStyles";
 import { Cards } from "../../../Styles/Pages/DashboardStyles";
 import { dataDash } from "../../../data/infoDashIntegrador";
 import { useEffect, useState } from "react";
@@ -7,7 +6,7 @@ import filterClients from "../../../services/filteredClients";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const DashIntegrador = ({ clientes, role }) => {
+const DashIntegrador = ({ clientes, role, darkMode }) => {
   const [datos, setDatos] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,10 +32,11 @@ const DashIntegrador = ({ clientes, role }) => {
   return (
     <Cards
       style={{ marginTop: "20px", width: "50%" }}
-      data-aos="fade-right"
-      data-aos-duration="1200"
+      modo={darkMode ? "dark" : ""}
     >
-      <h2 style={{ margin: 0, color: colorFondo }}>Estado Clientes</h2>
+      <h2 style={{ margin: 0 }} data-aos="fade-right" data-aos-duration="1200">
+        Estado Clientes
+      </h2>
       {datos &&
         datos.map((data, i) => (
           <Tooltip
@@ -55,6 +55,8 @@ const DashIntegrador = ({ clientes, role }) => {
                 width: "100%",
                 justifyContent: "start",
               }}
+              data-aos="fade-right"
+              data-aos-duration="1200"
               className="flex"
               onClick={() => handlerClick(data.click, data.busqueda)}
             >
