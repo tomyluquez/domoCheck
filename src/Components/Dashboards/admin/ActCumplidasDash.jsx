@@ -99,7 +99,7 @@ const ActCumplidasDash = ({ clientes }) => {
                             color={
                               dash.condicion === "cumplidor"
                                 ? "primary"
-                                : "tercary"
+                                : "notifi"
                             }
                           />
                           <TimelineConnector />

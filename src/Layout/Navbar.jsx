@@ -28,7 +28,7 @@ const Navbar = () => {
       <div className="flexBet">
         <FormControlLabel
           control={<Switch defaultChecked />}
-          label={checked ? <WbSunnyIcon /> : <DarkModeIcon />}
+          label={checked ? <DarkModeIcon /> : <WbSunnyIcon />}
           checked={checked}
           onChange={(e) => handlerMode(e)}
         />
