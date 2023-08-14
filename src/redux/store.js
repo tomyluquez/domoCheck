@@ -51,7 +51,7 @@ const resetInactivityTimer = () => {
   clearTimeout(inactivityTimer);
   inactivityTimer = setTimeout(() => {
     store.dispatch(logoutUser());
-  }, 15 * 60 * 1000); // 15 minutos (tiempo en milisegundos)
+  }, 60 * 60 * 1000); // 60 minutos (tiempo en milisegundos)
 };
 
 window.addEventListener("mousemove", resetInactivityTimer);

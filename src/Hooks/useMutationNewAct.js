@@ -1,7 +1,10 @@
 import { useMutation, useQueryClient } from "react-query";
+import { closeModal } from "../redux/slices/modal";
+import { useDispatch } from "react-redux";
 
 const useMutationNewAct = () => {
   const queryclient = useQueryClient();
+  const dispatch = useDispatch();
 
   const mutationNewAct = useMutation(
     (data) =>
@@ -15,6 +18,7 @@ const useMutationNewAct = () => {
     {
       onSuccess: () => {
         queryclient.invalidateQueries("clients");
+        dispatch(closeModal());
       },
     }
   );

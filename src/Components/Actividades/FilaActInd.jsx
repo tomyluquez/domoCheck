@@ -13,6 +13,7 @@ const FilaActInd = ({
   handleNameCLick,
   handleIconClick,
 }) => {
+  console.log(act);
   const [vencimiento, setVencimiento] = useState();
   const [diasVencida, setDiasVencidas] = useState();
   useEffect(() => {

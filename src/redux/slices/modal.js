@@ -12,6 +12,7 @@ export const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action) => {
+      console.log(action.payload);
       state.isOpen = action.payload.type;
       state.reference = action.payload.referencia;
       state.idClient = action.payload.id;

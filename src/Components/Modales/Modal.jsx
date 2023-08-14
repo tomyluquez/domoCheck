@@ -20,6 +20,7 @@ import ModalSolicitud from "./ModalSolicitud";
 import ModalCreateUser from "./ModalUser";
 import useGetUsers from "../../Hooks/useGetUsers";
 import ModalModCliente from "./ModalModCliente";
+import ModalGenerarAct from "./ModalGenerarAct";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -82,6 +83,14 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
     isOpen === "Solicitud mapa" ||
     isOpen === "Solicitud imgProd" ||
     isOpen === "Solicitud imgStore";
+  const datosMkt =
+    isOpen === "MP Conectado" ||
+    isOpen === "Link IG" ||
+    isOpen === "Link Whatsapp" ||
+    isOpen === "Historias" ||
+    isOpen === "Promos" ||
+    isOpen === "Campañas email" ||
+    isOpen === "Playstore";
   const handleClose = () => {
     dispatch(closeModal());
   };
@@ -108,6 +117,13 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
             />
           )}
           {datoInd && (
+            <ModalActividad
+              clientes={clientes}
+              idClient={idClient}
+              idAct={idAct}
+            />
+          )}
+          {datosMkt && (
             <ModalActividad
               clientes={clientes}
               idClient={idClient}
@@ -150,6 +166,14 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
               clientes={clientes}
               idClient={idClient}
               users={users}
+            />
+          )}
+          {isOpen === "Generar actividad" && (
+            <ModalGenerarAct
+              clientes={clientes}
+              idClient={idClient}
+              users={users}
+              referencia={reference}
             />
           )}
           {datosSolicitud && (

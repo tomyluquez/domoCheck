@@ -16,6 +16,7 @@ const handlerUpdateAct = async (props) => {
     setIsLoading,
     dispatch,
     userName,
+    mutationDatos,
   } = props;
 
   try {
@@ -41,6 +42,19 @@ const handlerUpdateAct = async (props) => {
           data.resultado === "Entregado" ? "Faltan datos" : data.resultado,
         userName,
       });
+    } else if (
+      actividad.dato !== "Contactar" &&
+      !actividad.dato.includes("Seguimiento") &&
+      data.resultado === "Entregado"
+    ) {
+      const datos = {
+        idClient: cliente._id,
+        tipoDato: actividad.dato,
+        estadoDato: "Ok",
+        comentarioDato: "",
+        userName,
+      };
+      mutationDatos.mutate(datos);
     } else {
       await mutationclient.mutateAsync({
         id: cliente._id,
@@ -84,7 +98,14 @@ const handlerUpdateAct = async (props) => {
       });
     }
     setIsLoading(false);
-    dispatch(changeValue("1"));
+    dispatch(
+      changeValue(
+        actividad.dato !== "Contactar" &&
+          !actividad.dato.includes("Seguimiento")
+          ? "8"
+          : "1"
+      )
+    );
     navigate(`/clientes/${cliente._id}`);
   } catch (error) {
     // Manejo de errores

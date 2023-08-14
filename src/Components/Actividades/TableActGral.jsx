@@ -12,6 +12,7 @@ const TableActGral = ({ tipoActividad, actividades }) => {
   const role = useSelector((state) => state.user.role);
 
   const handleCellClick = (act) => {
+    console.log(act);
     if (act.actividad.estadoAct !== "Cumplida") {
       if (role !== "comercial" && role !== "integrador") return;
 

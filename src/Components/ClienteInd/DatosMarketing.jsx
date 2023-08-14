@@ -9,14 +9,16 @@ import {
 } from "../../Styles/Pages/ClientsIndStyles";
 import useUpdateDatosDesp from "../../Hooks/useUpdateDatosDesp";
 import Loading from "./../Loading";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Cards } from "../../Styles/Pages/DashboardStyles";
 import VentasClientes from "./VentasClientes";
+import { openModal } from "../../redux/slices/modal";
 
 const DatosMarketing = ({ cliente }) => {
   const role = useSelector((state) => state.user.role);
   const userName = useSelector((state) => state.user.name);
   const darkMode = useSelector((state) => state.mode.darkMode);
+  const dispatch = useDispatch();
 
   const mutationDatos = useUpdateDatosDesp();
   const { isLoading } = mutationDatos;
@@ -48,6 +50,21 @@ const DatosMarketing = ({ cliente }) => {
 
   return (
     <>
+      {role === "marketing" && (
+        <ButtonCustom
+          onClick={() =>
+            dispatch(
+              openModal({
+                type: "Generar actividad",
+                referencia: "Marketing",
+                id: cliente._id,
+              })
+            )
+          }
+        >
+          Cliente no da respuesta
+        </ButtonCustom>
+      )}
       <VentasClientes cliente={cliente} userName={userName} role={role} />
       <DivFlex>
         {datosMarketing.map((dato, index) => (

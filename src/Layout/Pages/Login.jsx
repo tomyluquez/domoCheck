@@ -13,7 +13,7 @@ const Login = () => {
     <DivContainer>
       <img src="/fondoLog.png" alt="" />
       <FormLogin />
-      <span style={{ color: colorLetra }}>Nucloe IT - Mas Delivery</span>
+      <span style={{ color: colorLetra }}>Nucleo IT - Mas Delivery</span>
     </DivContainer>
   );
 };

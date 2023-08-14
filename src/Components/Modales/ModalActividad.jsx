@@ -18,6 +18,7 @@ import { ModalActividades } from "../../Styles/ActividadesStyle";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import dayjs from "dayjs";
+import useUpdateDatosDesp from "../../Hooks/useUpdateDatosDesp";
 
 const ModalActividad = ({ clientes, idClient, idAct }) => {
   const [data, setData] = useState({
@@ -30,6 +31,7 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
   const mutationAct = useMutatioAct();
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
+  const mutationDatos = useUpdateDatosDesp();
   const navigate = useNavigate();
   const cliente = filterById(clientes, idClient);
   const actividad = cliente.actividades.filter(
@@ -43,6 +45,7 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
         data.proximoContacto === "" ||
         data.obs === "")) ||
     (data.resultado === "" && data.proximoContacto === "" && data.obs === "");
+  console.log(data);
 
   const handlerUpdate = () => {
     if (data.obs === "" && data.proximoContacto === "" && data.resultado === "")
@@ -62,6 +65,7 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
       setIsLoading,
       dispatch,
       userName,
+      mutationDatos,
     };
     handlerUpdateAct(props);
   };

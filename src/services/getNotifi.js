@@ -32,6 +32,9 @@ export const getNotifi = (estado, cliente) => {
   } else if (estado === "retoma") {
     destino = ["masDelivery", "admin", "comercial", "vendedor", "integrador"];
     description = `${cliente.nombreLocal} retomo la integracion`;
+  } else if (estado === "No contesta - Marketing") {
+    destino = ["comercial", "admin", "masDelivery"];
+    description = `${cliente.nombreLocal} no contesta a las solicitudes de marketing`;
   }
 
   return { destino, description };
@@ -46,7 +49,8 @@ export const bodyNotification = (estado, cliente, users, userName) => {
     estado === "Integrado" ||
       estado === "No lo quiere" ||
       estado === "No contesta" ||
-      estado === "retoma"
+      estado === "retoma" ||
+      estado === "No contesta - Marketing"
       ? cliente.vendedor
       : false
   );
@@ -56,6 +60,5 @@ export const bodyNotification = (estado, cliente, users, userName) => {
     idUsers,
     tipo: estado,
   };
-  console.log(bodyNotifi);
   return bodyNotifi;
 };
