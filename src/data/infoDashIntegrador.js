@@ -11,7 +11,7 @@ const datosDashIntegrador = (clientes, estado) => {
     );
   }
 
-  if (estado === "En testo") {
+  if (estado === "En testeo") {
     return [...clientes].filter((cliente) => cliente.estado === "Testeo");
   }
 

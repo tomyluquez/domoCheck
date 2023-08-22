@@ -10,6 +10,7 @@ const DashIntegrador = ({ clientes, role, darkMode }) => {
   const [datos, setDatos] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log(datos);
 
   useEffect(() => {
     setDatos(dataDash(clientes, role));
