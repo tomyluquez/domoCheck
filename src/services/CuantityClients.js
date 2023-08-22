@@ -131,7 +131,6 @@ export const cantIntegradosMensualAnterior = (clientes, vendedor) => {
     fechaActual.getMonth(),
     fechaActual.getDay()
   );
-  console.log(primerDiaMesAnterior, ultimoDiaMesAnterior);
   if (vendedor) {
     integradosMensuales = [...clientes].filter(
       (cliente) =>
@@ -148,7 +147,6 @@ export const cantIntegradosMensualAnterior = (clientes, vendedor) => {
         new Date(cliente.fechaIntegrado) <= ultimoDiaMesAnterior
     ).length;
   }
-  console.log(integradosMensuales);
   return integradosMensuales;
 };
 

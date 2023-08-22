@@ -11,7 +11,6 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import { colorLetra } from "../../Styles/GeneralStyles";
 const FormLogin = () => {
   const darkMode = useSelector((state) => state.mode.darkMode);
-  console.log(darkMode);
   const [data, setData] = useState({
     name: "",
     password: "",

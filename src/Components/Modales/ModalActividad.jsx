@@ -45,7 +45,6 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
         data.proximoContacto === "" ||
         data.obs === "")) ||
     (data.resultado === "" && data.proximoContacto === "" && data.obs === "");
-  console.log(data);
 
   const handlerUpdate = () => {
     if (data.obs === "" && data.proximoContacto === "" && data.resultado === "")

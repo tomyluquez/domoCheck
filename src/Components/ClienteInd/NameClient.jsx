@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 
 const NameClient = ({ cliente }) => {
   const dispatch = useDispatch();
-  console.log(cliente);
 
   return (
     <DivTitle>
