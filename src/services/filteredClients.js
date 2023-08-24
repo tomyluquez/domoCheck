@@ -25,7 +25,9 @@ const filterClients = (
     }
 
     if (nombreLocal) {
-      matchesNombre = cliente.nombreLocal === nombreLocal;
+      matchesNombre = cliente.nombreLocal
+        .toLowerCase()
+        .includes(nombreLocal.toLowerCase());
     }
 
     if (dateStart && dateEnd) {

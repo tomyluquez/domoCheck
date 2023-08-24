@@ -17,9 +17,9 @@ import {
   colorLetra,
   colorLogo,
 } from "../../Styles/GeneralStyles";
-import Filters from "../Clientes/Filters";
 import filterClients from "./../../services/filteredClients";
 import SelectCustom from "../SelectCustom";
+import { filters } from "../../redux/slices/clientes";
 const FormFilters = ({ clientes }) => {
   const darkMode = useSelector((state) => state.mode.darkMode);
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const FormFilters = ({ clientes }) => {
       dateStart: "",
       dateEnd: "",
     });
-    dispatch(Filters(clientes));
+    dispatch(filters(clientes));
   };
 
   const handlerFilters = (e) => {
@@ -59,10 +59,12 @@ const FormFilters = ({ clientes }) => {
   return (
     <FormFilter onSubmit={handlerFilters}>
       <Autocomplete
-        onChange={(e) =>
-          setData({ ...data, nombreLocal: e.target.textContent })
-        }
         disablePortal
+        onInputChange={(e, newValue) =>
+          setData({ ...data, nombreLocal: newValue })
+        }
+        value={data.nombreLocal}
+        freeSolo
         id="combo-box-demo"
         options={clientesPorLocal}
         sx={{ width: "20%", bgcolor: "color.inputs" }}
