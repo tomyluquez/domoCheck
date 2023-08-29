@@ -22,7 +22,7 @@ const DashMkt = ({ clientes, darkMode }) => {
     <div
       data-aos="fade-right"
       data-aos-duration="1200"
-      style={{ textAlign: "center" }}
+      style={{ textAlign: "center", width: "50%" }}
     >
       <h3>Clientes con menos de 10 ventas</h3>
       <DivContainerCardsVendedores
@@ -34,7 +34,7 @@ const DashMkt = ({ clientes, darkMode }) => {
             estado={cliente.estado}
             onClick={() => hanlderClient(cliente._id)}
             modo={darkMode ? "dark" : ""}
-            style={{ width: "30%" }}
+            style={{ width: "40%" }}
           >
             <span style={{ fontWeight: "bold" }}>{cliente.nombreLocal}</span>
             <DivContainerState style={{ color: "grey" }}>

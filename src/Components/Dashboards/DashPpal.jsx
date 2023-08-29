@@ -6,6 +6,7 @@ import DashIntegrador from "./integradores/DashIntegrador";
 import DashMas from "./masDelivery/DashMas";
 import DashMkt from "./masDelivery/DashMkt";
 import DashVendedor from "./vendedores/DashVendedor";
+import DashClMkt from "./masDelivery/DashClMkt";
 
 const DashPpal = ({ clientes, user }) => {
   const darkMode = useSelector((state) => state.mode.darkMode);
@@ -25,7 +26,10 @@ const DashPpal = ({ clientes, user }) => {
         <DashVendedor clientes={clientes} user={user} darkMode={darkMode} />
       )}
       {user.role === "marketing" && (
-        <DashMkt clientes={clientes} darkMode={darkMode} />
+        <div className="flex" style={{ alignItems: "start", width: "100%" }}>
+          <DashMkt clientes={clientes} darkMode={darkMode} />
+          <DashClMkt clientes={clientes} darkMode={darkMode} />
+        </div>
       )}
       {user.role === "integrador" && (
         <DashIntegrador
