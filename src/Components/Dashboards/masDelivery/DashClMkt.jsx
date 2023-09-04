@@ -3,13 +3,11 @@ import {
   AccordionDetailsDash,
   CardVendedores,
   DivContainerCardsVendedores,
-  SpanDate,
 } from "../../../Styles/Pages/DashboardStyles";
 import { stateDashClMkt } from "../../../data/estadosClMkt";
 import { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DivContainerState } from "../../../Styles/TableStyles";
-import formatDate from "../../../services/formatDate";
 
 const DashClMkt = ({ clientes, darkMode }) => {
   const clientsWhitActividad = stateDashClMkt(clientes);
@@ -21,6 +19,7 @@ const DashClMkt = ({ clientes, darkMode }) => {
   console.log(clientsWhitActividad);
   return (
     <DivContainerCardsVendedores style={{ width: "50%", marginTop: "80px" }}>
+      <h5>Clientes pasados por Marketing a Integradores</h5>
       {clientsWhitActividad &&
         clientsWhitActividad.map((dato, i) => (
           <Accordion

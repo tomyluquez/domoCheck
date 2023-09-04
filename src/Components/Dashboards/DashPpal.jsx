@@ -18,7 +18,9 @@ const DashPpal = ({ clientes, user }) => {
         role={user.role}
         darkMode={darkMode}
       />
-      {user.role === "admin" && <AdminDash clientes={clientes} />}
+      {user.role === "admin" && (
+        <AdminDash clientes={clientes} darkMode={darkMode} />
+      )}
       {user.role === "comercial" && (
         <DashComercial clientes={clientes} darkMode={darkMode} />
       )}
