@@ -12,74 +12,54 @@ const handlerUpdateSolicitud = async (
   dispatch,
   userName
 ) => {
-  await new Promise((resolve, reject) => {
-    mutationclient.mutate(
-      {
-        id: cliente._id,
-        datoClient: info,
-        estadoClient: infoEstado,
-        userName,
-      },
-      {
-        onSuccess: resolve,
-        onError: reject,
-      }
-    );
-  });
+  try {
+    await mutationclient.mutate({
+      id: cliente._id,
+      datoClient: info,
+      estadoClient: infoEstado,
+      userName,
+    });
 
-  const newActOk = {
-    _id: uuidv4(),
-    actividad: `${info} Solicitado`,
-    fecha: new Date(),
-    proximoContacto: new Date(),
-    dato: info,
-    estadoAct: "Cumplida",
-    resultado: `Se solicito ${info} a ${cliente.nombreLocal}`,
-    fechaCumplimiento: new Date(),
-    cumplidor: userName,
-  };
+    const newActOk = {
+      _id: uuidv4(),
+      actividad: `${info} Solicitado`,
+      fecha: new Date(),
+      proximoContacto: new Date(),
+      dato: info,
+      estadoAct: "Cumplida",
+      resultado: `Se solicito ${info} a ${cliente.nombreLocal}`,
+      fechaCumplimiento: new Date(),
+      cumplidor: userName,
+    };
 
-  await new Promise((resolve, reject) => {
-    mutationNewAct.mutate(
-      {
-        id: cliente._id,
-        newActOk,
-        userName,
-      },
-      {
-        onSuccess: resolve,
-        onError: reject,
-      }
-    );
-  });
+    await mutationNewAct.mutate({
+      id: cliente._id,
+      newActOk,
+      userName,
+    });
 
-  const newActPen = {
-    _id: uuidv4(),
-    actividad:
-      obs - cliente.nombreLocal ||
-      `Realizar seguimiento de ${info} - ${cliente.nombreLocal}`,
-    fecha: new Date(),
-    proximoContacto: new Date(proxContacto) || new Date(),
-    dato: `Seguimiento ${info}`,
-    estadoAct: "Pendiente",
-    creador: userName,
-  };
+    const newActPen = {
+      _id: uuidv4(),
+      actividad:
+        `${obs} - ${cliente.nombreLocal}` ||
+        `Realizar seguimiento de ${info} - ${cliente.nombreLocal}`,
+      fecha: new Date(),
+      proximoContacto: proxContacto ? new Date(proxContacto) : new Date(),
+      dato: `Seguimiento ${info}`,
+      estadoAct: "Pendiente",
+      creador: userName,
+    };
 
-  await new Promise((resolve, reject) => {
-    mutationNewAct.mutate(
-      {
-        id: cliente._id,
-        newActPen,
-        userName,
-      },
-      {
-        onSuccess: resolve,
-        onError: reject,
-      }
-    );
-  });
+    await mutationNewAct.mutate({
+      id: cliente._id,
+      newActPen,
+      userName,
+    });
 
-  dispatch(closeModal());
+    dispatch(closeModal());
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default handlerUpdateSolicitud;

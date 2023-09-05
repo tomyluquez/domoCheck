@@ -84,7 +84,7 @@ const ActCumplidasDash = ({ clientes }) => {
               >
                 {dash.array.length > 0 ? (
                   dash.array.map((act) => (
-                    <div key={act._id}>
+                    <div key={act.value}>
                       <TimelineItem>
                         <TimelineOppositeContent color="textSecondary">
                           {dash.condicion === "cumplidor"
