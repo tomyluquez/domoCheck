@@ -61,7 +61,12 @@ const filterClientByRole = (clientes, role) => {
 
   if (role === "marketing") {
     return [...clientes]
-      .filter((cliente) => cliente.estado === "Integrado")
+      .filter(
+        (cliente) =>
+          cliente.estado === "Integrado" ||
+          cliente.estado === "Testeo" ||
+          cliente.estado === "Configuracion"
+      )
       .sort((a, b) => {
         const fechaA =
           a.modificacion?.fechaModificacion ||
