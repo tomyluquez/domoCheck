@@ -106,8 +106,8 @@ const ActCumplidasDash = ({ clientes }) => {
                         </TimelineSeparator>
                         <TimelineContent>
                           {dash.condicion === "cumplidor"
-                            ? act.actividad.resultado
-                            : act.actividad.actividad}
+                            ? `${act.actividad.resultado} - ${act.cliente.nombreLocal}`
+                            : `${act.actividad.actividad} - ${act.cliente.nombreLocal}`}
                         </TimelineContent>
                       </TimelineItem>
                       <TimelineItem></TimelineItem>

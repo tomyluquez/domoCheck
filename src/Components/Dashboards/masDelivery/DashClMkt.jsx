@@ -8,15 +8,17 @@ import { stateDashClMkt } from "../../../data/estadosClMkt";
 import { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DivContainerState } from "../../../Styles/TableStyles";
+import { openModal } from "../../../redux/slices/modal";
+import { useDispatch } from "react-redux";
 
 const DashClMkt = ({ clientes, darkMode }) => {
   const clientsWhitActividad = stateDashClMkt(clientes);
   const [expanded, setExpanded] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  console.log(clientsWhitActividad);
   return (
     <DivContainerCardsVendedores style={{ width: "50%", marginTop: "80px" }}>
       <h5>Clientes pasados por Marketing a Integradores</h5>
@@ -55,9 +57,18 @@ const DashClMkt = ({ clientes, darkMode }) => {
                   style={{
                     background:
                       actividad.estadoDato === "Solicitado"
-                        ? "#ff4242"
+                        ? "#FFD6A5"
                         : "green",
                   }}
+                  onClick={() =>
+                    dispatch(
+                      openModal({
+                        type: `Ind ${actividad.dato}`,
+                        referencia: actividad.dato,
+                        id: actividad.idClient,
+                      })
+                    )
+                  }
                 >
                   <span style={{ fontWeight: "bold" }}>{actividad.dato}</span>
                   <DivContainerState>

@@ -21,6 +21,7 @@ import ModalCreateUser from "./ModalUser";
 import useGetUsers from "../../Hooks/useGetUsers";
 import ModalModCliente from "./ModalModCliente";
 import ModalGenerarAct from "./ModalGenerarAct";
+import ModalDatosMktInd from "./ModalDatosMktInd";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -91,6 +92,14 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
     isOpen === "Promos" ||
     isOpen === "Campañas email" ||
     isOpen === "Playstore";
+  const datosMktInd =
+    isOpen === "Ind MP Conectado" ||
+    isOpen === "Ind Link IG" ||
+    isOpen === "Ind Link Whatsapp" ||
+    isOpen === "Ind Historias" ||
+    isOpen === "Ind Promos" ||
+    isOpen === "Ind Campañas email" ||
+    isOpen === "Ind Playstore";
   const handleClose = () => {
     dispatch(closeModal());
   };
@@ -181,6 +190,13 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
               clientes={clientes}
               idClient={idClient}
               referencia={reference}
+            />
+          )}
+          {datosMktInd && (
+            <ModalDatosMktInd
+              clientes={clientes}
+              idClient={idClient}
+              dato={isOpen}
             />
           )}
         </DialogContent>

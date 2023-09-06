@@ -21,6 +21,7 @@ export const stateDashClMkt = (clientes) => {
         return {
           dato: estado.value,
           estadoDato: cliente[estado.value].estado,
+          idClient: cliente._id,
         };
       }),
     };

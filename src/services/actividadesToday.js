@@ -35,21 +35,38 @@ export const actTodayCump = (clientes, usuario) => {
     (act) =>
       new Date(act.actividad.proximoContacto).getFullYear() === year &&
       new Date(act.actividad.proximoContacto).getMonth() === month &&
-      new Date(act.actividad.proximoContacto).getDate() === day &&
+      new Date(act.actividad.proximoContacto).getDate() + 1 === day &&
       (new Date(act.actividad.proximoContacto).getHours() > hours || // Ajusta la condición aquí
         (new Date(act.actividad.proximoContacto).getHours() === hours &&
           new Date(act.actividad.proximoContacto).getMinutes() >= minutes))
   );
-
-  const actVencidas = actividadesPendientes.filter(
-    (act) =>
-      new Date(act.actividad.proximoContacto).getFullYear() <= year &&
-      new Date(act.actividad.proximoContacto).getMonth() <= month &&
-      new Date(act.actividad.proximoContacto).getDate() <= day &&
-      (new Date(act.actividad.proximoContacto).getHours() < hours || // Ajusta la condición aquí
-        (new Date(act.actividad.proximoContacto).getHours() === hours &&
-          new Date(act.actividad.proximoContacto).getMinutes() < minutes))
-  );
+  const actVencidas = actividadesPendientes.filter((act) => {
+    const actDate = new Date(act.actividad.proximoContacto);
+    if (actDate.getFullYear() <= year && actDate.getMonth() < month) {
+      return true;
+    } else if (
+      actDate.getFullYear() <= year &&
+      actDate.getMonth() === month &&
+      actDate.getDate() + 1 < day
+    ) {
+      return true;
+    } else if (
+      actDate.getFullYear() <= year &&
+      actDate.getMonth() === month &&
+      actDate.getDate() + 1 === day &&
+      actDate.getHours() < hours
+    ) {
+      return true;
+    } else if (
+      actDate.getFullYear() <= year &&
+      actDate.getMonth() === month &&
+      actDate.getDate() + 1 === day &&
+      actDate.getHours() <= hours &&
+      actDate.getMinutes() < minutes
+    ) {
+      return true;
+    } else return false;
+  });
 
   return { actCumplidasToday, actPendientesToday, actVencidas };
 };

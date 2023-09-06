@@ -21,7 +21,7 @@ export default function TinmeLineClient({ hitos }) {
             variant="body2"
             color="text.secondary"
           >
-            {formatDate(hito.fechaCumplimiento)}
+            {formatDate(hito.fechaCumplimiento)} - {hito.cumplidor}
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineConnector />
@@ -42,7 +42,7 @@ export default function TinmeLineClient({ hitos }) {
               {hito.dato}
             </Typography>
             <Typography style={{ fontFamily: "poppins" }}>
-              {hito.resultado}
+              {hito.actividad}
             </Typography>
           </TimelineContent>
         </TimelineItem>
