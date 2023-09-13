@@ -4,10 +4,11 @@ import FilePresentIcon from "@mui/icons-material/FilePresent";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 
 export const hitosInd = (cliente, info) => {
+  console.log(cliente);
   const hitosIndividual = cliente.actividades.filter((actividad) => {
     const tieneResultado =
       actividad.resultado !== undefined && actividad.resultado !== "";
-    const coincideDato = actividad.dato === info;
+    const coincideDato = info ? actividad.dato === info : true;
     const coincideSeguimiento = actividad.dato === `Seguimiento ${info}`;
 
     return (

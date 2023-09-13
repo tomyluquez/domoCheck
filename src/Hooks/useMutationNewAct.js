@@ -16,8 +16,12 @@ const useMutationNewAct = () => {
         body: JSON.stringify(data),
       }),
     {
-      onSuccess: () => {
-        queryclient.invalidateQueries("clients");
+      onSuccess: (data) => {
+        if (data.prospects) {
+          queryclient.invalidateQueries("prospects");
+        } else {
+          queryclient.invalidateQueries("clients");
+        }
         dispatch(closeModal());
       },
     }

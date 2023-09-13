@@ -13,8 +13,9 @@ import getReports from "../../../Hooks/useGetRepors";
 import { CircularProgress } from "@mui/material";
 import { sendEmail } from "../../../services/senEmailReports";
 import { useDispatch, useSelector } from "react-redux";
+import DashProspects from "../DashProspects";
 
-const AdminDash = ({ clientes, darkMode }) => {
+const AdminDash = ({ clientes, darkMode, prospects }) => {
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -54,7 +55,14 @@ const AdminDash = ({ clientes, darkMode }) => {
             />
           ))}
         </DivContainerCards>
-        <DashClMkt clientes={clientes} darkMode={darkMode} />
+        <div style={{ width: "45%" }}>
+          <DashClMkt clientes={clientes} darkMode={darkMode} width="100%" />
+          <DashProspects
+            prospects={prospects}
+            darkMode={darkMode}
+            width="100%"
+          />
+        </div>
       </DivTareas>
     </>
   );

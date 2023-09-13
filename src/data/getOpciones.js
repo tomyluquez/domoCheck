@@ -19,6 +19,21 @@ export const getOpcionesActividad = (actividad, cliente) => {
         descripcion: `${cliente.nombreLocal} cancelo la integracion`,
       },
     ];
+  } else if (actividad.dato === "Contactar prospecto") {
+    opciones = [
+      {
+        value: "Entregado",
+        descripcion: `${cliente.nombreLocal} acepto la intergacion`,
+      },
+      {
+        value: "No contesta",
+        descripcion: `${cliente.nombreLocal} no contesta`,
+      },
+      {
+        value: "No lo quiere",
+        descripcion: `${cliente.nombreLocal} no lo quiere`,
+      },
+    ];
   } else {
     opciones = [
       {

@@ -19,8 +19,12 @@ const useMutatioAct = () => {
         }
       ),
     {
-      onSuccess: () => {
-        queryclient.invalidateQueries("clients");
+      onSuccess: (data) => {
+        if (data.prospects) {
+          queryclient.invalidateQueries("prospects");
+        } else {
+          queryclient.invalidateQueries("clients");
+        }
         dispatch(closeModal());
       },
     }

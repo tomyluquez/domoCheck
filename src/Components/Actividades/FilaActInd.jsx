@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { SpanTabla, TableStyles } from "../../Styles/TableStyles";
 import { Avatar, TableCell, Tooltip } from "@mui/material";
 import actVencidas from "../../services/actVencidas";
-import { stateColors } from "../../data/colors";
 import findOthersAct from "../../services/findOtherAct";
 import formatDateHours from "../../services/formatDateHours";
 
@@ -15,6 +14,7 @@ const FilaActInd = ({
 }) => {
   const [vencimiento, setVencimiento] = useState();
   const [diasVencida, setDiasVencidas] = useState();
+  console.log(vencimiento, diasVencida);
   useEffect(() => {
     const { estadoActividad, diasTranscurridos } = actVencidas(
       act.actividad.proximoContacto,
@@ -35,13 +35,7 @@ const FilaActInd = ({
       sx={{ bgcolor: "color.inputs" }}
     >
       <TableCell className="icon" component="th" scope="row">
-        <SpanTabla
-          style={{
-            backgroundColor: stateColors[act.actividad.estadoAct],
-          }}
-        >
-          {act.actividad.estadoAct}
-        </SpanTabla>
+        <SpanTabla>{vencimiento}</SpanTabla>
       </TableCell>
       <TableCell
         className="icon"

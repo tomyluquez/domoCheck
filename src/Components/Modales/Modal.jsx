@@ -10,7 +10,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/slices/modal";
 import ModalDatosHistorial from "./ModalDatosHistorial";
-import FormAddClient from "../Formularios/FormAddClient";
 import ModalActividad from "./ModalActividad";
 import ModalAddContacto from "./ModalAddContacto";
 import CancelIntergacion from "../CancelIntergacion";
@@ -22,6 +21,8 @@ import useGetUsers from "../../Hooks/useGetUsers";
 import ModalModCliente from "./ModalModCliente";
 import ModalGenerarAct from "./ModalGenerarAct";
 import ModalDatosMktInd from "./ModalDatosMktInd";
+import ModalAddClient from "./ModalAddClient";
+import ModalHistorial from "./ModalHistorial";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -64,6 +65,7 @@ BootstrapDialogTitle.propTypes = {
 export default function Modal({ isOpen, reference, idClient, idAct }) {
   const dispatch = useDispatch();
   const clientes = useSelector((state) => state.clientes.clientes);
+  const prospects = useSelector((state) => state.clientes.prospects);
   const users = useGetUsers();
 
   const datosHistorial =
@@ -146,7 +148,20 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
               idAct={idAct}
             />
           )}
-          {isOpen === "Agregar cliente" && <FormAddClient />}
+          {isOpen === "Historial" && (
+            <ModalHistorial
+              clientes={reference === "Prospecto" ? prospects : clientes}
+              idClient={idClient}
+            />
+          )}
+          {isOpen === "Contactar prospecto" && (
+            <ModalActividad
+              clientes={prospects}
+              idClient={idClient}
+              idAct={idAct}
+            />
+          )}
+          {isOpen === "Agregar cliente" && <ModalAddClient />}
           {(isOpen === "Agregar usuario" || isOpen === "Editar usuario") && (
             <ModalCreateUser user={reference} />
           )}

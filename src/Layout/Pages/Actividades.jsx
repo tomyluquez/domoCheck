@@ -16,13 +16,17 @@ const Actividades = () => {
   const [orden, setOrden] = useState(1);
   const [value, setValue] = useState(1);
   const clientes = useSelector((state) => state.clientes.clientes);
+  const prospectos = useSelector((state) => state.clientes.prospects);
   const role = useSelector((state) => state.user.role);
   const [dataActi, setData] = useState({
     dateStart: "",
     dateEnd: "",
     user: "Todos",
   });
-  const { actividadesPendientes, actividadesCumplidas } = filterByAct(clientes);
+  const { actividadesPendientes, actividadesCumplidas } = filterByAct(
+    clientes,
+    prospectos
+  );
   const actividadesOrdenadasPend = ordenarActividades(
     actividadesPendientes,
     orden,

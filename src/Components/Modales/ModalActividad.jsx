@@ -19,6 +19,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import dayjs from "dayjs";
 import useUpdateDatosDesp from "../../Hooks/useUpdateDatosDesp";
+import useUpdateProspect from "../../Hooks/useUpdateProspect";
+import { updateProspects } from "../../services/updateProspects";
+import { openModal } from "../../redux/slices/modal";
 
 const ModalActividad = ({ clientes, idClient, idAct }) => {
   const [data, setData] = useState({
@@ -32,6 +35,7 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
   const mutationDatos = useUpdateDatosDesp();
+  const updateProspect = useUpdateProspect();
   const navigate = useNavigate();
   const cliente = filterById(clientes, idClient);
   const actividad = cliente.actividades.filter(
@@ -41,14 +45,31 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
   const [isLoading, setIsLoading] = useState(false);
   const disabled =
     (data.resultado !== "Entregado" &&
-      (data.resultado === "" ||
-        data.proximoContacto === "" ||
-        data.obs === "")) ||
+      (data.resultado === "" || data.obs === "")) ||
     (data.resultado === "" && data.proximoContacto === "" && data.obs === "");
 
   const handlerUpdate = () => {
     if (data.obs === "" && data.proximoContacto === "" && data.resultado === "")
       return;
+
+    if (actividad.dato === "Contactar prospecto") {
+      setIsLoading(true);
+
+      return updateProspects(
+        cliente,
+        actividad,
+        updateProspect,
+        mutationAct,
+        mutationNewAct,
+        data.resultado,
+        userName,
+        dispatch,
+        data.proximoContacto,
+        setIsLoading,
+        navigate,
+        data.obs
+      );
+    }
 
     setIsLoading(true);
     const props = {
@@ -75,14 +96,8 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
         <span>Actividad: </span>
         <span>{actividad.actividad}</span>
       </div>
-      <SelectCustom
-        w="40%"
-        label="Resultado"
-        value={data.resultado}
-        setValue={(newValue) => setData({ ...data, resultado: newValue })}
-        opciones={opciones}
-      />
-      {data.resultado !== "Entregado" && data.resultado !== "" && (
+
+      {data.resultado !== "Entregado" && (
         <>
           {data.resultado !== "No lo quiere" && (
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -101,6 +116,13 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
           />
         </>
       )}
+      <SelectCustom
+        w="40%"
+        label="Resultado"
+        value={data.resultado}
+        setValue={(newValue) => setData({ ...data, resultado: newValue })}
+        opciones={opciones}
+      />
       <ButtonCustom
         width="50%"
         height="50px"
@@ -110,6 +132,23 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
       >
         {isLoading ? <Loading /> : "Cumplir Actividad"}
       </ButtonCustom>
+      <button
+        onClick={() =>
+          dispatch(
+            openModal({
+              type: "Historial",
+              referencia:
+                actividad.dato === "Contactar prospecto"
+                  ? "Prospecto"
+                  : "Cliente",
+              id: idClient,
+              idAct: null,
+            })
+          )
+        }
+      >
+        Historial
+      </button>
     </ModalActividades>
   );
 };

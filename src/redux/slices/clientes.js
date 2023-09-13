@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   clientes: [],
   filteredClientes: [],
+  prospects: [],
 };
 
 export const clientesSlice = createSlice({
@@ -18,8 +19,13 @@ export const clientesSlice = createSlice({
     filters: (state, action) => {
       state.filteredClientes = action.payload;
     },
+    addProspects: (state, action) => {
+      if (action.payload) {
+        state.prospects = action.payload.data;
+      }
+    },
   },
 });
 
-export const { addClients, filters } = clientesSlice.actions;
+export const { addClients, filters, addProspects } = clientesSlice.actions;
 export default clientesSlice.reducer;

@@ -4,7 +4,8 @@ import { colorLetra, filasHover } from "./GeneralStyles";
 import { hoverColors, stateColors } from "../data/colors";
 
 export const TableStyles = styled(TableRow)`
-  background-color: ${(props) => stateColors[props.fondo] || colorLetra};
+  background-color: ${(props) =>
+    stateColors[props.fondo] || colorLetra} !important;
   cursor: pointer;
   transiton: all 0.3s ease-in-out;
   box-shadow: 0px 8px 14px -3px rgba(0, 0, 0, 0.2);

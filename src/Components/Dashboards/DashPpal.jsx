@@ -8,7 +8,7 @@ import DashMkt from "./masDelivery/DashMkt";
 import DashVendedor from "./vendedores/DashVendedor";
 import DashClMkt from "./masDelivery/DashClMkt";
 
-const DashPpal = ({ clientes, user }) => {
+const DashPpal = ({ clientes, user, prospects }) => {
   const darkMode = useSelector((state) => state.mode.darkMode);
   return (
     <>
@@ -19,10 +19,18 @@ const DashPpal = ({ clientes, user }) => {
         darkMode={darkMode}
       />
       {user.role === "admin" && (
-        <AdminDash clientes={clientes} darkMode={darkMode} />
+        <AdminDash
+          clientes={clientes}
+          darkMode={darkMode}
+          prospects={prospects}
+        />
       )}
       {user.role === "comercial" && (
-        <DashComercial clientes={clientes} darkMode={darkMode} />
+        <DashComercial
+          clientes={clientes}
+          darkMode={darkMode}
+          prospects={prospects}
+        />
       )}
       {user.role === "vendedor" && (
         <DashVendedor clientes={clientes} user={user} darkMode={darkMode} />

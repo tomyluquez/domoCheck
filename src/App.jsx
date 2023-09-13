@@ -2,7 +2,7 @@ import Sidebar from "./Layout/Sidebar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Flex } from "./Styles/GeneralStyles";
 import { ContainerPpal } from "./Styles/Pages/SidebarStyles";
-import { addClients } from "./redux/slices/clientes";
+import { addClients, addProspects } from "./redux/slices/clientes";
 import { Suspense, lazy, useEffect } from "react";
 import useGetClients from "./Hooks/useGetClients";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import { Paper } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import { theme, darkTheme } from "./Styles/theme.js";
+import useGetProspects from "./Hooks/useGetProspects";
 
 const Dash = lazy(() => import("./Layout/Pages/Dash"));
 const Clientes = lazy(() => import("./Layout/Pages/Clientes"));
@@ -24,6 +25,7 @@ const Navbar = lazy(() => import("./Layout/Navbar"));
 
 function App() {
   const { data } = useGetClients();
+  const { prospects } = useGetProspects();
   const dispatch = useDispatch();
   const { isOpen, reference, idClient, idAct } = useSelector(
     (state) => state.modal
@@ -34,7 +36,8 @@ function App() {
 
   useEffect(() => {
     dispatch(addClients(data));
-  }, [dispatch, data]);
+    dispatch(addProspects(prospects));
+  }, [dispatch, data, prospects]);
 
   if (user.role === "") {
     return (

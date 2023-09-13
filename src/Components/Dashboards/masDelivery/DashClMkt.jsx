@@ -11,7 +11,7 @@ import { DivContainerState } from "../../../Styles/TableStyles";
 import { openModal } from "../../../redux/slices/modal";
 import { useDispatch } from "react-redux";
 
-const DashClMkt = ({ clientes, darkMode }) => {
+const DashClMkt = ({ clientes, darkMode, width }) => {
   const clientsWhitActividad = stateDashClMkt(clientes);
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const DashClMkt = ({ clientes, darkMode }) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-    <DivContainerCardsVendedores style={{ width: "50%", marginTop: "80px" }}>
+    <DivContainerCardsVendedores style={{ width: width, marginTop: "80px" }}>
       <h5>Clientes pasados por Marketing a Integradores</h5>
       {clientsWhitActividad &&
         clientsWhitActividad.map((dato, i) => (

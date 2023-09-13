@@ -1,4 +1,4 @@
-const filterByAct = (clientes) => {
+const filterByAct = (clientes, prospectos) => {
   const actividadesPendientes = [];
   const actividadesCumplidas = [];
 
@@ -18,6 +18,25 @@ const filterByAct = (clientes) => {
       }
     });
   });
+
+  if (prospectos && prospectos.length > 0) {
+    prospectos.forEach((prospecto) => {
+      prospecto.actividades.forEach((actividad) => {
+        if (actividad.estadoAct === "Pendiente") {
+          actividadesPendientes.push({
+            cliente: prospecto,
+            actividad: actividad,
+          });
+        }
+        if (actividad.estadoAct === "Cumplida") {
+          actividadesCumplidas.push({
+            cliente: prospecto,
+            actividad: actividad,
+          });
+        }
+      });
+    });
+  }
 
   actividadesPendientes.sort(
     (a, b) =>

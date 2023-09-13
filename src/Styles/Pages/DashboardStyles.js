@@ -33,7 +33,7 @@ export const DivContainerCardsUp = styled.div`
 `;
 
 export const Cards = styled.div`
-  width: 15%;
+  width: ${(props) => (props.width ? props.width : "15%")};
   min-height: 110px;
   display: flex;
   flex-direction: column;
