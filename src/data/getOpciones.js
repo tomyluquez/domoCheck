@@ -1,5 +1,19 @@
 export const getOpcionesActividad = (actividad, cliente) => {
   let opciones = [];
+  const opcionesInteres = [
+    {
+      value: "Bajo",
+      descripcion: "Bajo",
+    },
+    {
+      value: "Medio",
+      descripcion: "Medio",
+    },
+    {
+      value: "Alto",
+      descripcion: "Alto",
+    },
+  ];
   let tipo = actividad.dato;
   if (actividad.dato.includes("Seguimiento")) {
     tipo = actividad.dato.split("Seguimiento ")[1];
@@ -47,5 +61,5 @@ export const getOpcionesActividad = (actividad, cliente) => {
     ];
   }
 
-  return opciones;
+  return { opciones, opcionesInteres };
 };

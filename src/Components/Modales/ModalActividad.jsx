@@ -24,11 +24,6 @@ import { updateProspects } from "../../services/updateProspects";
 import { openModal } from "../../redux/slices/modal";
 
 const ModalActividad = ({ clientes, idClient, idAct }) => {
-  const [data, setData] = useState({
-    resultado: "",
-    proximoContacto: "",
-    obs: "",
-  });
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.user.name);
   const mutationAct = useMutatioAct();
@@ -38,10 +33,19 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
   const updateProspect = useUpdateProspect();
   const navigate = useNavigate();
   const cliente = filterById(clientes, idClient);
+  const [data, setData] = useState({
+    resultado: "",
+    proximoContacto: "",
+    obs: "",
+    interes: cliente.interes || "",
+  });
   const actividad = cliente.actividades.filter(
     (actividad) => actividad._id === idAct
   )[0];
-  const opciones = getOpcionesActividad(actividad, cliente);
+  const { opciones, opcionesInteres } = getOpcionesActividad(
+    actividad,
+    cliente
+  );
   const [isLoading, setIsLoading] = useState(false);
   const disabled =
     (data.resultado !== "Entregado" &&
@@ -67,7 +71,8 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
         data.proximoContacto,
         setIsLoading,
         navigate,
-        data.obs
+        data.obs,
+        data.interes
       );
     }
 
@@ -116,6 +121,13 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
           />
         </>
       )}
+      <SelectCustom
+        w="40%"
+        label="Interes"
+        value={data.interes}
+        setValue={(newValue) => setData({ ...data, interes: newValue })}
+        opciones={opcionesInteres}
+      />
       <SelectCustom
         w="40%"
         label="Resultado"

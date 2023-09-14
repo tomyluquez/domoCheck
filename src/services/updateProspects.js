@@ -13,11 +13,13 @@ export const updateProspects = async (
   proximoContacto,
   setIsLoading,
   navigate,
-  obs
+  obs,
+  interes
 ) => {
   await updateProspect.mutate({
     id: prospect._id,
     estado: resultado === "Entregado" ? "Acepto" : resultado,
+    interes,
   });
 
   await mutationAct.mutateAsync({

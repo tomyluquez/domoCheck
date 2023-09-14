@@ -1,5 +1,4 @@
 const ordenarActividades = (actividades, orden, ordenType, tipo) => {
-  console.log(orden, ordenType);
   const today = new Date();
   if (tipo === "Pendientes") {
     const actividadesOrdenadas = actividades.filter((actividad) => {

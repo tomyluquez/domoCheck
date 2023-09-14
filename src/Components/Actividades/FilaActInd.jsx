@@ -14,7 +14,6 @@ const FilaActInd = ({
 }) => {
   const [vencimiento, setVencimiento] = useState();
   const [diasVencida, setDiasVencidas] = useState();
-  console.log(vencimiento, diasVencida);
   useEffect(() => {
     const { estadoActividad, diasTranscurridos } = actVencidas(
       act.actividad.proximoContacto,

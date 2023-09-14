@@ -5,7 +5,6 @@ import { hitosInd } from "../../services/histosInd";
 import TinmeLineClient from "../TimeLine";
 
 const ModalDatosMktInd = ({ clientes, idClient, dato }) => {
-  console.log(dato);
   const cliente = filterById(clientes, idClient);
   const title = dato.slice(4);
   const hitosIndividual = hitosInd(cliente, title);

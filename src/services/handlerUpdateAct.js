@@ -35,6 +35,14 @@ const handlerUpdateAct = async (props) => {
       userName,
     });
 
+    if (data.interes !== "") {
+      await mutationclient.mutateAsync({
+        id: cliente._id,
+        interes: data.interes,
+        userName,
+      });
+    }
+
     if (actividad.dato === "Contactar") {
       await mutationclient.mutateAsync({
         id: cliente._id,
