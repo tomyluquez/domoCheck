@@ -5,7 +5,7 @@ import { useState } from "react";
 import filterByAct from "../../services/filterByAct";
 import ordenarActividades from "../../services/ordenarActividades";
 import { useSelector } from "react-redux";
-import { ordenAct } from "./../../data/ordenAct";
+import { ordenAct, orderTypeAct } from "./../../data/ordenAct";
 import FilterByDate from "../../Components/Actividades/FilterByDate";
 import useGetUsers from "../../Hooks/useGetUsers";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
@@ -14,6 +14,7 @@ import Loading from "./../../Components/Loading";
 const Actividades = () => {
   const { data, isLoading } = useGetUsers();
   const [orden, setOrden] = useState(1);
+  const [ordenType, setOrdenType] = useState(0);
   const [value, setValue] = useState(1);
   const clientes = useSelector((state) => state.clientes.clientes);
   const prospectos = useSelector((state) => state.clientes.prospects);
@@ -30,11 +31,13 @@ const Actividades = () => {
   const actividadesOrdenadasPend = ordenarActividades(
     actividadesPendientes,
     orden,
+    ordenType,
     "Pendientes"
   );
   const actividadesCumplidasPend = ordenarActividades(
     actividadesCumplidas,
     dataActi,
+    0,
     "Cumplidas"
   );
   const handleChange = (event, newValue) => {
@@ -81,12 +84,16 @@ const Actividades = () => {
                   component="div"
                   style={{ fontFamily: "poppins" }}
                 >
-                  Actividades Pendientes ({actividadesOrdenadasPend.length})
+                  Actividades Pendientes (
+                  {actividadesOrdenadasPend && actividadesOrdenadasPend.length})
                 </Typography>
                 <OrdenActividades
                   orden={orden}
                   setOrden={setOrden}
                   ordenAct={ordenAct}
+                  orderTypeAct={orderTypeAct}
+                  ordenType={ordenType}
+                  setOrdenType={setOrdenType}
                 />
                 <TableActGral
                   key={`pendientes-${orden}`} // Agregar información adicional a la clave
@@ -107,7 +114,8 @@ const Actividades = () => {
                   component="div"
                   style={{ fontFamily: "poppins" }}
                 >
-                  Actividades Cumplidas ({actividadesCumplidasPend.length})
+                  Actividades Cumplidas (
+                  {actividadesCumplidasPend && actividadesCumplidasPend.length})
                 </Typography>
                 <FilterByDate
                   dataActi={dataActi}

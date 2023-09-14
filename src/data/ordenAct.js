@@ -21,6 +21,25 @@ export const ordenAct = [
   },
 ];
 
+export const orderTypeAct = [
+  {
+    value: 6,
+    descripcion: "Clientes",
+  },
+  {
+    value: 7,
+    descripcion: "Marketing",
+  },
+  {
+    value: 8,
+    descripcion: "Prospectos",
+  },
+  {
+    value: 0,
+    descripcion: "Todos",
+  },
+];
+
 export const ordenHistorial = [
   {
     value: 1,

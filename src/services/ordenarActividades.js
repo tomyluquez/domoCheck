@@ -1,4 +1,5 @@
-const ordenarActividades = (actividades, orden, tipo) => {
+const ordenarActividades = (actividades, orden, ordenType, tipo) => {
+  console.log(orden, ordenType);
   const today = new Date();
   if (tipo === "Pendientes") {
     const actividadesOrdenadas = actividades.filter((actividad) => {
@@ -39,7 +40,42 @@ const ordenarActividades = (actividades, orden, tipo) => {
         return actividad.cliente.estado !== "No lo quiere";
       } // orden === 5: Todas las actividades
     });
-    return actividadesOrdenadas;
+    if (ordenType === 0) {
+      return actividadesOrdenadas;
+    } else {
+      const actividadesPorTipo = actividadesOrdenadas.filter((actividad) => {
+        if (ordenType === 6) {
+          return (
+            actividad.actividad.dato === "Contactar" ||
+            actividad.actividad.dato === "menu" ||
+            actividad.actividad.dato === "Seguimiento menu" ||
+            actividad.actividad.dato === "mapa" ||
+            actividad.actividad.dato === "Seguimiento mapa" ||
+            actividad.actividad.dato === "imgStore" ||
+            actividad.actividad.dato === "Seguimiento imgStore" ||
+            actividad.actividad.dato === "imgProd" ||
+            actividad.actividad.dato === "Seguimiento imgProd" ||
+            actividad.actividad.dato === "datos" ||
+            actividad.actividad.dato === "Seguimiento datos"
+          );
+        }
+        if (ordenType === 7) {
+          return (
+            actividad.actividad.dato === "Promos" ||
+            actividad.actividad.dato === "Historias" ||
+            actividad.actividad.dato === "Link Whatsapp" ||
+            actividad.actividad.dato === "Playstore" ||
+            actividad.actividad.dato === "MP Conectado" ||
+            actividad.actividad.dato === "Campañas email" ||
+            actividad.actividad.dato === "Link IG"
+          );
+        }
+        if (ordenType === 8) {
+          return actividad.actividad.dato === "Contactar prospecto";
+        }
+      });
+      return actividadesPorTipo;
+    }
   }
 
   if (tipo === "Cumplidas") {

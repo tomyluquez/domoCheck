@@ -29,6 +29,7 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
   const actividadesOrdenadasPend = ordenarActividades(
     actividadesPendientes,
     1,
+    0,
     "Pendientes"
   );
 

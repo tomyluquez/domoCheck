@@ -35,7 +35,9 @@ const FilaActInd = ({
       sx={{ bgcolor: "color.inputs" }}
     >
       <TableCell className="icon" component="th" scope="row">
-        <SpanTabla>{vencimiento}</SpanTabla>
+        <SpanTabla>
+          {act.actividad.estadoAct === "Cumplida" ? "Cumplida" : vencimiento}
+        </SpanTabla>
       </TableCell>
       <TableCell
         className="icon"
