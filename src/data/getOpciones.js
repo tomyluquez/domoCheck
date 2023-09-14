@@ -26,8 +26,8 @@ export const getOpcionesActividad = (actividad, cliente) => {
         descripcion: `${cliente.nombreLocal} acepto la intergacion`,
       },
       {
-        value: "No contesta",
-        descripcion: `${cliente.nombreLocal} no contesta`,
+        value: "Seguimiento",
+        descripcion: `Seguimiento`,
       },
       {
         value: "No lo quiere",

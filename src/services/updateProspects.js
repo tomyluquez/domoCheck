@@ -33,7 +33,7 @@ export const updateProspects = async (
     prospect: true,
   });
 
-  if (resultado === "No contesta") {
+  if (resultado === "Seguimiento") {
     const newActPen = {
       _id: uuidv4(),
       actividad: "Contactar prospecto",

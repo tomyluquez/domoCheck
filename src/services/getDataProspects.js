@@ -1,5 +1,5 @@
 export const getDataProspect = (prospects) => {
-  const states = ["Pendiente", "Acepto", "No lo quiere", "No contesta"];
+  const states = ["Pendiente", "Acepto", "No lo quiere", "Seguimiento"];
   let data = [];
 
   states.forEach((state) => {
