@@ -15,7 +15,7 @@ export const ModalActividades = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
   @media screen and (max-width: 700px) {
     width: 220px;

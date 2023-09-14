@@ -21,7 +21,7 @@ import dayjs from "dayjs";
 import useUpdateDatosDesp from "../../Hooks/useUpdateDatosDesp";
 import useUpdateProspect from "../../Hooks/useUpdateProspect";
 import { updateProspects } from "../../services/updateProspects";
-import { openModal } from "../../redux/slices/modal";
+import ModalHistorial from "./ModalHistorial";
 
 const ModalActividad = ({ clientes, idClient, idAct }) => {
   const dispatch = useDispatch();
@@ -97,6 +97,8 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
 
   return (
     <ModalActividades>
+      <ModalHistorial clientes={clientes} idClient={idClient} />
+
       <div>
         <span>Actividad: </span>
         <span>{actividad.actividad}</span>
@@ -107,7 +109,7 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
           {data.resultado !== "No lo quiere" && (
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DesktopDateTimePicker
-                sx={{ minWidth: 180, width: "45%" }}
+                sx={{ minWidth: 180, width: "60%" }}
                 label="Fecha Proximo Contacto"
                 disablePast
                 defaultValue={dayjs()}
@@ -122,14 +124,14 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
         </>
       )}
       <SelectCustom
-        w="40%"
+        w="45%"
         label="Interes"
         value={data.interes}
         setValue={(newValue) => setData({ ...data, interes: newValue })}
         opciones={opcionesInteres}
       />
       <SelectCustom
-        w="40%"
+        w="45%"
         label="Resultado"
         value={data.resultado}
         setValue={(newValue) => setData({ ...data, resultado: newValue })}
@@ -144,23 +146,6 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
       >
         {isLoading ? <Loading /> : "Cumplir Actividad"}
       </ButtonCustom>
-      <button
-        onClick={() =>
-          dispatch(
-            openModal({
-              type: "Historial",
-              referencia:
-                actividad.dato === "Contactar prospecto"
-                  ? "Prospecto"
-                  : "Cliente",
-              id: idClient,
-              idAct: null,
-            })
-          )
-        }
-      >
-        Historial
-      </button>
     </ModalActividades>
   );
 };

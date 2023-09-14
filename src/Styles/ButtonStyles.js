@@ -4,7 +4,7 @@ import { colorLetra, colorLogo, colorFondo } from "./GeneralStyles";
 export const ButtonCustom = styled.button`
   width: ${(props) => props.width || "250px"};
   height: ${(props) => props.hidden || "50px"};
-  background-color: ${(props) => props.fondo || colorLetra};
+  background-color: ${(props) => props.fondo};
   border: 1px solid ${(props) => props.borde || colorLogo};
   border-radius: 5px;
   color: ${(props) => props.color || colorFondo};
