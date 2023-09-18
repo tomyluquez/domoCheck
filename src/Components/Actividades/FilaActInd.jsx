@@ -52,11 +52,7 @@ const FilaActInd = ({
           : formatDateHours(act.actividad.fechaCumplimiento)}
       </TableCell>
       <TableCell className="icon">{act.actividad.dato}</TableCell>
-      <TableCell className="icon">
-        {tipoActividad === "Pendientes"
-          ? act.actividad.actividad
-          : act.actividad.resultado}
-      </TableCell>
+      <TableCell className="icon">{act.actividad.actividad}</TableCell>
       <TableCell className="icon">
         {act.actividad.cumplidor || act.actividad.creador}
       </TableCell>

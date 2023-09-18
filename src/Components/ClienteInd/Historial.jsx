@@ -5,16 +5,25 @@ import TableActGral from "../Actividades/TableActGral";
 import actByClient from "../../services/actByClient";
 
 const Historial = ({ cliente }) => {
-  const [orden, setOrden] = useState(1);
+  const [orden, setOrden] = useState(cliente.estado !== "No lo quiere" ? 1 : 2);
   const { actividadesCliente, actividadesPendientes, actividadesCumplidas } =
     actByClient(cliente);
   const [actPend, setActPend] = useState(actividadesPendientes);
 
   useEffect(() => {
-    if (orden === 1) setActPend(actividadesPendientes);
+    if (orden === 1)
+      setActPend(
+        cliente.estado !== "No lo quiere" ? actividadesPendientes : []
+      );
     if (orden === 2) setActPend(actividadesCumplidas);
     if (orden === 3) setActPend(actividadesCliente);
-  }, [orden, actividadesCliente, actividadesPendientes, actividadesCumplidas]);
+  }, [
+    orden,
+    actividadesCliente,
+    actividadesPendientes,
+    actividadesCumplidas,
+    cliente.estado,
+  ]);
 
   return (
     <div>

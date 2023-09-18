@@ -38,8 +38,8 @@ const actByClient = (cliente) => {
   );
   actividadesCumplidas.sort(
     (a, b) =>
-      new Date(a.actividad.proximoContacto) -
-      new Date(b.actividad.proximoContacto)
+      new Date(b.actividad.proximoContacto) -
+      new Date(a.actividad.proximoContacto)
   );
 
   return {

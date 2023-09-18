@@ -26,7 +26,7 @@ const CancelIntergacion = ({ clientes, idClient, users }) => {
   const handlerCancel = async () => {
     const newActOk = {
       _id: uuidv4(),
-      actividad: "Cliente cancelo la integracion",
+      actividad: obs,
       fecha: new Date(),
       proximoContacto: new Date(),
       dato: "Cancelacion",
