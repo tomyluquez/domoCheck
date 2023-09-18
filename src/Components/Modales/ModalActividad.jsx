@@ -24,6 +24,7 @@ import { updateProspects } from "../../services/updateProspects";
 import ModalHistorial from "./ModalHistorial";
 
 const ModalActividad = ({ clientes, idClient, idAct }) => {
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.user.name);
   const mutationAct = useMutatioAct();
@@ -97,7 +98,12 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
 
   return (
     <ModalActividades>
-      <ModalHistorial clientes={clientes} idClient={idClient} />
+      <ModalHistorial
+        clientes={clientes}
+        idClient={idClient}
+        open={showModal}
+        setOpen={setShowModal}
+      />
 
       <div>
         <span>Actividad: </span>
@@ -145,6 +151,19 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
         onClick={handlerUpdate}
       >
         {isLoading ? <Loading /> : "Cumplir Actividad"}
+      </ButtonCustom>
+      <ButtonCustom
+        variant="outlined"
+        onClick={() => setShowModal(true)}
+        style={{
+          width: "20%",
+          position: "absolute",
+          bottom: "10px",
+          left: "10px",
+          height: "35px",
+        }}
+      >
+        Historial
       </ButtonCustom>
     </ModalActividades>
   );

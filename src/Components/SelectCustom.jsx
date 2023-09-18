@@ -1,7 +1,6 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const SelectCustom = ({ w, label, value, setValue, opciones, padding }) => {
-  console.log(opciones);
   return (
     <Box
       sx={{

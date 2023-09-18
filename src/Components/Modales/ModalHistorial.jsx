@@ -1,7 +1,6 @@
 import filterById from "../../services/filterById";
 import { hitosInd } from "../../services/histosInd";
 import TinmeLineClient from "../TimeLine";
-import * as React from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -10,7 +9,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { ButtonCustom } from "../../Styles/ButtonStyles";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -21,34 +19,16 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-const ModalHistorial = ({ clientes, idClient }) => {
+const ModalHistorial = ({ clientes, idClient, open, setOpen }) => {
   const cliente = filterById(clientes, idClient);
   const hitosIndividual = hitosInd(cliente);
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
     <div>
-      <ButtonCustom
-        variant="outlined"
-        onClick={handleClickOpen}
-        style={{
-          width: "20%",
-          position: "absolute",
-          bottom: "10px",
-          left: "10px",
-          height: "35px",
-        }}
-      >
-        Historial
-      </ButtonCustom>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"

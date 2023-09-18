@@ -5,11 +5,15 @@ import { openModal } from "../../redux/slices/modal";
 import { useNavigate } from "react-router-dom";
 import { changeValue } from "../../redux/slices/value";
 import FilaActInd from "./FilaActInd";
+import ModalHistorial from "../Modales/ModalHistorial";
+import { useState } from "react";
 
 const TableActGral = ({ tipoActividad, actividades }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const role = useSelector((state) => state.user.role);
+  const prospects = useSelector((state) => state.clientes.prospects);
+  const [showModal, setShowModal] = useState(false);
 
   const handleCellClick = (act) => {
     if (act.actividad.estadoAct !== "Cumplida") {
@@ -41,8 +45,21 @@ const TableActGral = ({ tipoActividad, actividades }) => {
     navigate(`/clientes/${cliente._id}`);
   };
 
+  const handleProspect = (event, cliente) => {
+    event.stopPropagation();
+    setShowModal(cliente._id);
+  };
+
   return (
     <>
+      {showModal && (
+        <ModalHistorial
+          clientes={prospects}
+          idClient={showModal}
+          open={showModal}
+          setOpen={setShowModal}
+        />
+      )}
       <Divider />
       <div>
         <Box sx={{ margin: 1, marginTop: "40px" }}>
@@ -80,6 +97,7 @@ const TableActGral = ({ tipoActividad, actividades }) => {
                   handleCellClick={handleCellClick}
                   handleNameCLick={handleNameCLick}
                   handleIconClick={handleIconClick}
+                  handleProspect={handleProspect}
                 />
               ))}
             </TableBody>

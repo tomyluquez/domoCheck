@@ -11,6 +11,7 @@ const FilaActInd = ({
   handleCellClick,
   handleNameCLick,
   handleIconClick,
+  handleProspect,
 }) => {
   const [vencimiento, setVencimiento] = useState();
   const [diasVencida, setDiasVencidas] = useState();
@@ -40,7 +41,11 @@ const FilaActInd = ({
       </TableCell>
       <TableCell
         className="icon"
-        onClick={(event) => handleNameCLick(event, act.cliente)}
+        onClick={(event) =>
+          act.actividad.dato === "Contactar prospecto"
+            ? handleProspect(event, act.cliente)
+            : handleNameCLick(event, act.cliente)
+        }
       >
         {act.cliente.nombreLocal}
       </TableCell>
