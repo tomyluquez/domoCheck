@@ -5,6 +5,7 @@ export const stateColors = {
   "No lo quiere": "#FF6666",
   "Faltan datos": "#FFFEC4",
   Solicitado: "#FFFEC4",
+  Seguimiento: "#FFD6A5",
   Despachado: "#4E6E81",
   "Pendiente de despachar": "#FFFEC4",
   Integrado: "#CBFFA9",

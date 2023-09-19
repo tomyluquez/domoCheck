@@ -11,6 +11,9 @@ import { hitoColors } from "../data/colors";
 import { tipoHito } from "../services/histosInd";
 
 export default function TinmeLineClient({ hitos }) {
+  if (hitos.length === 0) {
+    return <span>Aun no hay actividades cumplidas sobre este cliente</span>;
+  }
   return (
     <Timeline position="alternate">
       {hitos.map((hito, i) => (

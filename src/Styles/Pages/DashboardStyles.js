@@ -148,7 +148,7 @@ export const CardVendedores = styled(Cards)`
 
 export const DivContainerCardsVendedores = styled.div`
   width: 95%;
-  min-height: 600px;
+  min-height: ${(props) => (props.height ? props.height : "600px")};
   display: flex;
   gap: 20px;
   flex-direction: column;

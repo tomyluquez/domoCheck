@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { changeValue } from "../../../redux/slices/value";
 
-const DashMkt = ({ clientes, darkMode }) => {
+const DashMkt = ({ clientes, darkMode, width }) => {
   const clientesMkt = filterMkt(clientes);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const DashMkt = ({ clientes, darkMode }) => {
     <div
       data-aos="fade-right"
       data-aos-duration="1200"
-      style={{ textAlign: "center", width: "50%" }}
+      style={{ textAlign: "center", width: width ? width : "50%" }}
     >
       <h3>Clientes con menos de 10 ventas</h3>
       <DivContainerCardsVendedores

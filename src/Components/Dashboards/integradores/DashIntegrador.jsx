@@ -31,7 +31,7 @@ const DashIntegrador = ({ clientes, role, darkMode }) => {
 
   return (
     <Cards
-      style={{ marginTop: "20px", width: "50%" }}
+      style={{ width: "40%", height: "120px", marginTop: "80px" }}
       modo={darkMode ? "dark" : ""}
     >
       <h2 style={{ margin: 0 }} data-aos="fade-right" data-aos-duration="1200">
