@@ -13,7 +13,6 @@ import getReports from "../../../Hooks/useGetRepors";
 import { CircularProgress } from "@mui/material";
 import { sendEmail } from "../../../services/senEmailReports";
 import { useDispatch, useSelector } from "react-redux";
-import DashProspects from "../DashProspects";
 import DatosProspects from "../masDelivery/DatosProspects";
 
 const AdminDash = ({ clientes, darkMode, prospects }) => {

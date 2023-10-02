@@ -31,7 +31,17 @@ const filterClients = (
     }
 
     if (dateStart && dateEnd) {
-      const clientDate = new Date(cliente.fechaSolicitud);
+      let clientDate;
+      if (
+        estado === "Integrado" ||
+        estado === "Despachado" ||
+        estado === "Testeo" ||
+        estado === "Configuracion"
+      ) {
+        clientDate = new Date(cliente[`fecha${estado}`]);
+      } else {
+        clientDate = new Date(cliente.fechaSolicitud);
+      }
       const dateDesde = new Date(dateStart);
       const dateHasta = new Date(dateEnd);
 
@@ -40,6 +50,7 @@ const filterClients = (
 
     return matchesVendedor && matchesEstado && matchesFecha && matchesNombre;
   });
+  console.log(filteredClients);
   if (filteredClients.length === 0) {
     dispatch(openAlert({ motivo: "No hay resultados", estado: "error" }));
     dispatch(filters([]));
