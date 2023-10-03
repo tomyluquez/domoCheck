@@ -138,7 +138,7 @@ const EstadoIntegracion = ({ cliente }) => {
               borde={colorLetra}
               onClick={() => handleModal("Detener integracion")}
             >
-              Detener integracion
+              Stand By
             </ButtonCustom>
           )}
         {(cliente.estado === "No contesta" ||
