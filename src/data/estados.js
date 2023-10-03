@@ -2,14 +2,15 @@ import { filterByVendedorAndState } from "../services/filteredClients";
 import { stateColors } from "./colors";
 
 export const estados = [
-  { value: "Pendiente", descripcion: "Pendiente" },
-  { value: "No contesta", descripcion: "No contesta" },
-  { value: "No lo quiere", descripcion: "No lo quiere" },
+  { value: "Configuracion", descripcion: "Configuracion" },
+  { value: "Despachado", descripcion: "Despachado" },
   { value: "Faltan datos", descripcion: "Faltan datos" },
   { value: "Integrado", descripcion: "Integrado" },
-  { value: "Despachado", descripcion: "Despachado" },
+  { value: "No contesta", descripcion: "No contesta" },
+  { value: "No lo quiere", descripcion: "No lo quiere" },
+  { value: "Pendiente", descripcion: "Pendiente" },
+  { value: "StandBy", descripcion: "StandBy" },
   { value: "Testeo", descripcion: "Testeo" },
-  { value: "Configuracion", descripcion: "Configuracion" },
 ];
 
 export const StateDashVendedor = (clientes, vendedor) => {

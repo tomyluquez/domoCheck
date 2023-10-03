@@ -43,10 +43,7 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
   const actividad = cliente.actividades.filter(
     (actividad) => actividad._id === idAct
   )[0];
-  const { opciones, opcionesInteres } = getOpcionesActividad(
-    actividad,
-    cliente
-  );
+  const { opciones, opcionesInteres } = getOpcionesActividad(actividad);
   const [isLoading, setIsLoading] = useState(false);
   const disabled =
     (data.resultado !== "Entregado" &&

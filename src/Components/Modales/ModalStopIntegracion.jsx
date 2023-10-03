@@ -43,7 +43,7 @@ const ModalStopIntegracion = ({ clientes, idClient, users }) => {
     });
     await mutationclient.mutateAsync({
       id: cliente._id,
-      estado: "No contesta",
+      estado: "StandBy",
       userName,
     });
     const bodyNotifi = bodyNotification(

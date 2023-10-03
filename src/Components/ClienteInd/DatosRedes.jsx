@@ -6,15 +6,21 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "@mui/material";
 
+const hasLinkIg = (link = null) => {
+  if (!link) return null;
+
+  const urlInstagram = link.includes("www.instagram.com")
+    ? link
+    : "https://instagram.com/" + link;
+  return urlInstagram;
+};
+
 const DatosRedes = ({ cliente }) => {
+  const urlInstagram = hasLinkIg(cliente.redes?.instagram);
   return (
     <div className="flex" style={{ justifyContent: "start", gap: "20px" }}>
       {cliente.redes && cliente.redes.instagram && (
-        <a
-          href={`https://www.instagram.com/${cliente.redes.instagram}`}
-          target="blank"
-          style={{ color: "inherit" }}
-        >
+        <a href={urlInstagram} target="blank" style={{ color: "inherit" }}>
           <Tooltip title="Instagram del cliente">
             <FontAwesomeIcon icon={faInstagram} />
           </Tooltip>

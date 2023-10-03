@@ -4,27 +4,27 @@ const ordenarActividades = (actividades, orden, ordenType, tipo) => {
     const actividadesOrdenadas = actividades.filter((actividad) => {
       const actividadDate = new Date(actividad.actividad.proximoContacto);
       if (orden === 1) {
+        console.log(actividadDate);
         return (
-          actividadDate.getFullYear() <= today.getFullYear() &&
-          actividadDate.getMonth() <= today.getMonth() &&
-          actividadDate.getDate() <= today.getDate() &&
-          actividad.cliente.estado !== "No lo quiere"
+          actividadDate <= today &&
+          actividad.cliente.estado !== "No lo quiere" &&
+          actividad.cliente.estado !== "StandBy"
         );
       }
       if (orden === 2) {
         return (
-          actividadDate.getFullYear() <= today.getFullYear() &&
-          actividadDate.getMonth() <= today.getMonth() &&
-          actividadDate.getDate() < today.getDate() &&
-          actividad.cliente.estado !== "No lo quiere"
+          actividadDate.getTime() < today.getTime() && // Compara las fechas y horas completas
+          actividad.cliente.estado !== "No lo quiere" &&
+          actividad.cliente.estado !== "StandBy"
         );
       }
       if (orden === 3) {
         return (
-          actividadDate.getFullYear() === today.getFullYear() &&
-          actividadDate.getMonth() === today.getMonth() &&
-          actividadDate.getDate() === today.getDate() &&
-          actividad.cliente.estado !== "No lo quiere"
+          actividadDate.getUTCFullYear() === today.getUTCFullYear() &&
+          actividadDate.getUTCMonth() === today.getUTCMonth() &&
+          actividadDate.getUTCDate() === today.getUTCDate() &&
+          actividad.cliente.estado !== "No lo quiere" &&
+          actividad.cliente.estado !== "StandBy"
         );
       }
       if (orden === 4) {
@@ -32,11 +32,15 @@ const ordenarActividades = (actividades, orden, ordenType, tipo) => {
           actividadDate.getFullYear() >= today.getFullYear() &&
           actividadDate.getMonth() >= today.getMonth() &&
           actividadDate.getDate() >= today.getDate() &&
-          actividad.cliente.estado !== "No lo quiere"
+          actividad.cliente.estado !== "No lo quiere" &&
+          actividad.cliente.estado !== "StandBy"
         );
       }
       if (orden === 5) {
-        return actividad.cliente.estado !== "No lo quiere";
+        return (
+          actividad.cliente.estado !== "No lo quiere" &&
+          actividad.cliente.estado !== "StandBy"
+        );
       } // orden === 5: Todas las actividades
     });
     if (ordenType === 0) {

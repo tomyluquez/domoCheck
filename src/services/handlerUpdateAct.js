@@ -18,7 +18,7 @@ const handlerUpdateAct = async (props) => {
     userName,
     mutationDatos,
   } = props;
-
+  console.log(data.resultado);
   try {
     const hito = getHiyto(actividad, data.resultado, cliente);
     let tipo = actividad.dato;
@@ -39,6 +39,14 @@ const handlerUpdateAct = async (props) => {
       await mutationclient.mutateAsync({
         id: cliente._id,
         interes: data.interes,
+        userName,
+      });
+    }
+
+    if (data.resultado === "StandBy") {
+      await mutationclient.mutateAsync({
+        id: cliente._id,
+        estado: data.resultado,
         userName,
       });
     }
@@ -114,7 +122,7 @@ const handlerUpdateAct = async (props) => {
           : "1"
       )
     );
-    navigate(`/clientes/${cliente._id}`);
+    navigate(`/Actividades`);
   } catch (error) {
     // Manejo de errores
   }

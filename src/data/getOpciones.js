@@ -1,4 +1,4 @@
-export const getOpcionesActividad = (actividad, cliente) => {
+export const getOpcionesActividad = (actividad) => {
   let opciones = [];
   const opcionesInteres = [
     {
@@ -22,22 +22,22 @@ export const getOpcionesActividad = (actividad, cliente) => {
     opciones = [
       {
         value: "Entregado",
-        descripcion: `${cliente.nombreLocal} contactado`,
+        descripcion: `Contactado`,
       },
       {
         value: "No contesta",
-        descripcion: `${cliente.nombreLocal} no contesta`,
+        descripcion: `No contesta`,
       },
       {
         value: "No lo quiere",
-        descripcion: `${cliente.nombreLocal} cancelo la integracion`,
+        descripcion: `Cancelo la integracion`,
       },
     ];
   } else if (actividad.dato === "Contactar prospecto") {
     opciones = [
       {
         value: "Entregado",
-        descripcion: `${cliente.nombreLocal} acepto la intergacion`,
+        descripcion: `Acepto la intergacion`,
       },
       {
         value: "Seguimiento",
@@ -45,18 +45,22 @@ export const getOpcionesActividad = (actividad, cliente) => {
       },
       {
         value: "No lo quiere",
-        descripcion: `${cliente.nombreLocal} no lo quiere`,
+        descripcion: `No lo quiere`,
       },
     ];
   } else {
     opciones = [
       {
         value: "Entregado",
-        descripcion: `${cliente.nombreLocal} entrego ${tipo}`,
+        descripcion: `Entrego ${tipo}`,
       },
       {
         value: "Aplazado",
-        descripcion: `${cliente.nombreLocal} aun no entrego ${tipo}`,
+        descripcion: `Aun no entrego ${tipo}`,
+      },
+      {
+        value: "StandBy",
+        descripcion: "Stand by",
       },
     ];
   }

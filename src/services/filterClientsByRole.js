@@ -7,6 +7,7 @@ const filterClientByRole = (clientes, role) => {
           cliente.estado === "Faltan datos" ||
           cliente.estado === "No contesta" ||
           cliente.estado === "No lo quiere" ||
+          cliente.estado === "StandBy" ||
           cliente.estado === "Integrado"
       )
       .sort((a, b) => {
@@ -65,6 +66,7 @@ const filterClientByRole = (clientes, role) => {
         (cliente) =>
           cliente.estado === "Integrado" ||
           cliente.estado === "Testeo" ||
+          cliente.estado === "StandBy" ||
           cliente.estado === "Configuracion"
       )
       .sort((a, b) => {

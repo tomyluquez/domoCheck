@@ -12,6 +12,7 @@ const tabPanels = (cliente, hitos) => {
     cliente.estado !== "Pendiente" &&
     cliente.estado !== "No lo quiere" &&
     cliente.estado !== "Faltan datos" &&
+    cliente.estado !== "StandBy" &&
     cliente.estado !== "No contesta";
   return [
     {

@@ -4,6 +4,7 @@ export const stateColors = {
   "No contesta": "#FFD6A5",
   "No lo quiere": "#FF6666",
   "Faltan datos": "#FFFEC4",
+  StandBy: "#8062D6",
   Solicitado: "#FFFEC4",
   Seguimiento: "#FFD6A5",
   Despachado: "#4E6E81",
@@ -11,8 +12,8 @@ export const stateColors = {
   Integrado: "#CBFFA9",
   Entregado: "#CBFFA9",
   Cumplida: "#CBFFA9",
-  Vencida: "#FFD6A5",
-  Peligro: "#FF9B9B",
+  Peligro: "#D80032",
+  Vencida: "#FF9B9B",
   Testeo: "#898121",
   Configuracion: "#E7B10A",
 };

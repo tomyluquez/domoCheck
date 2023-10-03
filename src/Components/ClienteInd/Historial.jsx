@@ -13,7 +13,9 @@ const Historial = ({ cliente }) => {
   useEffect(() => {
     if (orden === 1)
       setActPend(
-        cliente.estado !== "No lo quiere" ? actividadesPendientes : []
+        cliente.estado !== "No lo quiere" && cliente.estado !== "StandBy"
+          ? actividadesPendientes
+          : []
       );
     if (orden === 2) setActPend(actividadesCumplidas);
     if (orden === 3) setActPend(actividadesCliente);

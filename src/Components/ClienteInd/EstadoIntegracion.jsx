@@ -128,7 +128,8 @@ const EstadoIntegracion = ({ cliente }) => {
           </ButtonCustom>
         )}
         {cliente.estado !== "No lo quiere" &&
-          cliente.estado !== "No contesta" && (
+          cliente.estado !== "No contesta" &&
+          cliente.estado !== "StandBy" && (
             <ButtonCustom
               width="80px"
               fondo={stateColors["No contesta"]}
@@ -137,11 +138,12 @@ const EstadoIntegracion = ({ cliente }) => {
               borde={colorLetra}
               onClick={() => handleModal("Detener integracion")}
             >
-              No contesta
+              Detener integracion
             </ButtonCustom>
           )}
         {(cliente.estado === "No contesta" ||
-          cliente.estado === "No lo quiere") && (
+          cliente.estado === "No lo quiere" ||
+          cliente.estado === "StandBy") && (
           <ButtonCustom
             width="80px"
             fondo={hoverColors["Despachado"]}
