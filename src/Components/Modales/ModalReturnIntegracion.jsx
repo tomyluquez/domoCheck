@@ -43,7 +43,15 @@ const ModalReturnIntegracion = ({ clientes, idClient, users }) => {
     });
     await mutationclient.mutateAsync({
       id: cliente._id,
-      estado: "Faltan datos",
+      estado: cliente.fechaIntegracion
+        ? "Integrado"
+        : cliente.fechaConfiguracion
+        ? "Configuracion"
+        : cliente.fechaTesteo
+        ? "Testeo"
+        : cliente.fechaDespachado
+        ? "Despachado"
+        : "Faltan datos",
       userName,
     });
     const bodyNotifi = bodyNotification(

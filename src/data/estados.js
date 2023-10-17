@@ -40,11 +40,10 @@ export const StateDashVendedor = (clientes, vendedor) => {
       fecha: "fechaDespachado",
     },
     {
-      estado: "No contesta",
-      cantidad: filterByVendedorAndState(clientes, vendedor, "No contesta")
-        .length,
-      clientes: filterByVendedorAndState(clientes, vendedor, "No contesta"),
-      color: stateColors["No contesta"],
+      estado: "StandBy",
+      cantidad: filterByVendedorAndState(clientes, vendedor, "StandBy").length,
+      clientes: filterByVendedorAndState(clientes, vendedor, "StandBy"),
+      color: stateColors["StandBy"],
       fecha: "fechaModificacion",
     },
     {

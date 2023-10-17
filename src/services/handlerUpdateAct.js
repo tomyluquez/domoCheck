@@ -18,7 +18,6 @@ const handlerUpdateAct = async (props) => {
     userName,
     mutationDatos,
   } = props;
-  console.log(data.resultado);
   try {
     const hito = getHiyto(actividad, data.resultado, cliente);
     let tipo = actividad.dato;

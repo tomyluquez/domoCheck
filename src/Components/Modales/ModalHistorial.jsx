@@ -9,6 +9,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { useSelector, useDispatch } from "react-redux";
+import { ButtonCustom } from "../../Styles/ButtonStyles";
+import { openModal } from "../../redux/slices/modal";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -22,9 +25,20 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 const ModalHistorial = ({ clientes, idClient, open, setOpen }) => {
   const cliente = filterById(clientes, idClient);
   const hitosIndividual = hitosInd(cliente);
+  const role = useSelector((state) => state.user.role);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleModal = (motivo) => {
+    dispatch(
+      openModal({
+        type: motivo,
+        id: cliente._id,
+      })
+    );
   };
 
   return (
@@ -52,7 +66,18 @@ const ModalHistorial = ({ clientes, idClient, open, setOpen }) => {
         <DialogContent dividers>
           <TinmeLineClient hitos={hitosIndividual} />
         </DialogContent>
-        <DialogActions>
+        <DialogActions
+          className="flex"
+          style={{ justifyContent: "space-between" }}
+        >
+          {role === "vendedor" && (
+            <ButtonCustom
+              width="100px"
+              onClick={() => handleModal("Retomar integracion")}
+            >
+              Retomar Integracion
+            </ButtonCustom>
+          )}
           <Button autoFocus onClick={handleClose}>
             Cerrar
           </Button>
