@@ -70,7 +70,7 @@ const ModalHistorial = ({ clientes, idClient, open, setOpen }) => {
           className="flex"
           style={{ justifyContent: "space-between" }}
         >
-          {role === "vendedor" && (
+          {role === "vendedor" && cliente.estado === "StandBy" && (
             <ButtonCustom
               width="100px"
               onClick={() => handleModal("Retomar integracion")}
