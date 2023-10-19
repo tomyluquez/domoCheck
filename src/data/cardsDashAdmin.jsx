@@ -24,10 +24,17 @@ import filterByAct from "../services/filterByAct";
 import ordenarActividades from "../services/ordenarActividades";
 import filterClients from "../services/filteredClients";
 
-export const dataDashAdmin = (clientes, vendedor, dispatch) => {
+export const dataDashAdmin = (clientes, vendedor, dispatch, prospects) => {
   const { actividadesPendientes } = filterByAct(clientes);
+  const { actividadesPendientes: actPendProspects } = filterByAct(prospects);
   const actividadesOrdenadasPend = ordenarActividades(
     actividadesPendientes,
+    1,
+    0,
+    "Pendientes"
+  );
+  const actividadesOrdenadasPenProspects = ordenarActividades(
+    actPendProspects,
     1,
     0,
     "Pendientes"
@@ -160,7 +167,9 @@ export const dataDashAdmin = (clientes, vendedor, dispatch) => {
     {
       title: "Actividades sin cumplir",
       icon: <EditCalendarOutlinedIcon style={{ color: "#fafafa" }} />,
-      data: actividadesOrdenadasPend.length,
+      data:
+        actividadesOrdenadasPend.length +
+        actividadesOrdenadasPenProspects.length,
       fondo: "#E97777 ",
       letra: "#fafafa",
       role: "comercial",

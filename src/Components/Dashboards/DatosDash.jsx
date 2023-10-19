@@ -10,21 +10,23 @@ import {
 import { dataDashAdmin } from "../../data/cardsDashAdmin";
 import { compararData } from "../../data/comprarData";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Tooltip } from "@mui/material";
 
 const DatosDash = ({ clientes, vendedor, role, darkMode }) => {
   const [data, setData] = useState(false);
+  const prospects = useSelector((state) => state.clientes.prospects);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     const { dashVentas, dashIntegracion } = dataDashAdmin(
       clientes,
       vendedor,
-      dispatch
+      dispatch,
+      prospects
     );
     setData(role === "comercial" ? dashIntegracion : dashVentas);
-  }, [clientes, role, vendedor, dispatch]);
+  }, [clientes, role, vendedor, dispatch, prospects]);
 
   const handleClick = (to, functionDash) => {
     if (vendedor) return;
