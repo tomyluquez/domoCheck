@@ -1,4 +1,5 @@
 import { DivContainer } from "../../Styles/ActividadesStyle";
+// import { getOptionUsers } from "../../services/getOptionUsers";
 import SelectCustom from "../SelectCustom";
 
 const OrdenActividades = ({
@@ -8,12 +9,16 @@ const OrdenActividades = ({
   orderTypeAct,
   ordenType,
   setOrdenType,
+  // usuario,
+  // usuarios,
+  // setOrdenUserType,
 }) => {
+  // const users = usuarios && getOptionUsers(usuarios.data);
   return (
     <DivContainer>
       <span>Ordenar Por:</span>
       <SelectCustom
-        w="20%"
+        w="15%"
         label="Estado"
         value={orden}
         setValue={setOrden}
@@ -21,12 +26,20 @@ const OrdenActividades = ({
       />
       <span>Ordenar Por:</span>
       <SelectCustom
-        w="20%"
+        w="15%"
         label="Tipo"
         value={ordenType}
         setValue={setOrdenType}
         opciones={orderTypeAct}
       />
+      {/* <span>Ordenar Por:</span>
+      <SelectCustom
+        w="15%"
+        label="Usuario"
+        value={usuario}
+        setValue={setOrdenUserType}
+        opciones={users}
+      /> */}
     </DivContainer>
   );
 };

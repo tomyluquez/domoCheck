@@ -11,16 +11,19 @@ import { v4 as uuidv4 } from "uuid";
 import { bodyNotification } from "../../services/getNotifi";
 import Loading from "../Loading";
 import { optionsMtk } from "../../data/getOptionsMtk";
+import { getUserEmail } from "../../services/getMailUser";
+import { sendEmailMarketing } from "../../data/sendMail";
 
 const ModalGenerarAct = ({ clientes, idClient, users }) => {
   const cliente = filterById(clientes, idClient);
   const mutationNewAct = useMutationNewAct();
   const notifiMutation = useCreateNotifi();
   const { isLoading } = mutationNewAct;
+  const userEmail = getUserEmail(users.data.data, cliente.vendedor);
   const [data, setData] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const dispatch = useDispatch();
-  const userName = useSelector((state) => state.user.name);
+  const user = useSelector((state) => state.user);
   const options = optionsMtk(cliente, datosMarketing);
 
   const handleCheckboxChange = (value) => {
@@ -63,21 +66,22 @@ const ModalGenerarAct = ({ clientes, idClient, users }) => {
         proximoContacto: new Date(),
         dato: tipoDato,
         estadoAct: "Pendiente",
-        creador: "Micaela",
+        creador: cliente.vendedor,
       };
       mutationNewAct.mutateAsync({
         id: cliente._id,
         newActPen,
-        userName,
+        userName: user.name,
       });
     });
     const bodyNotifi = bodyNotification(
       "No contesta - Marketing",
       cliente,
       users.data,
-      userName
+      user.name
     );
     notifiMutation.mutate(bodyNotifi);
+    sendEmailMarketing(cliente.vendedor, user.name, cliente, userEmail);
   };
 
   return (

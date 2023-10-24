@@ -39,7 +39,6 @@ export const menuSidebar = (user) => {
     }
     if (
       (user.role === "vendedor" && item.text === "Configuracion") ||
-      (user.role === "vendedor" && item.text === "Actividades") ||
       (user.role === "vendedor" && item.text === "Clientes")
     ) {
       return false;

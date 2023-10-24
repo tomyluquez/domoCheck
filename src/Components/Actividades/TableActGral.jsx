@@ -11,13 +11,18 @@ import { useState } from "react";
 const TableActGral = ({ tipoActividad, actividades }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const role = useSelector((state) => state.user.role);
+  const user = useSelector((state) => state.user);
   const prospects = useSelector((state) => state.clientes.prospects);
   const [showModal, setShowModal] = useState(false);
 
   const handleCellClick = (act) => {
     if (act.actividad.estadoAct !== "Cumplida") {
-      if (role !== "comercial" && role !== "integrador") return;
+      if (
+        user.role !== "comercial" &&
+        user.role !== "integrador" &&
+        user.role !== "vendedor"
+      )
+        return;
 
       let tipo = act.actividad.dato;
       if (act.actividad.dato.includes("Seguimiento")) {

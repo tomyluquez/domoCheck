@@ -99,7 +99,8 @@ function App() {
                         isAllowed={
                           user.role === "admin" ||
                           user.role === "integrador" ||
-                          user.role === "comercial"
+                          user.role === "comercial" ||
+                          user.role === "vendedor"
                         }
                       >
                         <Actividades />

@@ -1,10 +1,10 @@
 const ordenarActividades = (actividades, orden, ordenType, tipo) => {
   const today = new Date();
+  let actividadesPorTipo = [];
   if (tipo === "Pendientes") {
     const actividadesOrdenadas = actividades.filter((actividad) => {
       const actividadDate = new Date(actividad.actividad.proximoContacto);
       if (orden === 1) {
-        console.log(actividadDate);
         return (
           actividadDate <= today &&
           actividad.cliente.estado !== "No lo quiere" &&
@@ -43,10 +43,11 @@ const ordenarActividades = (actividades, orden, ordenType, tipo) => {
         );
       } // orden === 5: Todas las actividades
     });
+
     if (ordenType === 0) {
       return actividadesOrdenadas;
-    } else {
-      const actividadesPorTipo = actividadesOrdenadas.filter((actividad) => {
+    } else if (ordenType !== 0) {
+      actividadesPorTipo = actividadesOrdenadas.filter((actividad) => {
         if (ordenType === 6) {
           return (
             actividad.actividad.dato === "Contactar" ||
@@ -79,6 +80,24 @@ const ordenarActividades = (actividades, orden, ordenType, tipo) => {
       });
       return actividadesPorTipo;
     }
+
+    // let actividadesPorUser = [];
+
+    // if (ordenUserType === "Todos" && actividadesPorTipo.length > 0) {
+    //   return actividadesPorTipo;
+    // } else if (ordenUserType === "Todos" && actividadesPorTipo.length === 0) {
+    //   return actividadesOrdenadas;
+    // } else if (ordenUserType !== "Todos" && actividadesPorTipo.length > 0) {
+    //   actividadesPorUser = actividadesPorTipo.filter((actividad) => {
+    //     return actividad.actividad.creador === ordenUserType;
+    //   });
+    //   return actividadesPorUser;
+    // } else if (ordenUserType !== "Todos" && actividadesPorTipo.length === 0) {
+    //   actividadesPorUser = actividadesPorTipo.filter((actividad) => {
+    //     return actividad.actividad.creador === ordenUserType;
+    //   });
+    //   return actividadesPorUser;
+    // }
   }
 
   if (tipo === "Cumplidas") {

@@ -15,10 +15,11 @@ const Actividades = () => {
   const { data, isLoading } = useGetUsers();
   const [orden, setOrden] = useState(1);
   const [ordenType, setOrdenType] = useState(0);
+  const [ordenUserType, setOrdenUserType] = useState("Todos");
   const [value, setValue] = useState(1);
   const clientes = useSelector((state) => state.clientes.clientes);
   const prospectos = useSelector((state) => state.clientes.prospects);
-  const role = useSelector((state) => state.user.role);
+  const user = useSelector((state) => state.user);
   const [dataActi, setData] = useState({
     dateStart: "",
     dateEnd: "",
@@ -40,6 +41,13 @@ const Actividades = () => {
     0,
     "Cumplidas"
   );
+  const actividadesFiltradas =
+    user.role === "vendedor"
+      ? actividadesOrdenadasPend.filter(
+          (act) => act.actividad.creador === user.vendedor
+        )
+      : actividadesOrdenadasPend;
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -67,7 +75,7 @@ const Actividades = () => {
                 aria-label="lab API tabs example"
               >
                 <Tab key={1} label="Pendientes" value={1} />
-                {role === "admin" && (
+                {user.role === "admin" && (
                   <Tab key={2} label="Cumplidas" value={2} />
                 )}
               </TabList>
@@ -85,7 +93,7 @@ const Actividades = () => {
                   style={{ fontFamily: "poppins" }}
                 >
                   Actividades Pendientes (
-                  {actividadesOrdenadasPend && actividadesOrdenadasPend.length})
+                  {actividadesFiltradas && actividadesFiltradas.length})
                 </Typography>
                 <OrdenActividades
                   orden={orden}
@@ -94,11 +102,14 @@ const Actividades = () => {
                   orderTypeAct={orderTypeAct}
                   ordenType={ordenType}
                   setOrdenType={setOrdenType}
+                  usuario={ordenUserType}
+                  usuarios={data}
+                  setOrdenUserType={setOrdenUserType}
                 />
                 <TableActGral
                   key={`pendientes-${orden}`} // Agregar información adicional a la clave
                   tipoActividad={"Pendientes"}
-                  actividades={actividadesOrdenadasPend}
+                  actividades={actividadesFiltradas}
                 />
               </>
             </TabPanel>
