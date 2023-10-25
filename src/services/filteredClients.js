@@ -50,7 +50,6 @@ const filterClients = (
 
     return matchesVendedor && matchesEstado && matchesFecha && matchesNombre;
   });
-  console.log(filteredClients);
   if (filteredClients.length === 0) {
     dispatch(openAlert({ motivo: "No hay resultados", estado: "error" }));
     dispatch(filters([]));

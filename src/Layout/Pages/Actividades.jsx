@@ -3,13 +3,13 @@ import TableActGral from "../../Components/Actividades/TableActGral";
 import OrdenActividades from "../../Components/Actividades/OrdenActividades";
 import { useState } from "react";
 import filterByAct from "../../services/filterByAct";
-import ordenarActividades from "../../services/ordenarActividades";
 import { useSelector } from "react-redux";
 import { ordenAct, orderTypeAct } from "./../../data/ordenAct";
 import FilterByDate from "../../Components/Actividades/FilterByDate";
 import useGetUsers from "../../Hooks/useGetUsers";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Loading from "./../../Components/Loading";
+import { filterActividades } from "../../services/filterActs";
 
 const Actividades = () => {
   const { data, isLoading } = useGetUsers();
@@ -29,16 +29,18 @@ const Actividades = () => {
     clientes,
     prospectos
   );
-  const actividadesOrdenadasPend = ordenarActividades(
+  const actividadesOrdenadasPend = filterActividades(
     actividadesPendientes,
     orden,
     ordenType,
+    ordenUserType,
     "Pendientes"
   );
-  const actividadesCumplidasPend = ordenarActividades(
+  const actividadesCumplidasPend = filterActividades(
     actividadesCumplidas,
     dataActi,
     0,
+    "Todos",
     "Cumplidas"
   );
   const actividadesFiltradas =
@@ -105,6 +107,7 @@ const Actividades = () => {
                   usuario={ordenUserType}
                   usuarios={data}
                   setOrdenUserType={setOrdenUserType}
+                  userActive={user}
                 />
                 <TableActGral
                   key={`pendientes-${orden}`} // Agregar información adicional a la clave
