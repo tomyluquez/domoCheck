@@ -3,13 +3,14 @@ import OrdenActividades from "../Actividades/OrdenActividades";
 import { ordenHistorial } from "../../data/ordenAct";
 import TableActGral from "../Actividades/TableActGral";
 import actByClient from "../../services/actByClient";
+import { useSelector } from "react-redux";
 
 const Historial = ({ cliente }) => {
   const [orden, setOrden] = useState(cliente.estado !== "No lo quiere" ? 1 : 2);
   const { actividadesCliente, actividadesPendientes, actividadesCumplidas } =
     actByClient(cliente);
   const [actPend, setActPend] = useState(actividadesPendientes);
-
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     if (orden === 1)
       setActPend(
@@ -33,6 +34,7 @@ const Historial = ({ cliente }) => {
         orden={orden}
         setOrden={setOrden}
         ordenAct={ordenHistorial}
+        userActive={user}
       />
       <TableActGral
         tipoActividad={orden === 1 ? "Pendientes" : "Cumplidas"}

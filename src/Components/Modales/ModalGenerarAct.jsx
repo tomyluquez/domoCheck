@@ -12,7 +12,7 @@ import { bodyNotification } from "../../services/getNotifi";
 import Loading from "../Loading";
 import { optionsMtk } from "../../data/getOptionsMtk";
 import { getUserEmail } from "../../services/getMailUser";
-import { sendEmailMarketing } from "../../data/sendMail";
+import { sendEmailActs } from "../../data/sendMail";
 
 const ModalGenerarAct = ({ clientes, idClient, users }) => {
   const cliente = filterById(clientes, idClient);
@@ -81,7 +81,7 @@ const ModalGenerarAct = ({ clientes, idClient, users }) => {
       user.name
     );
     notifiMutation.mutate(bodyNotifi);
-    sendEmailMarketing(cliente.vendedor, user.name, cliente, userEmail);
+    sendEmailActs(cliente.vendedor, user.name, cliente, userEmail);
   };
 
   return (

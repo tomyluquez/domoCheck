@@ -33,7 +33,8 @@ const OrdenActividades = ({
         setValue={setOrdenType}
         opciones={orderTypeAct}
       />
-      {(userActive.role === "admin" || userActive.role === "integrador") && (
+      {((userActive !== undefined && userActive.role === "admin") ||
+        userActive.role === "integrador") && (
         <>
           <span>Ordenar Por:</span>
           <SelectCustom

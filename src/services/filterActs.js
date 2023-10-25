@@ -13,19 +13,24 @@ export const filterActividades = (
       let matchesDate = true;
       let matchesTipoActividad = true;
       let matchesUser = true;
+      const actValida =
+        (actividad.cliente.estado === "StandBy" &&
+          actividad.actividad.dato === "StandBy") ||
+        (actividad.cliente.estado !== "StandBy" &&
+          actividad.actividad.dato !== "StandBy");
 
       if (orden === 1) {
         matchesDate =
           actividadDate <= today &&
           actividad.cliente.estado !== "No lo quiere" &&
-          actividad.cliente.estado !== "StandBy";
+          actValida;
       }
 
       if (orden === 2) {
         matchesDate =
           actividadDate.getTime() < today.getTime() && // Compara las fechas y horas completas
           actividad.cliente.estado !== "No lo quiere" &&
-          actividad.cliente.estado !== "StandBy";
+          actValida;
       }
 
       if (orden === 3) {
@@ -34,7 +39,7 @@ export const filterActividades = (
           actividadDate.getUTCMonth() === today.getUTCMonth() &&
           actividadDate.getUTCDate() === today.getUTCDate() &&
           actividad.cliente.estado !== "No lo quiere" &&
-          actividad.cliente.estado !== "StandBy";
+          actValida;
       }
       if (orden === 4) {
         matchesDate =
@@ -42,12 +47,10 @@ export const filterActividades = (
           actividadDate.getMonth() >= today.getMonth() &&
           actividadDate.getDate() >= today.getDate() &&
           actividad.cliente.estado !== "No lo quiere" &&
-          actividad.cliente.estado !== "StandBy";
+          actValida;
       }
       if (orden === 5) {
-        matchesDate =
-          actividad.cliente.estado !== "No lo quiere" &&
-          actividad.cliente.estado !== "StandBy";
+        matchesDate = actividad.cliente.estado !== "No lo quiere" && actValida;
       }
 
       if (ordenType === 6) {

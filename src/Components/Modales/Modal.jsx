@@ -129,6 +129,7 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
           )}
           {datoInd && (
             <ModalActividad
+              users={users}
               clientes={clientes}
               idClient={idClient}
               idAct={idAct}
@@ -136,6 +137,7 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
           )}
           {datosMkt && (
             <ModalActividad
+              users={users}
               clientes={clientes}
               idClient={idClient}
               idAct={idAct}
@@ -143,6 +145,7 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
           )}
           {isOpen === "Contactar" && (
             <ModalActividad
+              users={users}
               clientes={clientes}
               idClient={idClient}
               idAct={idAct}
@@ -156,7 +159,16 @@ export default function Modal({ isOpen, reference, idClient, idAct }) {
           )}
           {isOpen === "Contactar prospecto" && (
             <ModalActividad
+              users={users}
               clientes={prospects}
+              idClient={idClient}
+              idAct={idAct}
+            />
+          )}
+          {isOpen === "StandBy" && (
+            <ModalActividad
+              users={users}
+              clientes={clientes}
               idClient={idClient}
               idAct={idAct}
             />

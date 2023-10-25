@@ -41,6 +41,7 @@ const actByClient = (cliente) => {
       new Date(b.actividad.proximoContacto) -
       new Date(a.actividad.proximoContacto)
   );
+  console.log(actividadesPendientes);
 
   return {
     actividadesCliente,

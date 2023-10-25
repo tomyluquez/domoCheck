@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import getHiyto from "./getHito";
 import { changeValue } from "../redux/slices/value";
+import { sendEmailActs } from "../data/sendMail";
+import { retomarIntegracion } from "./retomarIntegracion";
 
 const handlerUpdateAct = async (props) => {
   const {
@@ -15,8 +17,11 @@ const handlerUpdateAct = async (props) => {
     navigate,
     setIsLoading,
     dispatch,
-    userName,
+    user,
+    userEmail,
     mutationDatos,
+    users,
+    notifiMutation,
   } = props;
   try {
     const hito = getHiyto(actividad, data.resultado, cliente);
@@ -31,14 +36,14 @@ const handlerUpdateAct = async (props) => {
       estado: "Cumplida",
       resultado: hito,
       fechaCumplimiento: new Date(),
-      userName,
+      userName: user.name,
     });
 
     if (data.interes !== "") {
       await mutationclient.mutateAsync({
         id: cliente._id,
         interes: data.interes,
-        userName,
+        userName: user.name,
       });
     }
 
@@ -46,8 +51,20 @@ const handlerUpdateAct = async (props) => {
       await mutationclient.mutateAsync({
         id: cliente._id,
         estado: data.resultado,
-        userName,
+        userName: user.name,
       });
+    }
+
+    if (data.resultado === "Responde") {
+      retomarIntegracion(
+        cliente,
+        user.name,
+        mutationNewAct,
+        mutationclient,
+        users,
+        notifiMutation,
+        dispatch
+      );
     }
 
     if (actividad.dato === "Contactar") {
@@ -55,7 +72,7 @@ const handlerUpdateAct = async (props) => {
         id: cliente._id,
         estado:
           data.resultado === "Entregado" ? "Faltan datos" : data.resultado,
-        userName,
+        userName: user.name,
       });
     } else if (
       actividad.dato !== "Contactar" &&
@@ -67,7 +84,7 @@ const handlerUpdateAct = async (props) => {
         tipoDato: actividad.dato,
         estadoDato: "Ok",
         comentarioDato: "",
-        userName,
+        userName: user.name,
       };
       mutationDatos.mutate(datos);
     } else {
@@ -80,7 +97,7 @@ const handlerUpdateAct = async (props) => {
               ? "Entregado"
               : "Entregado no procesado"
             : "Solicitado",
-        userName,
+        userName: user.name,
       });
     }
 
@@ -103,15 +120,34 @@ const handlerUpdateAct = async (props) => {
             ? `${cliente.nombreLocal} entrego ${tipo}`
             : "",
         fechaCumplimiento: new Date(),
-        creador: userName,
+        creador: user.role === "vendedor" ? user.vendedor : user.name,
       };
 
       await mutationNewAct.mutateAsync({
         id: cliente._id,
         newActOk,
-        userName,
+        userName: user.name,
       });
+    } else if (data.resultado === "StandBy") {
+      const newActPen = {
+        _id: uuidv4(),
+        actividad: `Contactar a ${cliente.nombreLocal} ya que no responde`,
+        fecha: new Date(),
+        proximoContacto: data.proximoContacto || new Date(),
+        dato: "StandBy",
+        estadoAct: "Pendiente",
+        creador: cliente.vendedor,
+      };
+
+      await mutationNewAct.mutateAsync({
+        id: cliente._id,
+        newActPen,
+        userName: user.name,
+      });
+
+      sendEmailActs(cliente.vendedor, user.name, cliente, userEmail);
     }
+
     setIsLoading(false);
     dispatch(
       changeValue(

@@ -22,18 +22,22 @@ import useUpdateDatosDesp from "../../Hooks/useUpdateDatosDesp";
 import useUpdateProspect from "../../Hooks/useUpdateProspect";
 import { updateProspects } from "../../services/updateProspects";
 import ModalHistorial from "./ModalHistorial";
+import { getUserEmail } from "../../services/getMailUser";
+import useCreateNotifi from "../../Hooks/useCreateNotifi";
 
-const ModalActividad = ({ clientes, idClient, idAct }) => {
+const ModalActividad = ({ clientes, idClient, idAct, users }) => {
+  const cliente = filterById(clientes, idClient);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-  const userName = useSelector((state) => state.user.name);
+  const user = useSelector((state) => state.user);
   const mutationAct = useMutatioAct();
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
   const mutationDatos = useUpdateDatosDesp();
   const updateProspect = useUpdateProspect();
+  const notifiMutation = useCreateNotifi();
   const navigate = useNavigate();
-  const cliente = filterById(clientes, idClient);
+  const userEmail = getUserEmail(users.data.data, cliente.vendedor);
   const [data, setData] = useState({
     resultado: "",
     proximoContacto: "",
@@ -64,7 +68,7 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
         mutationAct,
         mutationNewAct,
         data.resultado,
-        userName,
+        user,
         dispatch,
         data.proximoContacto,
         setIsLoading,
@@ -87,8 +91,11 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
       navigate,
       setIsLoading,
       dispatch,
-      userName,
+      user,
+      userEmail,
       mutationDatos,
+      users,
+      notifiMutation,
     };
     handlerUpdateAct(props);
   };
@@ -107,9 +114,10 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
         <span>{actividad.actividad}</span>
       </div>
 
-      {data.resultado !== "Entregado" && (
-        <>
-          {data.resultado !== "No lo quiere" && (
+      <>
+        {data.resultado !== "No lo quiere" &&
+          data.resultado !== "Entregado" &&
+          data.resultado !== "Responde" && (
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DesktopDateTimePicker
                 sx={{ minWidth: 180, width: "60%" }}
@@ -120,12 +128,9 @@ const ModalActividad = ({ clientes, idClient, idAct }) => {
               />
             </LocalizationProvider>
           )}
-          <TexTarea
-            obs={data.obs}
-            setObs={(e) => setData({ ...data, obs: e })}
-          />
-        </>
-      )}
+        <TexTarea obs={data.obs} setObs={(e) => setData({ ...data, obs: e })} />
+      </>
+
       <SelectCustom
         w="45%"
         label="Interes"

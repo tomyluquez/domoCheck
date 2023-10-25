@@ -8,7 +8,7 @@ export const updateProspects = async (
   mutationAct,
   mutationNewAct,
   resultado,
-  userName,
+  user,
   dispatch,
   proximoContacto,
   setIsLoading,
@@ -31,7 +31,7 @@ export const updateProspects = async (
     resultado:
       resultado === "Entregado" ? "Cliente acepto la integracion" : obs,
     fechaCumplimiento: new Date(),
-    userName,
+    userName: user.name,
     prospect: true,
   });
 
@@ -43,13 +43,13 @@ export const updateProspects = async (
       proximoContacto: proximoContacto,
       dato: actividad.dato,
       estadoAct: "Pendiente",
-      creador: userName,
+      creador: user.name,
     };
 
     await mutationNewAct.mutateAsync({
       id: prospect._id,
       newActPen,
-      userName,
+      userName: user.name,
       prospect: true,
     });
   }

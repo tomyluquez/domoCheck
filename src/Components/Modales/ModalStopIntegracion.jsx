@@ -12,10 +12,13 @@ import { colorLetra } from "../../Styles/GeneralStyles";
 import Loading from "../Loading";
 import useCreateNotifi from "../../Hooks/useCreateNotifi";
 import { bodyNotification } from "../../services/getNotifi";
+import { sendEmailActs } from "../../data/sendMail";
+import { getUserEmail } from "../../services/getMailUser";
 
 const ModalStopIntegracion = ({ clientes, idClient, users }) => {
   const cliente = filterById(clientes, idClient);
   const [obs, setObs] = useState(null);
+  const userEmail = getUserEmail(users.data.data, cliente.vendedor);
   const mutationclient = useMutations();
   const mutationNewAct = useMutationNewAct();
   const dispatch = useDispatch();
@@ -31,16 +34,32 @@ const ModalStopIntegracion = ({ clientes, idClient, users }) => {
       proximoContacto: new Date(),
       dato: "Detener integracion",
       estadoAct: "Cumplida",
-      resultado: "Cliente no contesta",
+      resultado: obs,
       fechaCumplimiento: new Date(),
       cumplidor: userName,
     };
-
     await mutationNewAct.mutateAsync({
       id: cliente._id,
       newActOk,
       userName,
     });
+
+    const newActPen = {
+      _id: uuidv4(),
+      actividad: obs,
+      fecha: new Date(),
+      proximoContacto: new Date(),
+      dato: "StandBy",
+      estadoAct: "Pendiente",
+      creador: cliente.vendedor,
+    };
+
+    await mutationNewAct.mutateAsync({
+      id: cliente._id,
+      newActPen,
+      userName,
+    });
+
     await mutationclient.mutateAsync({
       id: cliente._id,
       estado: "StandBy",
@@ -53,6 +72,7 @@ const ModalStopIntegracion = ({ clientes, idClient, users }) => {
       userName
     );
     notifiMutation.mutate(bodyNotifi);
+    sendEmailActs(cliente.vendedor, userName, cliente, userEmail);
     dispatch(closeModal());
   };
 

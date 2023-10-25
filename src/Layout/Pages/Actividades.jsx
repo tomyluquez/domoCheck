@@ -49,6 +49,11 @@ const Actividades = () => {
           (act) => act.actividad.creador === user.vendedor
         )
       : actividadesOrdenadasPend;
+  console.log(
+    actividadesOrdenadasPend.filter(
+      (act) => act.cliente.nombreLocal === "Santa Burger 2"
+    )
+  );
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

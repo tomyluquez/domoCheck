@@ -48,6 +48,21 @@ export const getOpcionesActividad = (actividad) => {
         descripcion: `No lo quiere`,
       },
     ];
+  } else if (actividad.dato === "StandBy") {
+    opciones = [
+      {
+        value: "Responde",
+        descripcion: "Dio respuesta",
+      },
+      {
+        value: "Seguimiento",
+        descripcion: `Seguimiento`,
+      },
+      {
+        value: "No lo quiere",
+        descripcion: `No lo quiere`,
+      },
+    ];
   } else {
     opciones = [
       {
