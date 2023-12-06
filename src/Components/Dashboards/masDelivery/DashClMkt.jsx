@@ -20,8 +20,8 @@ const DashClMkt = ({ clientes, darkMode, width }) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-    <DivContainerCardsVendedores style={{ width: width, marginTop: "80px" }}>
-      <h5>Clientes pasados por Marketing a Integradores</h5>
+    <DivContainerCardsVendedores width={width}>
+      <h5>Clientes pasados por Marketing a Integ1radores</h5>
       {clientsWhitActividad &&
         clientsWhitActividad.map((dato, i) => (
           <Accordion

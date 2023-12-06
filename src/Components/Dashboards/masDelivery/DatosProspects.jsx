@@ -28,7 +28,7 @@ const DatosProspects = ({ clientes, darkMode, width }) => {
           setOpen={setShowModal}
         />
       )}
-      <DivContainerCardsVendedores style={{ width: width }} height="300px">
+      <DivContainerCardsVendedores width={width} height="300px">
         <h5>Prospectos Cargados - {clientes.length}</h5>
         {data &&
           data.map((dato, i) => (

@@ -14,7 +14,11 @@ export const DivContainerUsers = styled.div`
   margin-top: 20px;
 `;
 
-export const CardsAdmin = styled(Cards)``;
+export const CardsAdmin = styled(Cards)`
+  @media screen and (max-width: 700px) {
+    width: 100% !important;
+  }
+`;
 
 export const DivIcons = styled.div`
   display: flex;

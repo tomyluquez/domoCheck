@@ -1,5 +1,6 @@
 import {
   DivContainerCards,
+  DivContainerCardsRow,
   DivTareas,
 } from "../../../Styles/Pages/DashboardStyles";
 import { vendedores } from "../../../data/vendedores";
@@ -36,7 +37,7 @@ const AdminDash = ({ clientes, darkMode, prospects }) => {
   };
   return (
     <>
-      <ButtonCustom onClick={handlerClick}>
+      <ButtonCustom onClick={handlerClick} style={{ marginTop: "20px" }}>
         {isLoading ? <CircularProgress /> : "Enviar Reporte Semanal"}
       </ButtonCustom>
       <DivTareas
@@ -46,24 +47,24 @@ const AdminDash = ({ clientes, darkMode, prospects }) => {
       >
         <ActCumplidasDash clientes={clientes} />
         <AdminEstadoCl clientes={clientes} darkMode={darkMode} />
-        <DivContainerCards style={{ width: "45%" }}>
-          {vendedores.map((vendedor, i) => (
-            <DatosDashVendedor
-              key={i}
-              clientes={clientes}
-              vendedor={vendedor.value}
-            />
-          ))}
-        </DivContainerCards>
-        <div style={{ width: "45%" }}>
-          <DashClMkt clientes={clientes} darkMode={darkMode} width="100%" />
+        <DivContainerCardsRow>
+          <DashClMkt clientes={clientes} darkMode={darkMode} width="40%" />
           <DatosProspects
             clientes={prospects}
             darkMode={darkMode}
-            width="100%"
+            width="40%"
           />
-        </div>
+        </DivContainerCardsRow>
       </DivTareas>
+      <DivContainerCards style={{ width: "100%" }}>
+        {vendedores.map((vendedor, i) => (
+          <DatosDashVendedor
+            key={i}
+            clientes={clientes}
+            vendedor={vendedor.value}
+          />
+        ))}
+      </DivContainerCards>
     </>
   );
 };

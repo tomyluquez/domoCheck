@@ -12,6 +12,19 @@ export const DivContainerCards = styled.div`
   gap: 20px;
 `;
 
+export const DivContainerCardsRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  margin-top: 50px;
+  gap: 20px;
+  width: 100%;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
+`;
+
 export const DivContainerCardsUp = styled.div`
   display: flex;
   justify-content: center;
@@ -147,7 +160,7 @@ export const CardVendedores = styled(Cards)`
 `;
 
 export const DivContainerCardsVendedores = styled.div`
-  width: 95%;
+  width: ${(props) => (props.width ? props.width : "95%")};
   min-height: ${(props) => (props.height ? props.height : "600px")};
   display: flex;
   gap: 20px;
@@ -155,6 +168,9 @@ export const DivContainerCardsVendedores = styled.div`
   margin-top: 20px;
   justify-content: start;
   align-items: center;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 export const AccordionDetailsDash = styled(AccordionDetails)`

@@ -31,7 +31,7 @@ const DashIntegrador = ({ clientes, role, darkMode }) => {
 
   return (
     <Cards
-      style={{ width: "40%", height: "120px", marginTop: "80px" }}
+      style={{ width: "40%", height: "auto", marginTop: "80px" }}
       modo={darkMode ? "dark" : ""}
     >
       <h2 style={{ margin: 0 }} data-aos="fade-right" data-aos-duration="1200">
@@ -63,7 +63,7 @@ const DashIntegrador = ({ clientes, role, darkMode }) => {
               <span
                 style={{
                   cursor: data.click ? "pointer" : "default",
-                  width: "40%",
+                  width: "50%",
                 }}
               >
                 {data.estado} - ({data.data?.length > 0 ? data.data.length : 0})
