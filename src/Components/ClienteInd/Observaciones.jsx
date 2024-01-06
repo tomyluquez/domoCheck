@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import formatDate from "../../services/formatDate";
 
 const Observaciones = ({ cliente }) => {
+  console.log(cliente.observaciones);
   const [obs, setObs] = useState(null);
   const mutationclient = useMutations();
   const { isLoading } = mutationclient;

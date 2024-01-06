@@ -62,6 +62,7 @@ const FormAddClient = () => {
     }
 
     try {
+      const obs = data.obs;
       const newUser = {
         fechaSolicitud: data.fechaSolicitud,
         nombreCrm: data.nombreCrm,
@@ -69,7 +70,7 @@ const FormAddClient = () => {
         telContacto: +data.telContacto,
         vendedor: data.vendedor,
         antiguedad: data.antiguedad,
-        observaciones: data.obs ? [data.obs] : [],
+        observaciones: data.obs ? [{ obs, userName, date: new Date() }] : [],
         userName,
         instagram: data.instagram,
         logistica: data.logistica,
