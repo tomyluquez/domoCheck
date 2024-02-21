@@ -4,6 +4,8 @@ export const vendedores = [
   { descripcion: "Juani", value: "Juani" },
   { descripcion: "Mica", value: "Mica" },
   { descripcion: "NN", value: "NN" },
+  { descripcion: "Ezequiel", value: "Ezequiel" },
+  { descripcion: "Adrian", value: "Adrian" },
   { descripcion: "Rafa", value: "Rafa" },
   { descripcion: "Rocio", value: "Rocio" },
   { descripcion: "Roly", value: "Roly" },
