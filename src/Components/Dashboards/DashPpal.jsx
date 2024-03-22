@@ -35,6 +35,28 @@ const DashPpal = ({ clientes, user, prospects }) => {
       {user.role === "vendedor" && (
         <DashVendedor clientes={clientes} user={user} darkMode={darkMode} />
       )}
+      {user.role === "integral" && (
+        <div
+          className="flex"
+          style={{
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <DashIntegrador
+            clientes={clientes}
+            role={user.role}
+            darkMode={darkMode}
+          />
+          <DashComercial
+            clientes={clientes}
+            darkMode={darkMode}
+            prospects={prospects}
+          />
+          <DashVendedor clientes={clientes} user={user} darkMode={darkMode} />
+        </div>
+      )}
       {user.role === "marketing" && (
         <div className="flex" style={{ alignItems: "start", width: "100%" }}>
           <DashMkt clientes={clientes} darkMode={darkMode} />

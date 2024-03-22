@@ -70,14 +70,15 @@ const ModalHistorial = ({ clientes, idClient, open, setOpen }) => {
           className="flex"
           style={{ justifyContent: "space-between" }}
         >
-          {role === "vendedor" && cliente.estado === "StandBy" && (
-            <ButtonCustom
-              width="100px"
-              onClick={() => handleModal("Retomar integracion")}
-            >
-              Retomar Integracion
-            </ButtonCustom>
-          )}
+          {(role === "vendedor") | (role === "integral") &&
+            cliente.estado === "StandBy" && (
+              <ButtonCustom
+                width="100px"
+                onClick={() => handleModal("Retomar integracion")}
+              >
+                Retomar Integracion
+              </ButtonCustom>
+            )}
           <Button autoFocus onClick={handleClose}>
             Cerrar
           </Button>

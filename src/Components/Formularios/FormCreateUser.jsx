@@ -33,7 +33,8 @@ const FormCreateUser = ({ user }) => {
       data.password === "" ||
       data.email === "" ||
       data.role === "" ||
-      (data.role === "vendedor" && data.vendedor === "")
+      ((data.role === "vendedor" || data.role === "integral") &&
+        data.vendedor === "")
     ) {
       dispatch(
         openAlert({
@@ -83,14 +84,14 @@ const FormCreateUser = ({ user }) => {
         setValue={(newValue) => setData({ ...data, role: newValue })}
         opciones={roles}
       />
-      {data.role === "vendedor" && (
+      {(data.role === "vendedor" || data.role === "integral") && (
         <SelectCustom
           w="100%"
           label="Vincular a un vendedor"
           value={data.vendedor}
           required={true}
           setValue={(newValue) => setData({ ...data, vendedor: newValue })}
-          opciones={vendedores}
+          opciones={vendedores.filter((v) => v.status === "active")}
         />
       )}
       <ButtonCustom type="submit">

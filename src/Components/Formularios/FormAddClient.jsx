@@ -24,13 +24,14 @@ const FormAddClient = () => {
   const dispatch = useDispatch();
   const notifiMutation = useCreateNotifi();
   const users = useGetUsers();
-  const userName = useSelector((state) => state.user.name);
+  const user = useSelector((state) => state.user);
   const [data, setData] = useState({
     fechaSolicitud: "",
     nombreCrm: "",
     nombreLocal: "",
     telContacto: "",
-    vendedor: "",
+    vendedor:
+      vendedores.filter((v) => v.value === user.vendedor)[0].value || "",
     antiguedad: "",
     obs: "",
     instagram: "",
@@ -63,6 +64,7 @@ const FormAddClient = () => {
 
     try {
       const obs = data.obs;
+      const userName = user.name;
       const newUser = {
         fechaSolicitud: data.fechaSolicitud,
         nombreCrm: data.nombreCrm,
@@ -147,7 +149,7 @@ const FormAddClient = () => {
         value={data.vendedor}
         required={true}
         setValue={(newValue) => setData({ ...data, vendedor: newValue })}
-        opciones={vendedores}
+        opciones={vendedores.filter((v) => v.status === "active")}
       />
       <SelectCustom
         w="45%"

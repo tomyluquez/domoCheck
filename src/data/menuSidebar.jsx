@@ -31,7 +31,10 @@ export const menuSidebar = (user) => {
       to: "/Configuracion",
     },
   ].filter((item) => {
-    if (user.role === "integrador" && item.text === "Configuracion") {
+    if (
+      (user.role === "integrador" || user.role === "integral") &&
+      item.text === "Configuracion"
+    ) {
       return false;
     }
     if (user.role === "comercial" && item.text === "Configuracion") {

@@ -78,15 +78,7 @@ function App() {
                     exact
                     path="/clientes/:id"
                     element={
-                      <ProtectedRoute
-                        isAllowed={
-                          user.role === "admin" ||
-                          user.role === "integrador" ||
-                          user.role === "masDelivery" ||
-                          user.role === "comercial" ||
-                          user.role === "marketing"
-                        }
-                      >
+                      <ProtectedRoute isAllowed={user.role !== "vendedor"}>
                         <ClienteIdn />
                       </ProtectedRoute>
                     }
@@ -97,10 +89,8 @@ function App() {
                     element={
                       <ProtectedRoute
                         isAllowed={
-                          user.role === "admin" ||
-                          user.role === "integrador" ||
-                          user.role === "comercial" ||
-                          user.role === "vendedor"
+                          user.role !== "marketing" ||
+                          user.role !== "masDelivery"
                         }
                       >
                         <Actividades />
@@ -111,15 +101,7 @@ function App() {
                     exact
                     path="/Clientes"
                     element={
-                      <ProtectedRoute
-                        isAllowed={
-                          user.role === "admin" ||
-                          user.role === "integrador" ||
-                          user.role === "masDelivery" ||
-                          user.role === "comercial" ||
-                          user.role === "marketing"
-                        }
-                      >
+                      <ProtectedRoute isAllowed={user.role !== "vendedor"}>
                         <Clientes />
                       </ProtectedRoute>
                     }
