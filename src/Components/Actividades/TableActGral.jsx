@@ -20,7 +20,8 @@ const TableActGral = ({ tipoActividad, actividades }) => {
       if (
         user.role !== "comercial" &&
         user.role !== "integrador" &&
-        user.role !== "vendedor"
+        user.role !== "vendedor" &&
+        user.role !== "integral"
       )
         return;
 
