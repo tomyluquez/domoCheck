@@ -79,7 +79,11 @@ export const promDiasIntegrados = (clientes, vendedor) => {
         cliente.estado === "Integrado" && cliente.vendedor === vendedor
     );
   } else {
-    integrados = clientes.filter((cliente) => cliente.estado === "Integrado");
+    integrados = clientes.filter(
+      (cliente) =>
+        cliente.estado === "Integrado" &&
+        new Date(cliente.fechaSolicitud) >= new Date("2024-04-01")
+    );
   }
   const days = integrados.map((cliente) =>
     calculateDays(cliente.fechaSolicitud, cliente.fechaIntegrado)

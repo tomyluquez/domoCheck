@@ -73,7 +73,7 @@ const DatosDash = ({ clientes, vendedor, role, darkMode }) => {
                     {dash.data}
                   </Tooltip>
                 ) : (
-                  dash.data
+                  dash.data || "-"
                 )}
               </NumberData>
               {dash.dataAnterior !== undefined && (
