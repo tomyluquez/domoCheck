@@ -68,17 +68,18 @@ const UsersClient = ({ cliente }) => {
             label={dataUser.label}
             variant="outlined"
             required={true}
-            disabled={role !== "masDelivery"}
+            disabled={role !== "masDelivery" && role !== "integrador"}
             onChange={(e) =>
               setData({ ...data, [dataUser.value]: e.target.value })
             }
           />
         ))}
-        {role === "masDelivery" && (
-          <ButtonCustom onClick={handlerSetUsersApi}>
-            {isLoading ? <Loading /> : "Guardar"}
-          </ButtonCustom>
-        )}
+        {role === "masDelivery" ||
+          (role === "integrador" && (
+            <ButtonCustom onClick={handlerSetUsersApi}>
+              {isLoading ? <Loading /> : "Guardar"}
+            </ButtonCustom>
+          ))}
       </DivUserAPi>
       <DivUsersGrid>
         <h4 style={{ margin: 0 }}>Usuarios para el panel de control</h4>
@@ -91,17 +92,18 @@ const UsersClient = ({ cliente }) => {
             label={dataUser.label}
             variant="outlined"
             required={true}
-            disabled={role !== "masDelivery"}
+            disabled={role !== "masDelivery" && role !== "integrador"}
             onChange={(e) =>
               setData({ ...data, [dataUser.value]: e.target.value })
             }
           />
         ))}
-        {role === "masDelivery" && (
-          <ButtonCustom onClick={handlerSetUsersDatos}>
-            {isLoading ? <Loading /> : "Guardar"}
-          </ButtonCustom>
-        )}
+        {role === "masDelivery" ||
+          (role === "integrador" && (
+            <ButtonCustom onClick={handlerSetUsersDatos}>
+              {isLoading ? <Loading /> : "Guardar"}
+            </ButtonCustom>
+          ))}
       </DivUsersGrid>
     </DivUsers>
   );
