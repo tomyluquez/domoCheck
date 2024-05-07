@@ -74,12 +74,11 @@ const UsersClient = ({ cliente }) => {
             }
           />
         ))}
-        {role === "masDelivery" ||
-          (role === "integrador" && (
-            <ButtonCustom onClick={handlerSetUsersApi}>
-              {isLoading ? <Loading /> : "Guardar"}
-            </ButtonCustom>
-          ))}
+        {(role === "masDelivery" || role === "integrador") && (
+          <ButtonCustom onClick={handlerSetUsersApi}>
+            {isLoading ? <Loading /> : "Guardar"}
+          </ButtonCustom>
+        )}
       </DivUserAPi>
       <DivUsersGrid>
         <h4 style={{ margin: 0 }}>Usuarios para el panel de control</h4>
@@ -98,12 +97,11 @@ const UsersClient = ({ cliente }) => {
             }
           />
         ))}
-        {role === "masDelivery" ||
-          (role === "integrador" && (
-            <ButtonCustom onClick={handlerSetUsersDatos}>
-              {isLoading ? <Loading /> : "Guardar"}
-            </ButtonCustom>
-          ))}
+        {(role === "masDelivery" || role === "integrador") && (
+          <ButtonCustom onClick={handlerSetUsersDatos}>
+            {isLoading ? <Loading /> : "Guardar"}
+          </ButtonCustom>
+        )}
       </DivUsersGrid>
     </DivUsers>
   );
