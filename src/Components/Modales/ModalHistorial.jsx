@@ -23,7 +23,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const ModalHistorial = ({ clientes, idClient, open, setOpen }) => {
-  const cliente = filterById(clientes, idClient);
+  const cliente =
+    clientes.length > 1 ? filterById(clientes, idClient) : clientes;
   const hitosIndividual = hitosInd(cliente);
   const role = useSelector((state) => state.user.role);
   const dispatch = useDispatch();

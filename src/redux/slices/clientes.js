@@ -4,6 +4,7 @@ const initialState = {
   clientes: [],
   filteredClientes: [],
   prospects: [],
+  filteredProspects: [],
 };
 
 export const clientesSlice = createSlice({
@@ -19,13 +20,18 @@ export const clientesSlice = createSlice({
     filters: (state, action) => {
       state.filteredClientes = action.payload;
     },
+    filtersProspects: (state, action) => {
+      state.filteredProspects = action.payload;
+    },
     addProspects: (state, action) => {
       if (action.payload) {
         state.prospects = action.payload.data;
+        state.filteredProspects = action.payload.data;
       }
     },
   },
 });
 
-export const { addClients, filters, addProspects } = clientesSlice.actions;
+export const { addClients, filters, addProspects, filtersProspects } =
+  clientesSlice.actions;
 export default clientesSlice.reducer;

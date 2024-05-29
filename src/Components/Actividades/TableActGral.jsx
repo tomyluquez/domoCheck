@@ -25,7 +25,10 @@ const TableActGral = ({ tipoActividad, actividades }) => {
       )
         return;
 
+      console.log(act);
+
       let tipo = act.actividad.dato;
+      if (!tipo) tipo = "Contactar prospecto";
       if (act.actividad.dato.includes("Seguimiento")) {
         tipo = act.actividad.dato.split("Seguimiento ")[1];
       }

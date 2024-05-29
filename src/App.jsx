@@ -16,6 +16,7 @@ import { Paper } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import { theme, darkTheme } from "./Styles/theme.js";
 import useGetProspects from "./Hooks/useGetProspects";
+import Prospectos from "./Layout/Pages/Prospectos.jsx";
 
 const Dash = lazy(() => import("./Layout/Pages/Dash"));
 const Clientes = lazy(() => import("./Layout/Pages/Clientes"));
@@ -103,6 +104,15 @@ function App() {
                     element={
                       <ProtectedRoute isAllowed={user.role !== "vendedor"}>
                         <Clientes />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/Prospectos"
+                    element={
+                      <ProtectedRoute isAllowed={user.role !== "vendedor"}>
+                        <Prospectos />
                       </ProtectedRoute>
                     }
                   />

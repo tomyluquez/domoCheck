@@ -7,6 +7,7 @@ import DashMas from "./masDelivery/DashMas";
 import DashMkt from "./masDelivery/DashMkt";
 import DashVendedor from "./vendedores/DashVendedor";
 import DashClMkt from "./masDelivery/DashClMkt";
+import DatosProspects from "./masDelivery/DatosProspects";
 
 const DashPpal = ({ clientes, user, prospects }) => {
   const darkMode = useSelector((state) => state.mode.darkMode);
@@ -48,6 +49,11 @@ const DashPpal = ({ clientes, user, prospects }) => {
             clientes={clientes}
             role={user.role}
             darkMode={darkMode}
+          />
+          <DatosProspects
+            clientes={prospects}
+            darkMode={darkMode}
+            width="40%"
           />
           <DashComercial
             clientes={clientes}

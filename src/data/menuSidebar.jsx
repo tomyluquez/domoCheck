@@ -17,6 +17,11 @@ export const menuSidebar = (user) => {
       to: "/Clientes",
     },
     {
+      icon: <FolderSharedOutlinedIcon />,
+      text: "Prospectos",
+      to: "/Prospectos",
+    },
+    {
       icon: <CalendarMonthOutlinedIcon />,
       text: "Actividades",
       to: "/Actividades",
@@ -42,21 +47,24 @@ export const menuSidebar = (user) => {
     }
     if (
       (user.role === "vendedor" && item.text === "Configuracion") ||
-      (user.role === "vendedor" && item.text === "Clientes")
+      (user.role === "vendedor" && item.text === "Clientes") ||
+      (user.role === "vendedor" && item.text === "Prospectos")
     ) {
       return false;
     }
     if (
       (user.role === "masDelivery" && item.text === "Configuracion") ||
       (user.role === "masDelivery" && item.text === "Actividades") ||
-      (user.role === "masDelivery" && item.text === "Agregar cliente")
+      (user.role === "masDelivery" && item.text === "Agregar cliente") ||
+      (user.role === "masDelivery" && item.text === "Prospectos")
     ) {
       return false;
     }
     if (
       (user.role === "marketing" && item.text === "Configuracion") ||
       (user.role === "marketing" && item.text === "Actividades") ||
-      (user.role === "marketing" && item.text === "Agregar cliente")
+      (user.role === "marketing" && item.text === "Agregar cliente") ||
+      (user.role === "marketing" && item.text === "Prospectos")
     ) {
       return false;
     }

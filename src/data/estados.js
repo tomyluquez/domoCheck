@@ -13,6 +13,36 @@ export const estados = [
   { value: "Testeo", descripcion: "Testeo" },
 ];
 
+export const estadosProspectos = [
+  {
+    value: "Seguimiento",
+    descripcion: "Seguimiento",
+  },
+  {
+    value: "No lo quiere",
+    descripcion: "No lo quiere",
+  },
+  {
+    value: "Acepto",
+    descripcion: "Acepto",
+  },
+];
+
+export const intereses = [
+  {
+    value: "Bajo",
+    descripcion: "Bajo",
+  },
+  {
+    value: "Medio",
+    descripcion: "Medio",
+  },
+  {
+    value: "Alto",
+    descripcion: "Alto",
+  },
+];
+
 export const StateDashVendedor = (clientes, vendedor) => {
   let stateDash = [
     {
