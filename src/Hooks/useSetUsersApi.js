@@ -9,7 +9,7 @@ const useSetUsersApi = () => {
   const mutationUsers = useMutation(
     (users) =>
       fetch(
-        `https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/clientes/${users.endpoint}`,
+        `https://domo-backend.onrender.com/api/clientes/${users.endpoint}`,
         {
           method: "PUT",
           headers: {

@@ -5,7 +5,7 @@ const useUpdateProspect = () => {
 
   const updateProspect = useMutation(
     (data) =>
-      fetch(`https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/prospects`, {
+      fetch(`https://domo-backend.onrender.com/api/prospects`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

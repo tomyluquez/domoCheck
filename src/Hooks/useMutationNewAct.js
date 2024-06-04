@@ -8,7 +8,7 @@ const useMutationNewAct = () => {
 
   const mutationNewAct = useMutation(
     (data) =>
-      fetch(`https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/actividades`, {
+      fetch(`https://domo-backend.onrender.com/api/actividades`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

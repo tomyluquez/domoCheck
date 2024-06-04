@@ -10,7 +10,7 @@ const useAddContacto = () => {
   const mutationNewContacto = useMutation(
     (newContact) =>
       fetch(
-        `https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/clientes/${newContact.idClient}`,
+        `https://domo-backend.onrender.com/api/clientes/${newContact.idClient}`,
         {
           method: "PUT",
           headers: {

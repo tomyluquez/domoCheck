@@ -5,7 +5,7 @@ const useMutations = () => {
 
   const mutationClient = useMutation(
     (data) =>
-      fetch("https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/clientes", {
+      fetch("https://domo-backend.onrender.com/api/clientes", {
         method: "PUT",
         headers: {
           "content-type": "application/json",
