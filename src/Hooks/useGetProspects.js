@@ -4,9 +4,9 @@ const useGetProspects = () => {
   const { isLoading, isError, data } = useQuery(
     "prospects",
     () =>
-      fetch("https://crnventas.onrender.com/api/prospects").then((response) =>
-        response.json()
-      ),
+      fetch(
+        "https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/prospects"
+      ).then((response) => response.json()),
     {
       enabled: true, // Realizar siempre una nueva solicitud
     }

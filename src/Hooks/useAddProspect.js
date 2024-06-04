@@ -13,7 +13,7 @@ const useNewProspect = () => {
 
   const newProspect = useMutation(
     (newClient) =>
-      fetch("https://crnventas.onrender.com/api/prospects", {
+      fetch("https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/prospects", {
         method: "POST",
         headers: {
           "content-type": "application/json",

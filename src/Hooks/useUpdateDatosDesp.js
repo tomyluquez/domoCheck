@@ -8,13 +8,16 @@ const useUpdateDatosDesp = () => {
 
   const mutationDatos = useMutation(
     (datos) =>
-      fetch(`https://crnventas.onrender.com/api/clientes/datos`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(datos),
-      }),
+      fetch(
+        `https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/clientes/datos`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(datos),
+        }
+      ),
     {
       onSuccess: () => {
         dispatch(

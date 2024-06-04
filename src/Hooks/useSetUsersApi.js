@@ -8,13 +8,16 @@ const useSetUsersApi = () => {
 
   const mutationUsers = useMutation(
     (users) =>
-      fetch(`https://crnventas.onrender.com/api/clientes/${users.endpoint}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(users),
-      }),
+      fetch(
+        `https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/clientes/${users.endpoint}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(users),
+        }
+      ),
     {
       onSuccess: () => {
         dispatch(

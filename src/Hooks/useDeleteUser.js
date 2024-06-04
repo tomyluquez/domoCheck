@@ -7,7 +7,7 @@ const useDeleteUser = () => {
   const dispatch = useDispatch();
   const deleteUserMutation = useMutation(
     (id) =>
-      fetch(`https://crnventas.onrender.com/api/users/${id}`, {
+      fetch(`https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/users/${id}`, {
         method: "DELETE",
       }).then((response) => {
         if (!response.ok) {

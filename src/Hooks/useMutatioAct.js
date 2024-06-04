@@ -9,7 +9,7 @@ const useMutatioAct = () => {
   const mutationAct = useMutation(
     (data) =>
       fetch(
-        `https://crnventas.onrender.com/api/actividades/${data.actividadId}`,
+        `https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/actividades/${data.actividadId}`,
         {
           method: "PUT",
           headers: {

@@ -6,7 +6,7 @@ const useChangeStateNoti = () => {
   const changeStateNoti = useMutation(
     async (data) => {
       const response = await fetch(
-        `https://crnventas.onrender.com/api/notifications`,
+        `https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/notifications`,
         {
           method: "PUT",
           headers: {

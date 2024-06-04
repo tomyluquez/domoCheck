@@ -14,7 +14,7 @@ const useNewMutation = () => {
 
   const mutation = useMutation(
     (newClient) =>
-      fetch("https://crnventas.onrender.com/api/clientes", {
+      fetch("https://alive-bernete-nucleo-b87ef71f.koyeb.app/api/clientes", {
         method: "POST",
         headers: {
           "content-type": "application/json",
