@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 
 const useCreateNotifi = () => {
   const notifiMutation = useMutation((data) =>
-    fetch(`https://domo-backend.onrender.com/api/notifications`, {
+    fetch(`https://crmventasback-production.up.railway.app/api/notifications`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

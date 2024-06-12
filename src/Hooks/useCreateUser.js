@@ -7,7 +7,7 @@ const useCreateUser = () => {
   const dispatch = useDispatch();
   const createUserMutation = useMutation(
     (data) =>
-      fetch(`https://domo-backend.onrender.com/api/users`, {
+      fetch(`https://crmventasback-production.up.railway.app/api/users`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

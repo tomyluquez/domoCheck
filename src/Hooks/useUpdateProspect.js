@@ -5,7 +5,7 @@ const useUpdateProspect = () => {
 
   const updateProspect = useMutation(
     (data) =>
-      fetch(`https://domo-backend.onrender.com/api/prospects`, {
+      fetch(`https://crmventasback-production.up.railway.app/api/prospects`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

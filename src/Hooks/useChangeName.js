@@ -8,13 +8,16 @@ const useChangeName = () => {
   const queryclient = useQueryClient();
   const changeNameMutation = useMutation(
     (data) =>
-      fetch(`https://domo-backend.onrender.com/api/clientes/changeData`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }).then((response) => {
+      fetch(
+        `https://crmventasback-production.up.railway.app/api/clientes/changeData`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      ).then((response) => {
         if (!response.ok) {
           throw new Error(response.status);
         }

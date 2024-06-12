@@ -10,7 +10,7 @@ const useAddContacto = () => {
   const mutationNewContacto = useMutation(
     (newContact) =>
       fetch(
-        `https://domo-backend.onrender.com/api/clientes/${newContact.idClient}`,
+        `https://crmventasback-production.up.railway.app/api/clientes/${newContact.idClient}`,
         {
           method: "PUT",
           headers: {

@@ -2,8 +2,8 @@ import { useQuery } from "react-query";
 
 const useGetUsers = () => {
   const { isLoading, isError, data } = useQuery("users", () =>
-    fetch("https://domo-backend.onrender.com/api/users").then((response) =>
-      response.json()
+    fetch("https://crmventasback-production.up.railway.app/api/users").then(
+      (response) => response.json()
     )
   );
 

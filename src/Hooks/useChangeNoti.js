@@ -6,7 +6,7 @@ const useChangeStateNoti = () => {
   const changeStateNoti = useMutation(
     async (data) => {
       const response = await fetch(
-        `https://domo-backend.onrender.com/api/notifications`,
+        `https://crmventasback-production.up.railway.app/api/notifications`,
         {
           method: "PUT",
           headers: {

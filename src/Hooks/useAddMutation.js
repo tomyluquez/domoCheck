@@ -14,7 +14,7 @@ const useNewMutation = () => {
 
   const mutation = useMutation(
     (newClient) =>
-      fetch("https://domo-backend.onrender.com/api/clientes", {
+      fetch("https://crmventasback-production.up.railway.app/api/clientes", {
         method: "POST",
         headers: {
           "content-type": "application/json",

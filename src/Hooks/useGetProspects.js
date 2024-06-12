@@ -4,9 +4,9 @@ const useGetProspects = () => {
   const { isLoading, isError, data } = useQuery(
     "prospects",
     () =>
-      fetch("https://domo-backend.onrender.com/api/prospects").then(
-        (response) => response.json()
-      ),
+      fetch(
+        "https://crmventasback-production.up.railway.app/api/prospects"
+      ).then((response) => response.json()),
     {
       enabled: true, // Realizar siempre una nueva solicitud
     }

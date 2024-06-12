@@ -13,7 +13,7 @@ const useNewProspect = () => {
 
   const newProspect = useMutation(
     (newClient) =>
-      fetch("https://domo-backend.onrender.com/api/prospects", {
+      fetch("https://crmventasback-production.up.railway.app/api/prospects", {
         method: "POST",
         headers: {
           "content-type": "application/json",
