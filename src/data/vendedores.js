@@ -7,9 +7,10 @@ export const vendedores = [
   { status: "inactive", descripcion: "Ezequiel", value: "Ezequiel" },
   { status: "active", descripcion: "Adrian", value: "Adrian" },
   { status: "active", descripcion: "Lucas", value: "Lucas" },
-  { status: "active", descripcion: "Rafa", value: "Rafa" },
+  { status: "inactive", descripcion: "Rafa", value: "Rafa" },
   { status: "active", descripcion: "Rocio", value: "Rocio" },
   { status: "inactive", descripcion: "Roly", value: "Roly" },
-  { status: "active", descripcion: "Tomas", value: "Tomas" },
+  { status: "inactive", descripcion: "Tomas", value: "Tomas" },
+  { status: "active", descripcion: "Ivan", value: "Ivan" },
   { status: "active", descripcion: "Leticia", value: "Leticia" },
 ];
