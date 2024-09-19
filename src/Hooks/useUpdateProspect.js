@@ -5,7 +5,7 @@ const useUpdateProspect = () => {
 
   const updateProspect = useMutation(
     (data) =>
-      fetch(`https://crmventasback-production.up.railway.app/api/prospects`, {
+      fetch(`https://crmventasback.onrender.com/api/prospects`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

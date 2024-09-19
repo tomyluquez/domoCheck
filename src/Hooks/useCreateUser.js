@@ -7,7 +7,7 @@ const useCreateUser = () => {
   const dispatch = useDispatch();
   const createUserMutation = useMutation(
     (data) =>
-      fetch(`https://crmventasback-production.up.railway.app/api/users`, {
+      fetch(`https://crmventasback.onrender.com/api/users`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

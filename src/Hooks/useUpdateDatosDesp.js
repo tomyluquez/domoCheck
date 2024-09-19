@@ -8,16 +8,13 @@ const useUpdateDatosDesp = () => {
 
   const mutationDatos = useMutation(
     (datos) =>
-      fetch(
-        `https://crmventasback-production.up.railway.app/api/clientes/datos`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(datos),
-        }
-      ),
+      fetch(`https://crmventasback.onrender.com/api/clientes/datos`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(datos),
+      }),
     {
       onSuccess: () => {
         dispatch(

@@ -7,7 +7,7 @@ const useDeleteUser = () => {
   const dispatch = useDispatch();
   const deleteUserMutation = useMutation(
     (id) =>
-      fetch(`https://crmventasback-production.up.railway.app/api/users/${id}`, {
+      fetch(`https://crmventasback.onrender.com/api/users/${id}`, {
         method: "DELETE",
       }).then((response) => {
         if (!response.ok) {

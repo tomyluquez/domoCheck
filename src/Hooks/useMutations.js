@@ -5,7 +5,7 @@ const useMutations = () => {
 
   const mutationClient = useMutation(
     (data) =>
-      fetch("https://crmventasback-production.up.railway.app/api/clientes", {
+      fetch("https://crmventasback.onrender.com/api/clientes", {
         method: "PUT",
         headers: {
           "content-type": "application/json",

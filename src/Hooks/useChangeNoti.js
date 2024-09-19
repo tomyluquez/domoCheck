@@ -6,7 +6,7 @@ const useChangeStateNoti = () => {
   const changeStateNoti = useMutation(
     async (data) => {
       const response = await fetch(
-        `https://crmventasback-production.up.railway.app/api/notifications`,
+        `https://crmventasback.onrender.com/api/notifications`,
         {
           method: "PUT",
           headers: {

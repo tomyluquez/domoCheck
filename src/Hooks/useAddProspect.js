@@ -13,7 +13,7 @@ const useNewProspect = () => {
 
   const newProspect = useMutation(
     (newClient) =>
-      fetch("https://crmventasback-production.up.railway.app/api/prospects", {
+      fetch("https://crmventasback.onrender.com/api/prospects", {
         method: "POST",
         headers: {
           "content-type": "application/json",

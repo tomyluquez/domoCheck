@@ -8,7 +8,7 @@ const useMutationNewAct = () => {
 
   const mutationNewAct = useMutation(
     (data) =>
-      fetch(`https://crmventasback-production.up.railway.app/api/actividades`, {
+      fetch(`https://crmventasback.onrender.com/api/actividades`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
