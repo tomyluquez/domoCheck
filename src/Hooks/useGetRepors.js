@@ -1,5 +1,5 @@
 const getReports = () => {
-  return fetch("https://crmventasback.onrender.com/api/reports").then(
+  return fetch("https://crm-ventas-back-9soz.vercel.app/api/reports").then(
     (response) => {
       if (response.status === 200) {
         return response.json();

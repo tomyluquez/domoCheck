@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 
 const useCreateNotifi = () => {
   const notifiMutation = useMutation((data) =>
-    fetch(`https://crmventasback.onrender.com/api/notifications`, {
+    fetch(`https://crm-ventas-back-9soz.vercel.app/api/notifications`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

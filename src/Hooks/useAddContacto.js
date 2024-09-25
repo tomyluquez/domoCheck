@@ -10,7 +10,7 @@ const useAddContacto = () => {
   const mutationNewContacto = useMutation(
     (newContact) =>
       fetch(
-        `https://crmventasback.onrender.com/api/clientes/${newContact.idClient}`,
+        `https://crm-ventas-back-9soz.vercel.app/api/clientes/${newContact.idClient}`,
         {
           method: "PUT",
           headers: {

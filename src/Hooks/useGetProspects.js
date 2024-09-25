@@ -4,7 +4,7 @@ const useGetProspects = () => {
   const { isLoading, isError, data } = useQuery(
     "prospects",
     () =>
-      fetch("https://crmventasback.onrender.com/api/prospects").then(
+      fetch("https://crm-ventas-back-9soz.vercel.app/api/prospects").then(
         (response) => response.json()
       ),
     {

@@ -8,7 +8,7 @@ const useChangeName = () => {
   const queryclient = useQueryClient();
   const changeNameMutation = useMutation(
     (data) =>
-      fetch(`https://crmventasback.onrender.com/api/clientes/changeData`, {
+      fetch(`https://crm-ventas-back-9soz.vercel.app/api/clientes/changeData`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

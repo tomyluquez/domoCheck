@@ -8,7 +8,7 @@ const useMutationNewAct = () => {
 
   const mutationNewAct = useMutation(
     (data) =>
-      fetch(`https://crmventasback.onrender.com/api/actividades`, {
+      fetch(`https://crm-ventas-back-9soz.vercel.app/api/actividades`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

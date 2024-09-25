@@ -5,7 +5,7 @@ const useUpdateProspect = () => {
 
   const updateProspect = useMutation(
     (data) =>
-      fetch(`https://crmventasback.onrender.com/api/prospects`, {
+      fetch(`https://crm-ventas-back-9soz.vercel.app/api/prospects`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

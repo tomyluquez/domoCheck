@@ -13,7 +13,7 @@ const useNewProspect = () => {
 
   const newProspect = useMutation(
     (newClient) =>
-      fetch("https://crmventasback.onrender.com/api/prospects", {
+      fetch("https://crm-ventas-back-9soz.vercel.app/api/prospects", {
         method: "POST",
         headers: {
           "content-type": "application/json",

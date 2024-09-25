@@ -6,7 +6,7 @@ const useChangeStateNoti = () => {
   const changeStateNoti = useMutation(
     async (data) => {
       const response = await fetch(
-        `https://crmventasback.onrender.com/api/notifications`,
+        `https://crm-ventas-back-9soz.vercel.app/api/notifications`,
         {
           method: "PUT",
           headers: {

@@ -7,7 +7,7 @@ const useCreateUser = () => {
   const dispatch = useDispatch();
   const createUserMutation = useMutation(
     (data) =>
-      fetch(`https://crmventasback.onrender.com/api/users`, {
+      fetch(`https://crm-ventas-back-9soz.vercel.app/api/users`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
